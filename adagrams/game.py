@@ -21,11 +21,11 @@ def draw_letters():
             "G"*3 + "H"*2 + "I"*9 + \
             "J" + "K" + "L"*4+ "M"*2 + \
             "N"*6 + "O"*8 + "P"*2 + \
-            "Q"*2 + "R"*6 + "S"*4 + "T"*6 + \
+            "Q" + "R"*6 + "S"*4 + "T"*6 + \
             "U"*4 + "V"*2 + "W"*2 + "X" + "Y"*2 + "Z"
     
     n = 10
-    print(pool)
+    
     return random.sample(pool, n)
     # [
     # "A","A", "A", "A", "A", "A", "A", "A", "A",
