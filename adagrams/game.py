@@ -9,3 +9,5 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     pass
+
+# Mariah's comment added 9/20
