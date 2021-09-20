@@ -32,7 +32,7 @@ Follow these directions once, a the beginning of your project:
 
 ![Fork Button](images/fork.png)
 
-2. In Github, add the other membe(s) of your team as collaborators to the repository. Do this by a The student who forked the respository should first choosing **Settings** from the top menu bar, then **Manage access** from the left navigation, and finally **Invite teams or people**.
+2. In Github, add the other member(s) of your team as collaborators to the repository. Do this by a The student who forked the respository should first choosing **Settings** from the top menu bar, then **Manage access** from the left navigation, and finally **Invite teams or people**.
 
 You can find detailed instructions [here](https://help.github.com/articles/inviting-collaborators-to-a-personal-repository/).
 
@@ -133,9 +133,11 @@ $ git add .
 $ git commit -m "meaningful message explaining your commit"
 ```
 
-6. Move on to the next wave!
+6. Consider switching driver/navigator rolls. Make sure the current driver pushes using `git push` and the new driver pulls using `git pull`.
 
-7. When you are finished working for the day, deactivate your environment with deactivate or closing the Terminal tab/window
+7. Move on to the next wave!
+
+8. When you are finished working for the day, deactivate your environment with deactivate or closing the Terminal tab/window
 
 ```bash
 $ deactivate
@@ -196,7 +198,7 @@ We recommend spending at least a portion of the time pair programming and workin
 
 Take time to read through the Wave 1 implementation requirements and the tests for wave 1. Write down your questions, and spend some time going through your understanding of the requirements and tests with your pair. Make sure you both can run `$ pytest` and see the tests fail.
 
-If, after you and your pair have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](../project_docs/hints.md).
+If, after you and your pair have taken some time to think through the problem and would like direction for how to dissect the problem, or if you need clarity on the terms/vocabulary we used in this project, you can check out [a small hint we've provided](./project_docs/hints.md).
 
 ### Wave 1: draw_letters
 
@@ -244,8 +246,8 @@ To do so, implement the function called `uses_available_letters` in `game.py`. T
    - `word`, the first parameter, describes some input word, and is a string
    - `letter_bank`, the second parameter, describes an array of drawn letters in a hand. You can expect this to be an array of ten strings, with each string representing a letter
 - Returns either `true` or `false`
-- Returns `true` if every letter in the `input` word is available (in the right quantities) in the `letters_in_hand`
-- Returns `false` if not; if there is a letter in `input` that is not present in the `letters_in_hand` or has too much of compared to the `letters_in_hand`
+- Returns `true` if every letter in the `input` word is available (in the right quantities) in the `letter_bank`
+- Returns `false` if not; if there is a letter in `input` that is not present in the `letter_bank` or has too much of compared to the `letter_bank`
 
 ### Wave 3: score_word
 
