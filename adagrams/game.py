@@ -1,5 +1,23 @@
+import random
+
 def draw_letters():
-    pass
+    letters_dict = {'A':9, 'B':2, 'C':2, 'D':4, 'E':12, 'F':2, 'G':3,
+        'H':2, 'I':9, 'J':1, 'K':1, 'L':4, 'M':2, 'N':6, 'O':8, 'P':2, 'Q':1,
+        'R':6, 'S':4, 'T':6, 'U':4, 'V':2, 'W':2, 'X':1, 'Y':2, "Z":1} 
+    
+    #for every key in the dictionary, we are multiplying it by its value and adding it to our list
+    #when we multiply, we made i a list because we can't multiply strings by integers (for example, we can't multiply 'A' * 9)
+    #however we can multiply list of strings by integers (for example, ['a']*9 = ['a','a','a','a', etc])
+    #extend is used to then combine that list with the one we created
+    letter_list = []
+    for i in letters_dict: 
+        multiplied = list(i) * letters_dict[i]
+        letter_list.extend(multiplied)
+
+    #random.sample is pulling 10 random letters from our list and removing them so we don't pull two Zs or Xs
+    #works like pop function but returns random
+    ten_letters = random.sample(letter_list, k=10)
+    return ten_letters
 
 def uses_available_letters(word, letter_bank):
     pass
