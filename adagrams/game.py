@@ -1,3 +1,6 @@
+import random
+
+
 def draw_letters():
     pool_dict = {
         'A': 9,
@@ -31,10 +34,11 @@ def draw_letters():
     for letter, freq in pool_dict.items():
         pool_list.extend(letter * freq)
 
-    print(pool_list)
+    hand = []
+    for i in range(10):
+        hand.append(random.choice(pool_list))
 
-
-draw_letters()
+    return hand
 
 
 def uses_available_letters(word, letter_bank):
