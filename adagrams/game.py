@@ -111,6 +111,7 @@ LETTER_SCORE = {
     'Z': 10
 }
 
+#returns total_score of word
 def score_word(word):
     #intialize total_score
     total_score = 0
@@ -152,10 +153,6 @@ def get_highest_word_score(word_list):
             #check for ten word length
             if len(word) == 10:
                 return word, max_score
-    #get first min_len word
 
-    #turn into tuple
-
-    #return tuple that represents data of winning word and scores
-        #   index 0 ([0]): a string of a word
-        #   index 1 ([1]): the score of that word
+    #returns shortest word and max_score
+    return min(highest_scoring_words, key=lambda a : len(a)), max_score
