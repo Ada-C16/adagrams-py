@@ -50,7 +50,13 @@ draw_letters()
 
 # Wave 2
 def uses_available_letters(word, letter_bank):
-    pass
+
+    # check if each character is in the word and occurs fewer or equal times to character in letter bank
+    for character in word:
+        if not word.count(character) <= letter_bank.count(character):
+            return False
+    return True
+
 
 # Wave 3
 def score_word(word):
@@ -60,5 +66,3 @@ def score_word(word):
 def get_highest_word_score(word_list):
     pass
 
-# Mariah's comment added 9/20
-# Sarah's comment 9/20
