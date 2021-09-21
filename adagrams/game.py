@@ -1,4 +1,34 @@
 #need to import the random package
+import random
+
+LETTER_POOL = {
+    'A': 9, 
+    'B': 2, 
+    'C': 2, 
+    'D': 4, 
+    'E': 12, 
+    'F': 2, 
+    'G': 3, 
+    'H': 2, 
+    'I': 9, 
+    'J': 1, 
+    'K': 1, 
+    'L': 4, 
+    'M': 2, 
+    'N': 6, 
+    'O': 8, 
+    'P': 2, 
+    'Q': 1, 
+    'R': 6, 
+    'S': 4, 
+    'T': 6, 
+    'U': 4, 
+    'V': 2, 
+    'W': 2, 
+    'X': 1, 
+    'Y': 2, 
+    'Z': 1
+}
 
 def draw_letters():
     #initialize a return_list variable
@@ -7,10 +37,15 @@ def draw_letters():
     for i in range (0, 10):
         #choose an integer position random between 1 and 26
         #add LETTER_POOL[random int] to return_list
-        #like list_var[i] = LETTER_POOL[random_int]
+        try:
+            random_letter = random.randint(1, 26)
+            random_letter_val = list(LETTER_POOL.keys())[random_letter]
+            return_list.append(random_letter_val)
+        except Exception as e:
+            print(f"exception:{str(e)}")
 
-    #return the return_list
-    pass
+    return return_list
+    
 
 
 def uses_available_letters(word, letter_bank):
