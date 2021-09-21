@@ -58,15 +58,11 @@ def score_word(word):
     }
 
     word = word.upper()
-    points = 0
-    for key, value in score_chart.items():
-        for letter in value:
-            count = word.count(letter)
-            points += key * count
+    score = sum([points * word.count(letter) for points, letters in score_chart.items() for letter in letters])
 
     if len(word) in range(7, 11):
-        points += 8
-    return points
+        score += 8
+    return score
 
 
 def get_highest_word_score(word_list):
