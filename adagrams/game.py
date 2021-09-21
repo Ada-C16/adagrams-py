@@ -15,7 +15,14 @@
 #       drawing new letters
 
 def draw_letters():
-    pass
+    # Create a dictionary with key:value paris as letter:# of letters available
+    # Empty list of drawn_letters
+    # List (or string?) key*value for each key:value pairs ---> returns the number 
+    #       of letters in a list that is available. Each letter is an element in the list
+    # Select a random integer (0-len(list)) to select the letter
+    # .pop the list when letter is pulled (based on index value) so that only 
+    #       remaining letters are available
+    # return drawn_letters
 
 
 
