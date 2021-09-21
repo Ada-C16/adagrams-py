@@ -90,9 +90,9 @@ def uses_available_letters(word, letter_bank):
         for letter in word:
             #If the letter is found continue the loop if not exit the loop
             if letter in letter_bank:
-                letter_found = True
-            else:
                 letter_found = False
+            else:
+                letter_found = True
 
         return letter_found
     
