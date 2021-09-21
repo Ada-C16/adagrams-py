@@ -114,4 +114,40 @@ def score_word(word):
     #if word length is >=7, add 8 points
 
 def get_highest_word_score(word_list):
-    pass
+    #inputs list of words
+    #returns a tuple of highest scoring word + highest score
+
+    #initialize max value to 0
+    max_value = 0
+    words_score = []
+    for word in word_list:
+        score=score_word(word)
+        words_score.append((word,score))
+        if score > max_value:
+            max_value=score
+    max_score_words=[]
+    for word_info in words_score:
+        if word_info[1] == max_value:
+            max_score_words.append((word_info[0],word_info[1],len(word_info[0])))
+    if len(max_score_words) > 1:
+        min_length=10
+        for word_info in max_score_words:
+            if word_info[2] == 10:
+                return word_info[0],word_info[1]
+            if word_info[2] < min_length:
+                min_length = word_info[2]
+        for word_info in max_score_words:
+            if word_info[2] == min_length:
+                return word_info[0],word_info[1]
+    else:
+        return(max_score_words[0][0],max_score_words[0][1])
+
+#print(get_highest_word_score(["hello","ada","academy"]))
+
+    #initialize empty list (high_score_words[])
+    #iterate through word_list with score_word
+        ##find max value
+    #iterate through word_list again and store words with max_value to high_score_words[]
+    #if word is 10 characters, return tuple
+    #else, if word length is < word length of other words, return tuple
+    #else, return tuple of first word
