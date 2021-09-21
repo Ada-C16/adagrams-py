@@ -68,20 +68,23 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     total = 0
     for char in word:
-        if char in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]:
+        if char.upper() in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]:
             total += 1
-        elif char in ["D", "G"]:
+        elif char.upper() in ["D", "G"]:
             total += 2
-        elif char in ["B", "C", "M", "P" ]:
+        elif char.upper() in ["B", "C", "M", "P" ]:
             total += 3
-        elif char in ["F", "H", "V", "W", "Y"]:
+        elif char.upper() in ["F", "H", "V", "W", "Y"]:
             total += 4
-        elif char in ["K"]:
+        elif char.upper() in ["K"]:
             total += 5
-        elif char in ["J","X "]:
+        elif char.upper() in ["J","X"]:
             total += 8
-        elif char in ["Q", "Z"]:
+        elif char.upper() in ["Q", "Z"]:
             total += 10
+    if len(word) in [7, 8, 9, 10]:
+            total += 8
+    return total
             
 
 def get_highest_word_score(word_list):
