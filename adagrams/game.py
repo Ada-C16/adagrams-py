@@ -82,7 +82,11 @@ print(draw_letters())
 
 
 def uses_available_letters(word, letter_bank):
-    
+    #word = str()
+    if word in letter_bank: 
+        return True
+    else:
+        return False
     # Check to see if letters are in available word bank
     # Elif returns True if in bank, False if not
     # *REMOVES* from letter bank so does not CHANGE letter bank
