@@ -36,16 +36,22 @@ def draw_letters():
 
     hand = []
     for i in range(10):
-        letter  = random.choice(pool_list)
+        letter = random.choice(pool_list)
         while hand.count(letter) == pool_dict[letter]:
-            letter  = random.choice(pool_list)
+            letter = random.choice(pool_list)
         hand.append(letter)
 
     return hand
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    temp_bank = letter_bank.copy()
+    for letter in word:
+        if letter not in temp_bank:
+            return False
+        else:
+            temp_bank.remove(letter)
+    return True
 
 
 def score_word(word):
