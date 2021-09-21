@@ -31,7 +31,6 @@ LETTER_POOL = {
 
 
 def draw_letters():
-<<<<<<< HEAD
     letter_pool_list = list(LETTER_POOL.keys())
     letter_strings = []
     letter_freq = {}
@@ -58,11 +57,6 @@ def draw_letters():
 
         
 
-
-=======
-    
-    pass
->>>>>>> c68a9ae44fbef52554453a415a790338d410effb
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank[:]
@@ -120,33 +114,35 @@ def score_word(word):
             
     return total_score
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c68a9ae44fbef52554453a415a790338d410effb
 
 
-words = ["X", "XX", "XXX", "XXXX"]
+
 def get_highest_word_score(word_list):
-<<<<<<< HEAD
-    
-    word_list = []
+    # create an empty dict to store key and value for each word in the word_list
     word_dict = {}
-    for word in words:
+    max_score_list = []
+    tied_words = []
+
+    for word in word_list:
+        #calling score_word function to get the score for each word
         word_score = score_word(word)
-        print("word score returns ",word_score) 
+        #put the word_score as a value for each word
         word_dict[word] = word_score
-        print("word dict is :" ,word_dict)
+        # get the key that has max value in word_dict
         max_score = max(word_dict, key= word_dict.get)
-        word_list.append(word)
-        word_list.append(max_score)
-        print("word list is ",word_list)
-    print(word_list)
+        max_score_value = word_dict[max_score]
 
-    return tuple(word_list)
-
-print(get_highest_word_score(words))
-=======
-
-    pass
->>>>>>> c68a9ae44fbef52554453a415a790338d410effb
+    # create a list to have the key as a first index and value as a second index    
+    max_score_list.append(max_score)
+    max_score_list.append(max_score_value)
+    for key,value in word_dict.items():
+        if value == max_score_value:
+            tied_words.append(key)
+    if len(tied_words) == 1:
+        return (tied_words[0],max_score_value)
+    else:
+        for word in tied_words:
+            if len(word) == 10:
+                return (word,max_score_value)
+        fewer_letters = min(tied_words, key= len)
+        return(fewer_letters, max_score_value)    
