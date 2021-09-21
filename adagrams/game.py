@@ -17,6 +17,7 @@ def draw_letters():
         "E": 12,
         "F": 2,
         "G": 3,
+        "H": 2,
         "I": 9,
         "J": 1,
         "K": 1,
@@ -67,7 +68,46 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    
+    player_score = 0
+    # make a score chart
+    score_chart =  {
+        "A": 1,
+        "B": 3,
+        "C": 3,
+        "D": 2,
+        "E": 1,
+        "F": 4,
+        "G": 2,
+        "H": 4,
+        "I": 1,
+        "J": 8,
+        "K": 5,
+        "L": 1,
+        "M": 3,
+        "N": 1,
+        "O": 1,
+        "P": 3,
+        "Q": 10,
+        "R": 1,
+        "S": 1,
+        "T": 1,
+        "U": 1,
+        "V": 4,
+        "W": 4,
+        "X": 8,
+        "Y": 4,
+        "Z": 10,
+    }
+    word = word.upper()
 
+    for letter in word:
+        player_score += score_chart[letter]
+    if len(word) in range(7, 11):
+        player_score += 8
+    return player_score
+    # at each letter, it sums the value of each letter
+    # total score = sum of all letter values
+    # if len(word) = 7,8,9,10, score gets 8 additional points  
 def get_highest_word_score(word_list):
     pass
