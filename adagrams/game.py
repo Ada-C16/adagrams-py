@@ -83,14 +83,24 @@ print(draw_letters())
 
 def uses_available_letters(word, letter_bank):
     #word = str()
-    if word in letter_bank: 
-        return True
-    else:
-        return False
+    letter_found = True
+    #Create a while loop to hold the status of whether we found the letter
+    while letter_found:
+        #Iterate over ech letter of the word
+        for letter in word:
+            #If the letter is found continue the loop if not exit the loop
+            if letter in letter_bank:
+                letter_found = True
+            else:
+                letter_found = False
+
+        return letter_found
+    
+
     # Check to see if letters are in available word bank
     # Elif returns True if in bank, False if not
     # *REMOVES* from letter bank so does not CHANGE letter bank
-    pass
+    
 
 def score_word(word):
     # Creates dictionary for letters and values
