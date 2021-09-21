@@ -1,6 +1,25 @@
 def draw_letters():
     pass
 
+# Wave 2
+
+def available_letters_quantity(letter_bank):
+    '''
+    This function creates a dictionary of letters and their amounts in the drawn hand.
+
+    Parameter:
+        letter_bank, a list of one-character strings
+
+    Output:
+        letters_amount, a dictionary; example: letters_amount = {'a': 3, 'f': 2, 'm': 1, 'x': 1, 'g': 2, 'e': 1}
+    '''
+    letters_amount = {}
+    for letter in letter_bank:
+        if letter not in letters_amount:
+            letters_amount[letter] = 1
+        else:
+            letters_amount[letter] += 1
+    return letters_amount
 def uses_available_letters(word, letter_bank):
     '''
     This function determines if the word entered by the player is an anagram of the player's drawn letters.
@@ -12,17 +31,14 @@ def uses_available_letters(word, letter_bank):
     Output:
         boolean, True or False
     '''
-    matching_letters = {}
-    is_an_anagram = True
+    letter_bank_dict = available_letters_quantity(letter_bank) 
     for letter in word:
-        if letter in letter_bank:
-            matching_letters[letter] = True
+        if letter in letter_bank_dict and letter_bank_dict[letter] > 0:
+            letter_bank_dict[letter] -= 1
+            print(letter_bank_dict)
         else:
-            matching_letters[letter] = False
-    for matching_letter in matching_letters:
-        if matching_letters[matching_letter] == False:
             return False
-    return is_an_anagram
+    return True
 
 def score_word(word):
     #word=string
@@ -39,6 +55,6 @@ def score_word(word):
       sum+=8
     return sum
 
-
+# Wave 4
 def get_highest_word_score(word_list):
     pass
