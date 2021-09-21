@@ -57,6 +57,12 @@ def uses_available_letters(word, letter_bank):
 #     additional 8 points
 
 def score_word(word):
+    # Create dictionary of letter score values
+    # Create score variable = 0 
+    # For loop through each letter of word:
+    #   Reference each letter in dictionary key and add value to score
+    # If len(list) >= 7 add 8 points to score
+    # Returns integer points
     pass
 
 
