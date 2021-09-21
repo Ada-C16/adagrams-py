@@ -1,9 +1,68 @@
+import random
+
+def intialize_letter_pool():
+    letter_pool = {
+    'A': 9, 
+    'B': 2, 
+    'C': 2, 
+    'D': 4, 
+    'E': 12, 
+    'F': 2, 
+    'G': 3, 
+    'H': 2, 
+    'I': 9, 
+    'J': 1, 
+    'K': 1, 
+    'L': 4, 
+    'M': 2, 
+    'N': 6, 
+    'O': 8, 
+    'P': 2, 
+    'Q': 1, 
+    'R': 6, 
+    'S': 4, 
+    'T': 6, 
+    'U': 4, 
+    'V': 2, 
+    'W': 2, 
+    'X': 1, 
+    'Y': 2, 
+    'Z': 1
+}
+    return letter_pool
+
+def intialize_game_pieces(letter_pool):
+    game_pieces = []
+    for letter, quantity in letter_pool.items():
+        for i in range(quantity):
+            game_pieces.append(letter)
+    return game_pieces
+
 def draw_letters():
-    pass
-# hello i am a comment
+    letter_pool = intialize_letter_pool()
+    game_pieces = intialize_game_pieces(letter_pool)
+    letter_hand = []
+
+    random.shuffle(game_pieces)
+    for i in range(10):
+        random_letter = game_pieces.pop()
+        letter_hand.append(random_letter)
+    
+    return letter_hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word_letter_list = list(word)
+    letter_bank_copy = letter_bank[:]
+
+    for letter in word_letter_list:
+        if letter not in letter_bank_copy:
+            return False
+        else:
+            word_letter_list.remove(letter)
+            letter_bank_copy.remove(letter)
+    
+    return True
+        
 
 def score_word(word):
     pass
