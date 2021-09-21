@@ -48,8 +48,34 @@ def uses_available_letters(word, letter_bank):
     else:
         return False
 
-def score_word(word):
-    pass
+def score_word(word):    
+    # Create a dictionary for the scores of each letter, where the letter is the key, and its score is the corresponding value
+    score_dict = {"A": 1, "B": 3, "C": 3, "D": 2, "E": 1, "F": 4, "G": 2,
+        "H": 4, "I": 1, "J": 8, "K": 5, "L": 1, "M": 3, "N": 1, "O": 1,
+        "P": 3, "Q": 10, "R": 1, "S": 1, "T": 1, "U": 1, "V": 4, "W": 4,
+        "X": 8, "Y": 4, "Z": 10
+    }
+
+    # Format the input so that each letter in the string argument passed into word parameter is uppercase (to pass the test that ignores case)
+        # Store into new variable to be used in score calculation 
+    word_formatted = word.upper()
+
+    # Create a new list, and iterate over word, storing each letter into the new list.
+    letters_in_word = []
+    for letter in word_formatted:
+        letters_in_word.append(letter)
+    
+    # Create a counter variable to tally the score. Iterate over each letter in the letters_in_word list. 
+        # Referencing the score_dict dictionary, use each letter as a key to add its corresponding value to the score counter.
+    score = 0
+    for letter in letters_in_word:
+        score += score_dict[letter]
+    
+    # If the length of the word is 7, 8, 9, or 10, add 8 points to the score
+    if len(word) >= 7:
+        score += 8
+    
+    return score
 
 def get_highest_word_score(word_list):
     pass
