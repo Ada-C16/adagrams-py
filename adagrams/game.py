@@ -44,17 +44,9 @@ def draw_letters():
     return letter_bank
 
 
-def uses_available_letters(word, letter_bank):
-    # works. beautiful & perfect
-    bank_dict = {letter: letter_bank.count(letter) for letter in letter_bank}
-
-    # lain will probably try to make this hotter.
-    for letter in word:
-        if bank_dict.get(letter):
-            bank_dict[letter] -= 1
-        else:
-            return False
-    return True
+def uses_available_letters(word, hand):
+    # challenge accepted
+    return all([word.count(letter) <= hand.count(letter) for letter in set(word)])
 
 
 def score_word(word):
