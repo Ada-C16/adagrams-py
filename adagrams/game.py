@@ -51,10 +51,6 @@ def draw_letters():
     return(ten_letters)
 
 
-
-
-
-
 def uses_available_letters(word, letter_bank):
             
     bool_count_letters = []
@@ -70,7 +66,23 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    total = 0
+    for char in word:
+        if char in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]:
+            total += 1
+        elif char in ["D", "G"]:
+            total += 2
+        elif char in ["B", "C", "M", "P" ]:
+            total += 3
+        elif char in ["F", "H", "V", "W", "Y"]:
+            total += 4
+        elif char in ["K"]:
+            total += 5
+        elif char in ["J","X "]:
+            total += 8
+        elif char in ["Q", "Z"]:
+            total += 10
+            
 
 def get_highest_word_score(word_list):
     pass
