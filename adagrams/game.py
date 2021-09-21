@@ -68,6 +68,7 @@ def uses_available_letters(word, letter_bank):
     else:
         return True
 
+
 def score_word(word):
     pass
 
