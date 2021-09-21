@@ -60,8 +60,31 @@ def uses_available_letters(word, letter_bank):
 
 # Wave 3
 def score_word(word):
-    pass
+    # initialize score dictionary
+    score_chart = {
+    ('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'): 1,
+    ('D', 'G'): 2,
+    ('B', 'C', 'M', 'P'): 3,
+    ('F', 'H', 'V', 'W', 'Y'): 4,
+    ('K'): 5,
+    ('J', 'X'): 8,
+    ('Q', 'Z'): 10
+    }
 
+    score = 0
+    word = word.upper()
+    # check if each tuple contains a character from the word and if so add the value to the score
+    for letter_tuple in score_chart:
+        for char in word:
+            if char in letter_tuple:
+                score += score_chart[letter_tuple]
+
+    # increase score for long words
+    if len(word) >= 7:
+        score += 8
+
+    return score
+    
 # Wave 4
 def get_highest_word_score(word_list):
     pass
