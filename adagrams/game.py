@@ -41,14 +41,14 @@ def intialize_game_pieces(letter_pool):
 def draw_letters():
     letter_pool = intialize_letter_pool()
     game_pieces = intialize_game_pieces(letter_pool)
-    letter_hand = []
+    letter_bank = []
 
     random.shuffle(game_pieces)
     for i in range(10):
         random_letter = game_pieces.pop()
-        letter_hand.append(random_letter)
+        letter_bank.append(random_letter)
     
-    return letter_hand
+    return letter_bank
 
 def uses_available_letters(word, letter_bank):
     word_letter_list = list(word)
