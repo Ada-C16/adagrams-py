@@ -43,7 +43,28 @@ def draw_letters():
     return player_hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_dict = dict()
+
+    for letter in letter_bank:
+        if letter in letter_dict:              
+            letter_dict[letter] +=1
+        else:
+            letter_dict[letter] = 1
+
+# if rue if every letter in input word is available in the right quanities 
+#  if letter in word not in player hand,  or has too much of(letter) compared to letter bank
+    # return false
+    # 
+    for letter in word:
+        if letter not in letter_bank:
+            return False
+        else:
+            letter_dict[letter] -= 1
+            if letter_dict[letter] < 0:
+                return False
+    return True
+    
+
 
 def score_word(word):
     pass
