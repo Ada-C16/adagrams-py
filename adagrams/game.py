@@ -20,7 +20,33 @@ def draw_letters():
     return ten_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # create a copy of the list passed into letter_bank to avoid unwanted side-effects and changing the original list. 
+    letter_bank_copy = []
+    for letter in letter_bank:
+        letter_bank_copy.append(letter)
+
+    # iterate through the string argument passed into the word parameter, and add each letter in the word to a list.
+    letters_in_word = []
+    for letter in word:
+        letters_in_word.append(letter)
+
+    # Create a new list for storing the letters that we will use from the letter bank.
+    # Iterate through each letter in letters_in_word list.
+        # If a letter from that list is also in the letter bank, we will:
+            # 1) Add it to the list of used letter bank letters
+            # 2) Remove it from our copy of the letter_bank list
+    letter_bank_used = []
+    for letter in letters_in_word:
+        if letter in letter_bank_copy:
+            letter_bank_used.append(letter)
+            letter_bank_copy.remove(letter)
+    
+    # If the length of the argument passed into word is equal to the length of the letter_bank_used list, return True.
+    # Otherwise, return false.
+    if len(word) == len(letter_bank_used):
+        return True
+    else:
+        return False
 
 def score_word(word):
     pass
