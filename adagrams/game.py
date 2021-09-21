@@ -41,7 +41,24 @@ def draw_letters():
     return letter_bank
     
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_frequency = {}
+    for letter in letter_bank:
+        if letter in letter_bank_frequency:
+            letter_bank_frequency[letter] += 1
+        else:
+            letter_bank_frequency[letter] = 1
+
+    character_count = {}
+    for letter in word:
+        if letter in character_count:
+            character_count[letter] += 1
+        else:
+            character_count[letter] = 1
+
+    for letter, value in character_count.items():
+        if letter not in letter_bank_frequency or value > letter_bank_frequency[letter]:
+            return False
+    return True
 
 def score_word(word):
     pass
