@@ -2,40 +2,42 @@ import random
 
 
 def draw_letters():
-    letter_pile = "".join([
-        "A"*9,
-        "B"*2,
-        "C"*2,
-        "D"*4,
-        "E"*12,
-        "F"*2,
-        "G"*3,
-        "H"*2,
-        "I"*9,
-        "J"*1,
-        "K"*1,
-        "L"*4,
-        "M"*2,
-        "N"*6,
-        "O"*8,
-        "P"*2,
-        "Q"*1,
-        "R"*6,
-        "S"*4,
-        "T"*6,
-        "U"*4,
-        "V"*2,
-        "W"*2,
-        "X"*1,
-        "Y"*2,
-        "Z"*1,
-    ])
+    letter_pile = "".join(
+        [
+            "A" * 9,
+            "B" * 2,
+            "C" * 2,
+            "D" * 4,
+            "E" * 12,
+            "F" * 2,
+            "G" * 3,
+            "H" * 2,
+            "I" * 9,
+            "J" * 1,
+            "K" * 1,
+            "L" * 4,
+            "M" * 2,
+            "N" * 6,
+            "O" * 8,
+            "P" * 2,
+            "Q" * 1,
+            "R" * 6,
+            "S" * 4,
+            "T" * 6,
+            "U" * 4,
+            "V" * 2,
+            "W" * 2,
+            "X" * 1,
+            "Y" * 2,
+            "Z" * 1,
+        ]
+    )
 
     hand = list()
     while len(hand) < 10:
         draw = random.choice(letter_pile)
         if hand.count(draw) >= letter_pile.count(draw):
-            continue # too many of this letter, pick another
+            continue  # too many of this letter, pick another
         hand.append(draw)
     return hand
 
@@ -58,7 +60,13 @@ def score_word(word):
     }
 
     word = word.upper()
-    score = sum([points * word.count(letter) for points, letters in score_chart.items() for letter in letters])
+    score = sum(
+        [
+            points * word.count(letter)
+            for points, letters in score_chart.items()
+            for letter in letters
+        ]
+    )
 
     if len(word) in range(7, 11):
         score += 8
