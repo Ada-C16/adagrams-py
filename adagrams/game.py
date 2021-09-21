@@ -70,8 +70,8 @@ def uses_available_letters(word, letter_bank):
     #loops through each character in word, removes char in letter_bank_copy
     #returns boolean
     for char in word:
-        if char in letter_bank_copy:
-            letter_bank_copy.remove(char)
+        if char.upper() in letter_bank_copy:
+            letter_bank_copy.remove(char.upper())
         else:
             return False
 
