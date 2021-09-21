@@ -31,7 +31,7 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    #initialize a return_list variable
+    # Initialize a return_list variable
     return_list = []
     letter_freq = {}
     counter = 0
@@ -61,16 +61,36 @@ def draw_letters():
 
         #except Exception as e:
             #print(f"exception:{str(e)}")
+    # Create a for loop to return ten random letters and their values.
+    for i in range (0, 10):
+        # Choose an integer position random between 1 and 26
+        # Add LETTER_POOL[random int] to return_list
+        # For the letters: Make a list of all letters, then remove as they're generated. 
+        try:
+            random_letter = random.randint(1, 26)
+            random_letter_val = list(LETTER_POOL.keys())[random_letter]
+            return_list.append(random_letter_val)
+        except Exception as e:
+            print(f"exception:{str(e)}")
 
     return return_list
     
 
 
 def uses_available_letters(word, letter_bank):
+    # Check to see if letters are in available word bank
+    # Elif returns True if in bank, False if not
+    # *REMOVES* from letter bank so does not CHANGE letter bank
     pass
 
 def score_word(word):
+    # Creates dictionary for letters and values
+    # Elif for if letter in word - adds points, or not, does nothing
+    # If length of word 8+, adds additional 8 points
     pass
 
 def get_highest_word_score(word_list):
+    # Returns tuple - index 0 string of word, index 1 the score of the word
+    # If length of word1 == length of word2, tie break: 
+    # Shortest length wins, unless length == 10 letters
     pass
