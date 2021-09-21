@@ -48,7 +48,7 @@ def uses_available_letters(word, hand):
 
 
 def score_word(word):
-
+    word = word.upper()
     score_chart = {
         1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
         2: ["D", "G"],
@@ -59,17 +59,16 @@ def score_word(word):
         10: ["Q", "Z"],
     }
 
-    word = word.upper()
     score = sum(
         [
-            points * word.count(letter)
-            for points, letters in score_chart.items()
+            letter_points * word.count(letter)
+            for letter_points, letters in score_chart.items()
             for letter in letters
         ]
     )
-
     if len(word) in range(7, 11):
         score += 8
+
     return score
 
 
