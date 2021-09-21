@@ -11,10 +11,14 @@ def display_needs_valid_input_message():
     display_game_instructions()
 
 def uses_available_letters(word, letter_bank):
+#Call function to display game instructions and prompt user to enter a word
     display_game_instructions()
-    
+#Make a copy of the letter bank to use during round
+#So it doesn't change the letter_bank list directly
     user_letters = letter_bank.copy()
-    
+#try statement to raise error if not enough letters
+#look at letters in word and remove letters
+#will return true if all letters are in word
     try: 
         for letter in word:
             user_letters.remove(letter)
