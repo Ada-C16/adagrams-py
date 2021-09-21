@@ -19,7 +19,6 @@ def score_word(word):
       sum+=8
     return sum
 
-score_word('word')
 
 def get_highest_word_score(word_list):
     pass
