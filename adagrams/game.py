@@ -33,7 +33,7 @@ LETTER_POOL = {
     'Z': 1
 }
 
-#create helper function
+# creates list of letter distribution in adagrams game, returns list
 def build_letter_pool():
     #intialize variables
     letter_pool_list = []
@@ -42,14 +42,13 @@ def build_letter_pool():
         letter_pool_list.extend([key] * LETTER_POOL[key])
     return letter_pool_list
 
-
+# calls letter_pool_list, iterates through list to generate letter hand for user
 def draw_letters():
     #build a list of all the letters
     letter_pool_list = build_letter_pool()
     letter_bank = []
 
-    #iterate for size of user_hand
-    #generate random index for letter_pool_list
+    #iterate for size of user_hand and generate random index for letter_pool_list
     for i in range(10):
         index = random.randint(0, len(letter_pool_list)-1)
         letter_bank.append(letter_pool_list[index])
@@ -62,7 +61,7 @@ def draw_letters():
                         # Wave 2 #
 ###########################################################
 
-#
+# checks if given word is valid, returns boolean
 def uses_available_letters(word, letter_bank):
     #make copy of letter_bank
     letter_bank_copy = letter_bank.copy()
@@ -74,7 +73,6 @@ def uses_available_letters(word, letter_bank):
             letter_bank_copy.remove(char.upper())
         else:
             return False
-
     return True
 
 ###########################################################
@@ -131,6 +129,7 @@ def score_word(word):
                         # Wave 4 #
 ###########################################################
 
+# returns highest_scoring_word and max_score
 def get_highest_word_score(word_list):
     
     #initialize variables
@@ -145,10 +144,9 @@ def get_highest_word_score(word_list):
         elif score_word(word) == max_score:
             highest_scoring_words.append(word)
 
-    #check for tie breaks
+    #check for tie breaks; return first word that has length of 10 and score
     if len(highest_scoring_words) > 1:
         for word in highest_scoring_words:
-            #check for ten word length
             if len(word) == 10:
                 return word, max_score
 
