@@ -45,13 +45,29 @@ def draw_letters(letter_choices = initialize_letter_list()):
     Choose 10 letters from letter_choices tuple for user to create words with.
     """
     # This random.sample() function takes two arguments, our tuple and number of selections. 
-    # The ".sample" funtion randomly selects letters without replacement.
+    # The ".sample" funtion randomly selects letters without replacement and returns a list.
     letters_drawn = random.sample(letter_choices, 10)
+    
     # Return 10 letters (as str elements)
     return letters_drawn
 
 def uses_available_letters(word, letter_bank):
-    pass
+    """
+    Checks if user input, "word", is in the the letters they were provided. 
+    """
+    # copying letter_bank so it stays unchaged and doesn't produce side effects
+    working_bank = letter_bank.copy()
+
+    # looking at each letter in user input, "word", and seeing if it is in working_bank
+    # remove letter from working_bank to prevent duplicates 
+    # return false if user guesses letter that is not in working_bank
+    for letter in word: 
+        if letter in working_bank: 
+            working_bank.remove(letter)
+        else: 
+            return False 
+    
+    return True
 
 def score_word(word):
     pass
