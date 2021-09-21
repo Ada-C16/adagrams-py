@@ -1,3 +1,4 @@
+import random
 #WAVE 01
 # [ ] No parameters
 # [ ] Returns an array of ten strings
@@ -16,13 +17,52 @@
 
 def draw_letters():
     # Create a dictionary with key:value paris as letter:# of letters available
+    LETTER_POOL = {
+        'A': 9, 
+        'B': 2, 
+        'C': 2, 
+        'D': 4, 
+        'E': 12, 
+        'F': 2, 
+        'G': 3, 
+        'H': 2, 
+        'I': 9, 
+        'J': 1, 
+        'K': 1, 
+        'L': 4, 
+        'M': 2, 
+        'N': 6, 
+        'O': 8, 
+        'P': 2, 
+        'Q': 1, 
+        'R': 6, 
+        'S': 4, 
+        'T': 6, 
+        'U': 4, 
+        'V': 2, 
+        'W': 2, 
+        'X': 1, 
+        'Y': 2, 
+        'Z': 1
+    }
     # Empty list of drawn_letters
-    # List (or string?) key*value for each key:value pairs ---> returns the number 
+    drawn_letters = []
+    available_letters = []
+    # List key*value for each key:value pairs ---> returns the number 
     #       of letters in a list that is available. Each letter is an element in the list
+    for letter in LETTER_POOL.items():
+        for count in range(letter[1]):
+            available_letters.append(letter[0])
     # Select a random integer (0-len(list)) to select the letter
     # .pop the list when letter is pulled (based on index value) so that only 
     #       remaining letters are available
+    for i in range(10):
+        random_index = random.randint(0, len(available_letters)-1)
+        letter_pulled = available_letters.pop(random_index)
+        drawn_letters.append(letter_pulled)
     # return drawn_letters
+    return drawn_letters
+
 
 
 
@@ -44,6 +84,7 @@ def uses_available_letters(word, letter_bank):
     # Create list that is a copy of letter_bank? Loop through to make the list?
     # for loop to check letters in word in word_back
     # if statement to determine TRUE/FALSE for validity (letter in bank, not if real word)
+    pass
 
 
 #-------------------------------------------------------------------
