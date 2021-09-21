@@ -22,35 +22,22 @@ def draw_letters():
     
     
     return result
-
-
-
-# def draw_letters():
-#     import random
-
-#     letter_pool = ["A", "B", "C", "D", "E",\
-#          "F", "G", "H", "I", "J",\
-#               "K", "L", "M", "N", "O",\
-#                    "P", "Q", "R", "S", "T",\
-#                         "U", "V", "W", "X", "Y", "Z"]
-
-#     # weights = [9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1,]
-
-
-#     for i in range(1):
-#         letters = random.sample(letter_pool, weights = (9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1,), k =10)
-        
-#         return letters
-     
-
-
-
-
+    
 
 ##WAVE 2###
 
 def uses_available_letters(word, letter_bank):
-    pass
+    freq = {}
+    for elem in letter_bank:
+           freq[elem] = letter_bank.count(elem)
+
+    for letter in word:
+        # for i in range(len(letter_bank)):
+        if letter in freq.values():
+             return True
+        else:
+            return False
+
 
 
 ## WAVE 3 ##
@@ -70,6 +57,6 @@ def score_word(word):
         return sum(SCORE[letter.lower()] for letter in word)
 
 
-
+## WAVE 4##
 def get_highest_word_score(word_list):
     pass
