@@ -113,6 +113,7 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    #
     highest_score = score_word(word_list[0])
     winning_word = word_list[0]
 
