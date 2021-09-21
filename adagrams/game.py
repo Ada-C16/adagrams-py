@@ -49,7 +49,24 @@ def draw_letters():
     return chosen_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # checks to make sure that word is composed of elements in letter_bank
+
+    letter_bank_copy = letter_bank[:]
+    if isinstance(word, str) and len(word) <= 10:
+        for char in word:
+            if char in letter_bank_copy:
+                letter_bank_copy.remove(char)
+            else:
+                return False
+        return True
+    return False
+    # make a copy of letter_bank    
+    # ensure word is a string of 10 or less char
+    # loop through the word char by char
+    # if in letter_bank copy, proceed - if not in letter bank copy, return false
+    # (loop through original list, but as we loop, we check the copy)
+    # remove char from letter_bank copy
+    # return True
 
 def score_word(word):
     pass
