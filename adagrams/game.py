@@ -35,8 +35,33 @@ print("Let's draw 10 letters from the letter pool...")
 print("You have drawn the letters:")
 
 def draw_letters():
-    # Initialize a return_list variable
     return_list = []
+    letter_freq = {}
+    counter = 0
+    #we change it to a while loop to return ten random letters and their values.
+    while counter < 10:
+        #choose an integer position random between 1 and 26
+        #add LETTER_POOL[random int] to return_list
+            random_letter_index = random.randint(0,25)
+            #Then, grab just the keys of the dictionary
+            #And convert those to a list.
+            #Then grab the index of that list using the random_letter number (1-26)
+            #Because lists are 0-based, we need to subtract 1 otherwise we grab the letter before
+            #the one we expect to grab.
+            random_letter_val = list(LETTER_POOL.keys())[random_letter_index]
+
+            #Before appending the random letter, we need to look up and make sure
+            #it is not appearing more than the value in LETTER_POOL
+            if random_letter_val in letter_freq:
+                letter_freq[random_letter_val] += 1
+            else:
+                letter_freq[random_letter_val] = 1
+
+            if letter_freq[random_letter_val] <= LETTER_POOL[random_letter_val]:
+                return_list.append(random_letter_val)
+                counter += 1
+
+
     # Create a for loop to return ten random letters and their values.
     for i in range (0, 10):
         # Choose an integer position random between 1 and 26
@@ -51,6 +76,7 @@ def draw_letters():
 
     return return_list
     
+    #
 
 
 def uses_available_letters(word, letter_bank):
