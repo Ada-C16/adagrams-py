@@ -37,6 +37,9 @@ def draw_letters():
         3b. #random.sample(function)  - random.sample(list, # of elements to pick) (selects elements w/o replacement)
     4. this function should NOT change the pool of ltrs (user returns hand before drawing) unlike scrabble where pool decreases until it runs out
     '''
+
+
+    
     pass
     #pseudocode
     # letters_pool = []iterate through dict to make list?
