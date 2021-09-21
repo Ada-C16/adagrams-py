@@ -41,11 +41,13 @@ def initialize_letter_list():
     return tuple(letter_list)
 
 def draw_letters(letter_choices = initialize_letter_list()):
-    # 1. Initialize list of letters
-    # 2. Draw 10 letters
+    """
+    Choose 10 letters from letter_choices tuple for user to create words with.
+    """
+    # This random.sample() function takes two arguments, our tuple and number of selections. 
+    # The ".sample" funtion randomly selects letters without replacement.
     letters_drawn = random.sample(letter_choices, 10)
-    # 3. Return 10 letters (as str elements)
-    print(letters_drawn)
+    # Return 10 letters (as str elements)
     return letters_drawn
 
 def uses_available_letters(word, letter_bank):
