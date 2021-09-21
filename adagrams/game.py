@@ -31,6 +31,7 @@ LETTER_POOL = {
 
 
 def draw_letters():
+<<<<<<< HEAD
     letter_pool_list = list(LETTER_POOL.keys())
     letter_strings = []
     letter_freq = {}
@@ -58,6 +59,10 @@ def draw_letters():
         
 
 
+=======
+    
+    pass
+>>>>>>> c68a9ae44fbef52554453a415a790338d410effb
 
 def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank[:]
@@ -115,11 +120,15 @@ def score_word(word):
             
     return total_score
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c68a9ae44fbef52554453a415a790338d410effb
 
 
 words = ["X", "XX", "XXX", "XXXX"]
 def get_highest_word_score(word_list):
+<<<<<<< HEAD
     
     word_list = []
     word_dict = {}
@@ -137,3 +146,7 @@ def get_highest_word_score(word_list):
     return tuple(word_list)
 
 print(get_highest_word_score(words))
+=======
+
+    pass
+>>>>>>> c68a9ae44fbef52554453a415a790338d410effb
