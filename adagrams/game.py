@@ -1,29 +1,61 @@
+import random
+
 ###########################################################
                         # Wave 1 #
 ###########################################################
 
-def draw_letters():
-    #build a list of all the letters
-    letter_pool_list = [0, 1, 10, 5]
-    letter_bank = []
-
-    #outter loop that will iterate 10 times
-        #random number generator that pulls from the len of letter_pool_list
-        #random number is index of the letter pool list
-        #append user_hand with list value associate with random index
-        #user_hand.append(letter_pool_list[i])
-            #value from above
-            #remove value from letter pool list
-        #subtract -1 from range 
-
-    return letter_bank
+LETTER_POOL = {
+    'A': 9, 
+    'B': 2, 
+    'C': 2, 
+    'D': 4, 
+    'E': 12, 
+    'F': 2, 
+    'G': 3, 
+    'H': 2, 
+    'I': 9, 
+    'J': 1, 
+    'K': 1, 
+    'L': 4, 
+    'M': 2, 
+    'N': 6, 
+    'O': 8, 
+    'P': 2, 
+    'Q': 1, 
+    'R': 6, 
+    'S': 4, 
+    'T': 6, 
+    'U': 4, 
+    'V': 2, 
+    'W': 2, 
+    'X': 1, 
+    'Y': 2, 
+    'Z': 1
+}
 
 #create helper function
-def _______():
-    #use LETTER_POOL_dict 
-    #iterate each key
-    #append key to list as many times as value
-    pass
+def build_letter_pool():
+    #intialize variables
+    letter_pool_list = []
+
+    for key in LETTER_POOL:
+        letter_pool_list.extend([key] * LETTER_POOL[key])
+    return letter_pool_list
+
+
+def draw_letters():
+    #build a list of all the letters
+    letter_pool_list = build_letter_pool()
+    letter_bank = []
+
+    #iterate for size of user_hand
+    #generate random index for letter_pool_list
+    for i in range(10):
+        index = random.randint(0, len(letter_pool_list)-1)
+        letter_bank.append(letter_pool_list[index])
+        letter_pool_list.remove(letter_pool_list[index])
+
+    return letter_bank
 
 
 ###########################################################
@@ -80,7 +112,6 @@ def get_highest_word_score(word_list):
     #initialize variables
     max_score = 0
     highest_scoring_words = []
-    tied_words = []
 
     #build list of highest scoring words
     for word in word_list:
@@ -95,19 +126,11 @@ def get_highest_word_score(word_list):
         for word in highest_scoring_words:
             #check for ten word length
             if len(word) == 10:
-                tied_words.append(word)
-            #compare length for fewest letters
-
-            #elif 
-        #prefer the word with fewest letters
-            #unless word has exactly 10 letters
-            
-        #
+                return word, max_score
+    #get first min_len word
 
     #turn into tuple
 
     #return tuple that represents data of winning word and scores
         #   index 0 ([0]): a string of a word
         #   index 1 ([1]): the score of that word
-    
-    return highest_scoring_words[0], score_word(highest_scoring_words[0])
