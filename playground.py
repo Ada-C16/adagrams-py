@@ -1,32 +1,36 @@
-import pytest 
+import  random
+# Psuedocode
+    # 1. convert dictionary to a list of all letters with all frequence
+        # for key["A"] 
+        #     frequence = key[value]
+        # for key value range(frequency):
+        #     list.Append(key)
+    #2. Randomly select 10 letters from master letter list and put in letters list
+        # remove letter from master letter list
+    #3. return letters
 
-from adagrams.game import draw_letters
+def convert_letter_dictionary_to_list(letters):
+    letter_list = []
+    frequency = 0
+    
+    for key, object in letters.items():
+        frequency = object
+        for i in range(frequency):
+            letter_list.append(key)
+    return letter_list
 
-LETTER_POOL = {
-    'A': 9, 
-    'B': 2, 
-    'C': 2, 
-    'D': 4, 
-    'E': 12, 
-    'F': 2, 
-    'G': 3, 
-    'H': 2, 
-    'I': 9, 
-    'J': 1, 
-    'K': 1, 
-    'L': 4, 
-    'M': 2, 
-    'N': 6, 
-    'O': 8, 
-    'P': 2, 
-    'Q': 1, 
-    'R': 6, 
-    'S': 4, 
-    'T': 6, 
-    'U': 4, 
-    'V': 2, 
-    'W': 2, 
-    'X': 1, 
-    'Y': 2, 
-    'Z': 1
-}
+def draw_letters():
+    user_hand = []
+    principle_letter_list = convert_letter_dictionary_to_list(LETTER_POOL)
+    for letter in range(10):
+        letter_to_add = principle_letter_list[random.randint(0, len(principle_letter_list))]
+        user_hand.append(letter_to_add)
+        principle_letter_list.remove(letter_to_add)
+    return user_hand
+
+def test_draw_letters_draws_ten():
+    # Arrange/Act
+    letters = draw_letters()
+
+    # Assert
+    assert len(letters) == 10
