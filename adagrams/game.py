@@ -86,13 +86,11 @@ def get_highest_word_score(word_list):
     high_score = max(word_scores.values())
     ties = [w for w in word_scores.keys() if word_scores[w] == high_score]
 
-    if len(ties) == 1:
-        return ties[0], high_score
-
-    shortest = None
+    shortest = ties[0]
     for word in ties:
         if len(word) == 10:
             return word, high_score
-        if not shortest or len(word) < len(shortest):
+        if len(word) < len(shortest):
             shortest = word
+
     return shortest, high_score
