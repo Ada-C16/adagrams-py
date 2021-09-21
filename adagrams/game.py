@@ -52,8 +52,24 @@ def draw_letters():
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin
 def uses_available_letters(word, letter_bank):
-    pass
+
+    bool_count_letters = []
+    for char in word:
+        if char in letter_bank and word.count(char) <= letter_bank.count(char) :
+            bool_count_letters.append(True)
+        else:            
+            bool_count_letters.append(True)
+    if False in bool_count_letters:
+        return False
+    else:
+        return True
 
 
 def score_word(word):
