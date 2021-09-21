@@ -33,12 +33,16 @@ def uses_available_letters(word, letter_bank):
 
     for letter in word:
         # for i in range(len(letter_bank)):
-        if letter in freq.values():
-             return True
+        if letter in letter_bank:
+            if letter in freq:
+                if freq[letter] == 0:
+                    return False
+                else:
+                    freq[letter] -= 1
         else:
             return False
-
-
+    return True
+        
 
 ## WAVE 3 ##
 
