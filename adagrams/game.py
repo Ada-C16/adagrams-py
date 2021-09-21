@@ -30,6 +30,10 @@ LETTER_POOL = {
     'Z': 1
 }
 
+print("Welcome to Adagrams!")
+print("Let's draw 10 letters from the letter pool...")
+print("You have drawn the letters:")
+
 def draw_letters():
     # Initialize a return_list variable
     return_list = []
