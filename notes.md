@@ -1,6 +1,9 @@
 # Project notes
 We can put notes here on the tests, or future strategies to try...
 
+# Possible resources to investigate if time:
+Relative imports: https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
+
 # Wave 1
 - Tests one function: `draw_letters()`
 - Must draw letters with probability matching the letter distribution
@@ -10,7 +13,7 @@ We can put notes here on the tests, or future strategies to try...
 
 # Wave 2
 - Tests `uses_available_letters(word, letter_bank)`
-- This function is a check on whether the user has submitted word that uses only the letters they were dealt
+- This function is a check on whether the user has submitted a word that uses only the letters they were dealt
 - Looking at these tests answers one thing that was confusing me--the anagram the user submits doesn't have to use all 10 of the letters they are given
 - `letter_bank` is a list, but according to the tests we should be sure not to mutate it
 - Trying to think up a conditional that will see how many letters in the input word are in the letterbank...might be useful to draw out/visualize.
