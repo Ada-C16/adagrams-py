@@ -48,12 +48,42 @@ def draw_letters():
     return drawn_letters
 
 def uses_available_letters(word, letter_bank):
+    # make a copy of the letter bank
+    available_letters = letter_bank.copy()
+    # loop through the letters in word and if the letter is in the list, remove it
+    # if a letter is not in the list, return False
+    for letter in word:
+        if letter in available_letters:
+            available_letters.remove(letter)
+            continue
+        else: 
+            return False
+    return True
     
-    pass
 
 def score_word(word):
-    pass
+    total = 0
+    point_dict = {
+        1: ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"],
+        2: ["d", "g"],
+        3: ["b", "c", "m", "p"],
+        4: ["f", "h", "v", "w", "y"],
+        5: ["k"],
+        8: ["j", "x"],
+        10: ["q", "z"]
+    }
+
+    lower_word = word.lower()
+
+    for key, value in point_dict.items():
+        for letter in lower_word:
+            if letter in value:
+                total += key
+
+    if len(word) >= 7:
+        total += 8
+
+    return total
 
 def get_highest_word_score(word_list):
-    pass
-
+  pass
