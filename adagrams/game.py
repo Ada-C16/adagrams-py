@@ -30,7 +30,7 @@ def draw_letters():
     'Z': 1
 }
     letters = []
-    for i in range (10-len(letters)):
+    while len(letters) !=10:
         letter = random.choice(list(LETTER_POOL.keys()))
         if LETTER_POOL[(letter)] !=0:
             letters.append(letter)
