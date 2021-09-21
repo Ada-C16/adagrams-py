@@ -2,46 +2,42 @@ import random
 
 
 def draw_letters():
-    letter_dict = {
-        "A": 9,
-        "B": 2,
-        "C": 2,
-        "D": 4,
-        "E": 12,
-        "F": 2,
-        "G": 3,
-        "H": 2,
-        "I": 9,
-        "J": 1,
-        "K": 1,
-        "L": 4,
-        "M": 2,
-        "N": 6,
-        "O": 8,
-        "P": 2,
-        "Q": 1,
-        "R": 6,
-        "S": 4,
-        "T": 6,
-        "U": 4,
-        "V": 2,
-        "W": 2,
-        "X": 1,
-        "Y": 2,
-        "Z": 1,
-    }
+    letter_pile = "".join([
+        "A"*9,
+        "B"*2,
+        "C"*2,
+        "D"*4,
+        "E"*12,
+        "F"*2,
+        "G"*3,
+        "H"*2,
+        "I"*9,
+        "J"*1,
+        "K"*1,
+        "L"*4,
+        "M"*2,
+        "N"*6,
+        "O"*8,
+        "P"*2,
+        "Q"*1,
+        "R"*6,
+        "S"*4,
+        "T"*6,
+        "U"*4,
+        "V"*2,
+        "W"*2,
+        "X"*1,
+        "Y"*2,
+        "Z"*1,
+    ])
 
-    letter_qty = [key * value for key, value in letter_dict.items()]
-    letter_split = [c for i in letter_qty for c in i]
-
-    # works but is kinda ugly make hot if possible
-    letter_bank = list()
-    while len(letter_bank) < 10:
-        draw = random.choice(letter_split)
-        if letter_bank.count(draw) >= letter_dict[draw]:
-            continue
-        letter_bank.append(draw)
-    return letter_bank
+    hand = list()
+    while len(hand) < 10:
+        draw = random.choice(letter_pile)
+        if hand.count(draw) >= letter_pile.count(draw):
+            continue # too many of this letter, pick another
+        hand.append(draw)
+    return hand
 
 
 def uses_available_letters(word, hand):
