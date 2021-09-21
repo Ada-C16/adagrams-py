@@ -2,6 +2,7 @@ import pytest
 
 from adagrams.game import draw_letters
 
+#should this constant be declared in the test?  Makes more sense in the main game to me.
 LETTER_POOL = {
     'A': 9, 
     'B': 2, 
