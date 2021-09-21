@@ -41,18 +41,30 @@ def draw_letters():
         random_letter = key 
         # if statement to check if the letter is allowed 
         if letter_pool[random_letter] != 0:
-
             hand_list.append(random_letter)
         # letters are being added to hand list so decrease letter value
             letter_pool[random_letter] -= 1
         else:
+        #delete letter_pool[random_letter]
             del letter_pool[random_letter]
     return hand_list
 
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    hand_list = letter_bank[:]
+    # check if the letter in hand_list is a word 
+    for letter in word:
+        if letter in hand_list:
+        #if is a  word return True
+            hand_list.remove(letter)
+            print(hand_list)
+        else:
+            return False
+    print(hand_list)
+    return True
+
+
 
 def score_word(word):
     pass
