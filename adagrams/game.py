@@ -48,23 +48,45 @@ def draw_letters():
 
 
     # Use random function to pull 10 random letters from letter list into a new list
-    selected_letters = []
+    letter_bank = []
     for i in range(10):
         selection = random.choice(letter_pool_list)
-        selected_letters.append(selection)
+        letter_bank.append(selection)
         letter_pool_list.remove(selection)
 
-    return selected_letters
+    return letter_bank
 
-# import random
-# d = {'VENEZUELA':'CARACAS', 'CANADA':'OTTAWA'}
-# random.choice(list(d.values()))
-    
-
-
+# Wave 2
+# 4 tests
+# 2 parameters (word and letter_bank)
+# Idea 1:
+# if yes, True and remove letter from letter_bank
+# else false
+# 
+# Idea 2:
+# for letter in word 
+# Check if letter is in letter_bank
+# word_value = []
+# if yes, add letter to word_value and remove letter from letter_bank
+# if no,
 
 def uses_available_letters(word, letter_bank):
-    pass
+# letters_in_hand = ""
+    letters_played = ""
+# copy of letter_bank so that we don't change it
+    letter_bank_copy = letter_bank.copy()
+# for letter in word 
+    for letter in word:
+# Check if letter is in letter_bank
+        if letter in letter_bank_copy:
+# if yes, letters_played += letter and remove letter from bank
+            letters_played += letter
+            letter_bank_copy.remove(letter)
+# if word == letters_played return True, if not, return False
+    played_letters_in_hand = (word == letters_played)
+    return played_letters_in_hand
+
+
 
 def score_word(word):
     pass
