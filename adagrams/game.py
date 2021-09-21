@@ -56,13 +56,13 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-
+            
     bool_count_letters = []
     for char in word:
         if char in letter_bank and word.count(char) <= letter_bank.count(char) :
             bool_count_letters.append(True)
         else:            
-            bool_count_letters.append(True)
+            bool_count_letters.append(False)
     if False in bool_count_letters:
         return False
     else:
