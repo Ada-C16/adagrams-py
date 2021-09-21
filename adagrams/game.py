@@ -82,26 +82,17 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    # not finished doesnt account for tie
-    # but look at that sweet little lamb(da)
+    word_scores = {word: score_word(word) for word in word_list}
+    high_score = max(word_scores.values())
+    ties = [w for w in word_scores.keys() if word_scores[w] == high_score]
 
-    # word_scores = {word: score_word(word) for word in word_list}
-    # winner = max(word_scores.items(), key=lambda kv: kv[1])
+    if len(ties) == 1:
+        return ties[0], high_score
 
-    word_scores = {}
-    for word in word_list:
-        score = score_word(word)
-        if not word_scores.get(score):
-            word_scores[score] = [word]
-        else:
-            word_scores[score].append(word)
-    ties = word_scores[max(word_scores, key=word_scores.get)]
-    shortest = ""
+    shortest = None
     for word in ties:
         if len(word) == 10:
-            return word
-        if len(word) < len(shortest):
+            return word, high_score
+        if not shortest or len(word) < len(shortest):
             shortest = word
-        if len(word) == len(shortest):
-            pass
-    return shortest
+    return shortest, high_score
