@@ -29,12 +29,45 @@ def uses_available_letters(word, letter_bank):
         display_needs_valid_input_message()
         return False 
 
-# def score_word(word):
-#     """
-#     score = 0
-#     dictionary mapping - to refer table 
-#     add up value (sum)
-#     score += value
+def score_word(word):
+    user_word = word.upper()
+
+    score = 0
+    
+    point1 = ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T")
+    points2 = ("D", "G")
+    points3 = ("B", "C", "M", "P")
+    points4 = ("F", "H", "V", "W", "Y")
+    points5 = ("K")
+    points8 = ("J", "X")
+    points10 = ("Q", "Z")
+    
+    for letter in user_word:
+        if letter in point1:
+            score += 1
+        elif letter in points2:
+            score += 2
+        elif letter in points3:
+            score += 3
+        elif letter in points4:
+            score += 4
+        elif letter in points5:
+            score += 5
+        elif letter in points8:
+            score += 8
+        elif letter in points10:
+            score += 10
+    
+    word_score = score
+    
+    if 7 <= len(word) <= 10:
+            word_score +=8
+
+    final_score = word_score    
+    
+    return final_score
+
+
 #     return score int(sum)
 #     """
 # def get_highest_word_score(word_list):
