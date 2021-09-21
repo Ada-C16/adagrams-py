@@ -63,20 +63,18 @@ def draw_letters():
 ###########################################################
 
 def uses_available_letters(word, letter_bank):
-    
-    #iterate through len(word)
-    #for elem in word:
-        #if elem in letter_bank:
-            #if True, remove letter
-        #else return False
+    #make copy of letter_bank
+    letter_bank_copy = letter_bank.copy()
 
-    #return True
+    #loops through each character in word, removes char in letter_bank_copy
+    #returns boolean
+    for char in word:
+        if char in letter_bank_copy:
+            letter_bank_copy.remove(char)
+        else:
+            return False
 
-        #return True if every letter in word paramenter is in letter_bank
-        #return False if letter is not in letter_bank or has too much letters
-            #compared to letter_bank
-    
-    pass
+    return True
 
 
 ###########################################################
