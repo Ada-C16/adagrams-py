@@ -2,7 +2,27 @@ def draw_letters():
     pass
 
 def uses_available_letters(word, letter_bank):
-    pass
+    '''
+    This function determines if the word entered by the player is an anagram of the player's drawn letters.
+
+    Parameters: 
+        word, a string
+        letter_bank, a list of one-character strings
+    
+    Output:
+        boolean, True or False
+    '''
+    matching_letters = {}
+    is_an_anagram = True
+    for letter in word:
+        if letter in letter_bank:
+            matching_letters[letter] = True
+        else:
+            matching_letters[letter] = False
+    for matching_letter in matching_letters:
+        if matching_letters[matching_letter] == False:
+            return False
+    return is_an_anagram
 
 def score_word(word):
     #word=string
