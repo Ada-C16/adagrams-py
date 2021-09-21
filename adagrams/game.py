@@ -41,8 +41,9 @@ def draw_letters():
 #     in the letter_bank or has too much of compared to the letter_bank
 
 def uses_available_letters(word, letter_bank):
-    pass
-
+    # Create list that is a copy of letter_bank? Loop through to make the list?
+    # for loop to check letters in word in word_back
+    # if statement to determine TRUE/FALSE for validity (letter in bank, not if real word)
 
 
 #-------------------------------------------------------------------
