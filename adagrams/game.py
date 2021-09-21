@@ -83,4 +83,18 @@ def score_word(word):
 #       same length, pick the first one in the supplied list 
 
 def get_highest_word_score(word_list):
+    #  Convert word_list into dictionary:
+    #    Keys = Word, Value = Return of Score_word()
+    #  track_highest_score = -1
+    #  Empty_list = []
+    #  Loop through dictionary, find highest scored word
+    #       If greater than --> Clear list, add word
+    #       If  == append word to list
+    #       Less than --> do nothing
+    #  If length of list > 1:
+    #       If len(word) == 10 --> WINS
+    #           RETURN WORD
+    #       ELSE: Initialize tracking variable
+    #            Loop through len(word) and set variable to loweset score (use < not <=)
+    #  Return (winning_word, score)
     pass
