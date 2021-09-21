@@ -66,9 +66,3 @@ def score_word(word):
     final_score = word_score    
     
     return final_score
-
-
-#     return score int(sum)
-#     """
-# def get_highest_word_score(word_list):
-#     pass
