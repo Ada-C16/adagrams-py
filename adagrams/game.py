@@ -2,7 +2,6 @@ def draw_letters():
     pass
 
 # Wave 2
-
 def available_letters_quantity(letter_bank):
     '''
     This function creates a dictionary of letters and their amounts in the drawn hand.
@@ -56,5 +55,26 @@ def score_word(word):
     return sum
 
 # Wave 4
+def words_and_scores(word_list):
+    words_and_scores_dict = {}
+    for i in range(len(word_list)):
+        words_and_scores_dict[word_list[i]] = score_word(word_list[i])
+    print(words_and_scores_dict)
+    return words_and_scores_dict
+
+
 def get_highest_word_score(word_list):
-    pass
+    words_and_scores_dict = words_and_scores(word_list)
+    highest_score = 0
+    highest_scoring_word = None
+    for word, score in words_and_scores_dict.items():
+        if score > highest_score:
+            highest_score = score
+            highest_scoring_word = word
+        elif score == highest_score and len(word) == 10:
+            highest_score = score
+            highest_scoring_word = word
+        elif score == highest_score and len(word) == len(highest_scoring_word):
+            pass
+
+    return highest_score, highest_scoring_word
