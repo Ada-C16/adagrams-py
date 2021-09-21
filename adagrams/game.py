@@ -23,7 +23,7 @@ def draw_letters():
     # .pop the list when letter is pulled (based on index value) so that only 
     #       remaining letters are available
     # return drawn_letters
-
+    pass
 
 
 #-------------------------------------------------------------------
@@ -42,8 +42,23 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     # Create list that is a copy of letter_bank? Loop through to make the list?
-    # for loop to check letters in word in word_back
-    # if statement to determine TRUE/FALSE for validity (letter in bank, not if real word)
+    letter_bank_copy = []
+    for letter in letter_bank:
+        letter_bank_copy.append(letter)
+
+    # for loop to check letters in word in word_bank
+    valid_letter = True
+    while valid_letter:
+        for letter in word:
+        # if statement to determine TRUE/FALSE for validity (letter in bank, not if real word)
+            if letter in letter_bank_copy:
+                letter_bank_copy.remove(letter)
+                valid_letter = True
+            else:
+                valid_letter = False
+                return False
+        return True
+            
 
 
 #-------------------------------------------------------------------
