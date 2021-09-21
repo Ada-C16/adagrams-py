@@ -40,7 +40,28 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_dict = {}
+    word_list = list(word)
+
+    for i in range(len(word_list)):
+        if word_list[i] not in letter_bank_dict:
+            letter_bank_dict[word_list[i]] = 1
+        else:
+            letter_bank_dict[word_list[i]] += 1
+
+    for l in letter_bank:
+        if l in word_list and letter_bank_dict[l] > 0:
+          letter_bank_dict[l] -= 1
+        
+    for value in letter_bank_dict.values():
+        if not value == 0:
+            return False
+    return True
+
+
+    
+
+        
 
 def score_word(word):
     pass
