@@ -62,7 +62,15 @@ def uses_available_letters(word, letter_bank):
             letter_bank_copy.remove(letter)
     
     return True
-        
+
+def get_valid_word_from_user():
+    user_word = input("Enter word here: ")
+        # isalpha will also return False if any spaces are present or if string is empty
+    if not user_word.isalpha():
+        print("Try again. Please make sure your input contains only letters and no spaces!")
+        get_valid_word_from_user()
+    else:
+        return user_word.upper()
 
 def score_word(word):
     pass
