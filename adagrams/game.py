@@ -53,7 +53,7 @@ def uses_available_letters(word, letter_bank):
 
     # check if each character is in the word and occurs fewer or equal times to character in letter bank
     for character in word:
-        if not word.count(character) <= letter_bank.count(character):
+        if not word.count(character.upper()) <= letter_bank.count(character):
             return False
     return True
 
