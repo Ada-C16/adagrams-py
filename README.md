@@ -71,7 +71,8 @@ $ cd adagrams-py
 6. Create a virtual environment named `venv` for this project:
 
 ```bash
-$ python3 -m venv venv
+$ python3 -
+
 ```
 
 7. Activate this environment:

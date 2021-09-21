@@ -29,9 +29,28 @@ def draw_letters():
     return random.sample(pool, n)
 
 
-
+import copy
 def uses_available_letters(word, letter_bank):
-    pass
+    #https://docs.python.org/2/library/copy.html#copy.deepcopy
+
+    letter_bank_carbon_copy = copy.deepcopy(letter_bank)
+    for letter in word:
+        if letter in letter_bank_carbon_copy:
+            letter_bank_carbon_copy.remove(letter)
+
+        else:
+            return False
+        
+    return True
+    
+
+    
+
+
+    
+    
+
+
 
 def score_word(word):
     '''
