@@ -127,8 +127,6 @@ def score_word(word):
     #returns total_score
     return total_score
 
-    #make list comprehension 
-
 ###########################################################
                         # Wave 4 #
 ###########################################################
