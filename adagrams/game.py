@@ -36,7 +36,10 @@ def draw_letters():
 
     hand = []
     for i in range(10):
-        hand.append(random.choice(pool_list))
+        letter  = random.choice(pool_list)
+        while hand.count(letter) == pool_dict[letter]:
+            letter  = random.choice(pool_list)
+        hand.append(letter)
 
     return hand
 
