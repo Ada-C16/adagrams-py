@@ -1,5 +1,6 @@
 import random
 
+
 def draw_letters():
     LETTER_POOL = {
     'A': 9, 
@@ -39,6 +40,7 @@ def draw_letters():
             continue
     return letters
 
+
 def uses_available_letters(word, letter_bank):
     copy_letter_bank = letter_bank.copy()
     for letter in word:
@@ -69,5 +71,29 @@ def score_word(word):
 
     return score
 
+
 def get_highest_word_score(word_list):
-    pass
+    score_list = []
+    for word in word_list:
+        score_list.append(score_word(word))
+    max_score = max(score_list)
+    max_index = [i for i, x in enumerate(score_list) if x == max_score]
+    if len(max_index) == 1:
+        max_word = word_list[(max_index[0])]
+        winner = max_word,max_score
+        return winner
+    else:
+        max_word_1 = word_list[(max_index[0])]
+        max_word_2 = word_list[(max_index[1])]
+        if len(max_word_1) >=10:
+            winner = max_word_1,max_score
+            return winner
+        elif len(max_word_2) >=10:
+            winner = max_word_2,max_score
+            return winner
+        elif len(max_word_1)<len(max_word_2):
+            winner = max_word_1,max_score
+            return winner
+        elif len(max_word_2)<len(max_word_1):
+            winner = max_word_2,max_score
+            return winner
