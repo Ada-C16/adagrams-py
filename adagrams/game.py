@@ -79,7 +79,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     # checks to make sure that word is composed of elements in letter_bank
-
+    word = word.upper()
     letter_bank_copy = letter_bank[:]
     if isinstance(word, str) and len(word) <= 10:
         for char in word:
