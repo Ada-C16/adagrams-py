@@ -75,7 +75,15 @@ def draw_letters():
 #for testing: draw_letters()
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #Return True if every letter in input word is available (in the right quantities) in letter_bank
+    for letter in word:
+        if letter in letter_bank and word.count(letter) <= letter_bank.count(letter):
+            continue
+        else:
+            #Will return False if input word uses letters not in letter_bank, 
+            # and/or over the quantity of the letter available in letter_bank.
+            return False
+    return True
 
 def score_word(word):
     word = word.upper()
