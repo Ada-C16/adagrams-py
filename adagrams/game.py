@@ -1,3 +1,4 @@
+#Wave 1
 def draw_letters():
 
   letters_list=[]
@@ -67,6 +68,7 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
+#Wave 3
 def score_word(word):
     #word=string
     #Returns points(int)
