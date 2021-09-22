@@ -31,7 +31,6 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-
     # use a dictionary with the letter as the key and the number of instances/tiles as the value
     # make a copy of LETTER_POOL (shallow/deep) 
     all_letters = LETTER_POOL.copy()
@@ -48,6 +47,38 @@ def draw_letters():
 
     return drawn_letters
 
+
+
+def score_word(word):
+    word = word.upper()
+    one_point = ['A','E','I','O', 'U', 'L', 'N','R','S','T']
+    two_point = ['D','G']
+    three_point = ['B','C','M','P']
+    four_point = ['F','H','V','W','Y']
+    five_point = ['K']
+    eight_point = ['J','X']
+    ten_point = ['Q', 'Z']
+    word_score = 0
+    if len(word)>=7 and len(word)<11:
+        word_score += 8
+    
+    for letter in word:
+        if letter in one_point:
+            word_score += 1
+        elif letter in two_point:
+            word_score += 2
+        elif letter in three_point:
+            word_score += 3
+        elif letter in four_point:
+            word_score += 4
+        elif letter in five_point:
+            word_score += 5
+        elif letter in eight_point:
+            word_score += 8
+        elif letter in ten_point:
+                word_score += 10
+    return word_score
+
 def uses_available_letters(word, letter_bank):
     # make a copy of the letter bank
     available_letters = letter_bank.copy()
@@ -62,29 +93,7 @@ def uses_available_letters(word, letter_bank):
     return True
     
 
-def score_word(word):
-    total = 0
-    point_dict = {
-        1: ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"],
-        2: ["d", "g"],
-        3: ["b", "c", "m", "p"],
-        4: ["f", "h", "v", "w", "y"],
-        5: ["k"],
-        8: ["j", "x"],
-        10: ["q", "z"]
-    }
 
-    lower_word = word.lower()
-
-    for key, value in point_dict.items():
-        for letter in lower_word:
-            if letter in value:
-                total += key
-
-    if len(word) >= 7:
-        total += 8
-
-    return total
 
 def get_highest_word_score(word_list):
     
