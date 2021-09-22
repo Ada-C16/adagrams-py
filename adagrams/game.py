@@ -84,14 +84,20 @@ def score_word(word):
         'Z': 10
     }
     score = 0
-    word = word.upper() 
+    word = word.upper()
     for letter in word:
-        score+=score_dict[letter]
+        score += score_dict[letter]
     if len(word) >= 7:
-        score+=8
+        score += 8
     return score
 
 
-
 def get_highest_word_score(word_list):
-    pass
+    highest_score = 0
+    highest_word = None
+    for word in word_list:
+        score = score_word(word)
+        if score > highest_score:
+            highest_score = score
+            highest_word = word
+    return highest_word, highest_score
