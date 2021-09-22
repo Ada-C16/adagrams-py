@@ -2,59 +2,56 @@ import random
 # from tests.test_wave_01 import LETTER_POOL
 
 def draw_letters():
+    letter_bank = {'A':9, 'B':2, 'C':2, 'D': 4, 'E': 12, 'F': 2, 'G':3, 'H': 2, 'I': 9, 'J': 1, 'K':1, 'L':4, 'M': 2, 'N':6, 'O': 8, 'P':2, 'Q':1, 'R': 6, 'S': 4, 'T':6, 'U':4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z':1}
+    tile_bag = []
+    for k, v in letter_bank.items():
+        for each_letter in range(v):
+            tile_bag.append(k)
+
+    tile_list = []
+    for ten_letters in range(10):
+        letter = random.choice(tile_bag)
+        tile_list.append(letter)
+        tile_bag.remove(letter)
+
+    return tile_list
    
 
-    letters={'A':9, 'B':2, 'C':2, 'D': 4, 'E': 12, 'F': 2, 'G':3, 'H': 2, 'I': 9, 'J': 1, 'K':1, 'L':4, 'M': 2, 'N':6, 'O': 8, 'P':2, 'Q':1, 'R': 6, 'S': 4, 'T':6, 'U':4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z':1}
-    # for key,values in letter_bank.items():
-    #     new_list.append(random.choice(key))
-    
-    new_list=[]
-    freq_dict=letters
-    array_letter=[]
-    for key,values in freq_dict.items():
-        for letters in range(values):
-            new_list.append(random.choice(key))
-    for ten_letters in range(10):
-        array_letter.append(random.choice(new_list))
-    for letter in array_letter:   
-        new_list.remove(letter)
-        if letter in freq_dict:
-            freq_dict[letter] -= 1        
-        else:
-            freq_dict[letter] = 1
-
-      
-    return array_letter
-
-# new_dict = {}
-# for k, v in letter_bank.items():
-#     new_dict[k] = v
-
-
-# for x in range(10):
-#     letter = random.choice(list(new_dict.keys()))
-#     new_dict[letter] - 1
-    
-# for key in letter_bank:
-#     if key in letter:
-#         letter_bank[key]
-
-# print(new_dict)
-
-# def draw_letters():
-#     letter_bank = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'N', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', 'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', 'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z']
-
-#     array_letter = []
-#     for ten_letters in range(10):
-
-
-#         array_letter.append(random.choice(letter_bank))
-#     return letter_bank_modfied
-# print(draw_letters())
-    pass
-
 def uses_available_letters(word, letter_bank):
-    pass
+    freq_dict={}
+    counter_word={}
+
+    for letter in letter_bank:
+        if letter in freq_dict:
+            freq_dict[letter]+=1
+        else:
+            freq_dict[letter]=1
+
+    for one_letter in word:
+        if one_letter not in letter_bank:
+            return False
+        # for one_letter in counter_word:
+        else:
+            if one_letter in counter_word:
+                counter_word[one_letter] += 1
+            else:
+                counter_word[one_letter] = 1
+    
+        if freq_dict[letter]>= counter_word[one_letter]:
+            one_letter=True
+        else:
+            one_letter=False
+    return one_letter
+
+
+
+    
+    # for letter in word:
+    #     if letter not in letter_bank:
+    #         return False
+    #         break
+    # return True
+    
 
 def score_word(word):
     pass
