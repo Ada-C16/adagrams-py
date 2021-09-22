@@ -43,12 +43,20 @@ def uses_available_letters(word, letter_bank):
     returns True if every letter in word is available,
     otherwise returns False.
     """
-    pass
-    # word: str, describes input word
-    # letter_bank: letters list from draw_letters()
-    # returns True or False
-        # True: if every letter is available in letter_bank
-        # False: letter not in letter_bank, too much compared to letter_bank
+    # word_list = []
+    # for letter in word:
+    #     word_list.append(letter)
+    
+    # i = 0
+    # while all(letter in letter_bank for letter in word_list):
+    #     for letter in letter_bank:
+    #         for letter in word_list:
+    #             if word_list.count(letter) == letter_bank.count(letter):
+    #                 return True
+    #             else:
+    #                 return False
+    #     i += 1
+    # return False
 
 
 # Wave 3        
