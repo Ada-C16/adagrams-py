@@ -1,5 +1,4 @@
 import random
-import math
 
 LETTER_POOL = {
     'A': 9, 
@@ -95,7 +94,6 @@ def get_highest_word_score(word_list):
     words_and_scores = {}
     score_list = []
     
-
     for word in word_list:
         score = score_word(word)
         words_and_scores[word] = score
