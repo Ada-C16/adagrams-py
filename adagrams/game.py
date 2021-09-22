@@ -39,9 +39,6 @@ def draw_letters():
         3b. #random.sample(function)  - random.sample(list, # of elements to pick) (selects elements w/o replacement)
     4. this function should NOT change the pool of ltrs (user returns hand before drawing) unlike scrabble where pool decreases until it runs out
     '''
-
-
-    
     pass
     #pseudocode
     # letters_pool = []iterate through dict to make list?
@@ -78,7 +75,7 @@ def score_word(word):
 
     #Each letter within `word` has a point value. 
     #The number of points of each letter is summed up to represent the total score of `word`
-    ~~~~~~If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+    #If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
     '''
     # return sum(SCORES[letter] for letter in word) 
     # would like to refactor to the above 
@@ -96,6 +93,26 @@ def score_word(word):
 
 def get_highest_word_score(word_list):
     '''
-    
+    this functions looks at the list of word_list and calculates 
+    which of these words has the highest score, applies *tie breaking logic* and, 
+    returns the winning word in a tuple
+    ###
+    INPUT: list of strings, word_list. 
+    OUTPUT: returns a tuple that represents the data 
+    of the winning word and it's score. 
+    ###
+    1. the tuple must contain the following:
+        - index 0 ([0]): a string of a word
+        - index 1 ([1]): the score of that word
+    2. TIE RULES:
+        - prefer the word with the fewest letters...
+        - ...unless one word has 10 letters. 
+         If the top score is tied between multiple words and one is 10 letters long, 
+        choose the one with 10 letters over the one with fewer tiles
+        - If the there are multiple words that are the same score and the same length, 
+        pick the first one in the supplied list
+
+
+
     '''
     pass
