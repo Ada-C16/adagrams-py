@@ -18,29 +18,45 @@ def draw_letters():
    
 
 def uses_available_letters(word, letter_bank):
-    freq_dict={}
-    counter_word={}
+    letter_list = [letter for letter in letter_bank if letter in word]
+    if len(letter_list) == len(word):
+        return True
+    return False
+
+    # let_list =[]
+    # for letter in letter_bank:
+    #     if letter in word:
+    #         n = letter_bank[letter_bank.index(letter)]
+    #         let_list.append(n)
+    #         if len(let_list) == len(word):
+    #             return True
+    # return False
+
+
+
+    # freq_dict={}
+    # counter_word={}
 
     
 
-    for one_letter in word:
-        if one_letter not in letter_bank:
-            return False
-        else:
-            if one_letter in counter_word:
-                counter_word[one_letter] += 1
-            else:
-                counter_word[one_letter] = 1
-    for letter in letter_bank:
-        if letter in freq_dict:
-            freq_dict[letter]+=1
-        else:
-            freq_dict[letter]=1
-    if freq_dict[one_letter]>= counter_word[one_letter]:
-       one_letter=True
-    else:
-        one_letter=False
-    return one_letter
+    # for one_letter in word:
+    #     if one_letter not in letter_bank:
+    #         return False
+    #     else:
+    #         if one_letter in counter_word:
+    #             counter_word[one_letter] += 1
+    #         else:
+    #             counter_word[one_letter] = 1
+    # for letter in letter_bank:
+    #     if letter in freq_dict:
+    #         freq_dict[letter]+=1
+    #     else:
+    #         freq_dict[letter]=1
+    # if freq_dict[one_letter]>= counter_word[one_letter]:
+    #    one_letter=True
+    # else:
+    #     one_letter=False
+    # return one_letter
 
 
     
