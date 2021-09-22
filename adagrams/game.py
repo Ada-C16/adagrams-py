@@ -76,8 +76,7 @@ def uses_available_letters(word, letter_bank):
                 return False
     return condition
     
-
-
+    
 def score_word(word): 
     total_score = 0
 
@@ -100,5 +99,6 @@ def get_words_score(word_list):
         word_score = score_word(word_list[index])
         dic_of_scores[word_list[index]] = word_score
     return dic_of_scores
+
 
 def get_highest_word_score(word_list):
