@@ -33,7 +33,7 @@ def draw_letters():
 # Wave 2
 def available_letters_quantity(letter_bank):
     '''
-    This function creates a dictionary of letters and their amounts in the drawn hand.
+    Creates a dictionary of letters and their amounts in the drawn hand.
 
     Parameter:
         letter_bank, a list of one-character strings
@@ -50,7 +50,7 @@ def available_letters_quantity(letter_bank):
     return letters_amount
 def uses_available_letters(word, letter_bank):
     '''
-    This function determines if the word entered by the player is an anagram of the player's drawn letters.
+    Determines if the word entered by the player is an anagram of the player's drawn letters.
 
     Parameters: 
         word, a string
@@ -86,12 +86,32 @@ def score_word(word):
 
 # Wave 4
 def words_and_scores(word_list):
+    '''
+    Creates a dictionary where the key is a word that the user entered and the value is a dictionary of this word's attributes.
+
+    Parameter:
+        word_list, a list of strings representing the user-entered words.
+
+    Output:
+        words_and_scores_dict, a dictionary of dictionaries
+        example: letters_amount = {"AAA":  {score: 3, "word_list_index": 0, "word_length": 3}, "EEE": {score: 3, "word_list_index": 1, "word_length": 3}}
+    '''
     words_and_scores_dict = {}
     for i in range(len(word_list)):
         words_and_scores_dict[word_list[i]] = {"score": score_word(word_list[i]), "word_list_index": i, "word_length": len(word_list[i])}
     return words_and_scores_dict
 
 def get_highest_word_score(word_list):
+    '''
+    Determines the highest scoring word and its score.
+
+    Parameter:
+        word_list, a list of strings representing the user-entered words.
+
+    Output:
+        Tuple, where tuple[0] is the highest scoring word and tuple[1] is the score
+        Example: ('AAA', 3) 
+    '''
     words_and_scores_dict = words_and_scores(word_list)
     highest_score = 0
     highest_scoring_word = None
