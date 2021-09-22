@@ -21,10 +21,43 @@ def draw_letters():
     return user_hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+
+
+    letter_bank_copy = []
+    for letter in letter_bank:
+        letter_bank_copy.append(letter)
+    
+    for letter in word:
+        if letter not in letter_bank_copy:
+            return False
+        elif letter in letter_bank_copy:
+            letter_bank_copy.remove(letter)
+
+    return True
+    
 
 def score_word(word):
-    pass
+    score_chart = { 
+        1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"], 
+        2: ["D", "G"], 
+        3: [ "B", "C", "M", "P"], 
+        4: ["F", "H", "V", "W", "Y"], 
+        5: ["K"], 
+        8 : ["J", "X"], 
+        10: [ "Q", "Z"] 
+        }
+    word = word.upper()
+    score = 0
+    for letter in word:
+        for key, value in score_chart.items():
+            if letter in value:
+                score += key
+    
+    if len(word) >= 7:
+        score += 8
+
+    return score
+   
 
 def get_highest_word_score(word_list):
     pass
