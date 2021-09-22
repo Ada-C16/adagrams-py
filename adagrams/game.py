@@ -1,14 +1,46 @@
-# from tests.test_wave_01 import LETTER_POOL
+import random
+def display_welcome_message():
+    print("Welcome to Adagrams!")
 
+def display_drawn_letters(letters):
+    print("You have drawn the letters:")
+    print(', '.join(letters))
 
-# def draw_letters():
+def draw_letters():
+    display_welcome_message()
+    # Original letter pool that remains constant. 
+    LETTER_POOL = {
+        'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 
+        'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 
+        'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 
+        'P': 2, 'Q': 1, 'R': 6, 'S': 4, 'T': 6, 
+        'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 
+        'Z': 1
+    }
+
+    # Reconstructing LETTER_POOL into a list that contains all of the 
+    # possible letter choices.
+    
+    letter_choices = []
+    expanded_letter_pool = []
+
+    for alphabet, distribution in LETTER_POOL.items():
+        letter_choices.append(alphabet * distribution)
+
+    letter_string = "".join(letter_choices)
+
+    expanded_letter_pool = list(letter_string)
+
+    # Selecting 10 letter from expanded_letter_pool to create letter_bank.
+    letter_bank = random.sample(expanded_letter_pool, 10)
+    display_drawn_letters(letter_bank)
+    return letter_bank
 
 def display_game_instructions():
     print("Please input your submission for the longest anagram you can come up with")
 
 def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
-    display_game_instructions()
 
 def uses_available_letters(word, letter_bank):
 #Call function to display game instructions and prompt user to enter a word
@@ -29,11 +61,15 @@ def uses_available_letters(word, letter_bank):
         display_needs_valid_input_message()
         return False 
 
-def score_word(word):
-    user_word = word.upper()
+def display_score(score):
+    print(f"Your submitted anagram scored {score} points")
 
+def score_word(word):
+#to avoid case conflicts, assign word to a new variable and add .upper so it's able to compare
+    user_word = word.upper()
+#start the scoreboard with zero
     score = 0
-    
+#list of tuples for the board and score points
     point1 = ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T")
     points2 = ("D", "G")
     points3 = ("B", "C", "M", "P")
@@ -41,7 +77,10 @@ def score_word(word):
     points5 = ("K")
     points8 = ("J", "X")
     points10 = ("Q", "Z")
-    
+
+#iterate through each letter in the word that was submitted to score
+#if the letter is found in the list of tuples, assign appropriate value
+#move down the list for all the letters
     for letter in user_word:
         if letter in point1:
             score += 1
@@ -57,12 +96,69 @@ def score_word(word):
             score += 8
         elif letter in points10:
             score += 10
-    
-    word_score = score
-    
+    word_score = score  
+#totals up the word score
+#however, Bonus points for a word that is between 7-10 letters long of 8 points
     if 7 <= len(word) <= 10:
             word_score +=8
+#add up word score plus total bonus, to return the final score
+    final_score = word_score  
+    display_score(score)
+    return final_score  
 
-    final_score = word_score    
-    
-    return final_score
+def display_retry_instructions():
+    print("Should we play another round?")
+    print("Enter y to replay")
+
+def display_highest_score(word_score):
+    print("Thanks for playing Adagrams!")
+    print(f"The highest score from this game was {word_score[0]}, which was worth {word_score[1]} points.")
+
+def get_highest_word_score(word_list):
+#begin by initializing a list assinged to word_scores
+#start loop for each word in the word_list and create a tupple to add the word and their score
+    word_scores = []
+    for word in word_list:
+        word_scores.append((word, score_word(word)))
+#calculating the maximum score
+#enumerate() allows us to iterate through a sequence but it keeps track of both 
+#the index and the element. The enumerate() function takes in an iterable as an 
+#argument, such as a list, string, tuple, or dictionary.
+    max_score = 0
+    for i, (word, score) in enumerate(word_scores):
+        if max_score == score:
+            high_score_words.append(word_scores[i])
+#else if the max score is less than the score, reassign that value as it loops 
+#final result at the end of the loop assigning max value to that score
+        elif max_score < score:
+            high_score_words = [word_scores[i]]
+            max_score = score
+#if there is only one word in high score - return that word 
+    if len(high_score_words) == 1:
+        return high_score_words[0]
+#if not begin the tiebreaker sequence of logic
+#create a list of tied words as they pile up from high scores above
+    tied_words = []
+    for (word, score) in high_score_words:
+        tied_words.append(word)
+
+# Sorting tied words to find the shortest string length 
+    shortest_word_length = len(sorted(tied_words, key=len)[0])
+
+    # Tiebreaker: if words the same length, return first value as loop iterates
+    # Tiebreaker: word length equals 10 wins
+    # Tiebreaker: shortest word wins
+    for i, (word, score) in enumerate(high_score_words):
+        if len(word) == 10:
+            return high_score_words[i]
+        elif len(word) == shortest_word_length:
+            tiebreaker = high_score_words[i]
+    display_highest_score(tiebreaker)            
+    return tiebreaker
+
+display_retry_instructions()
+
+def display_goodbye_message():
+    print("Goodbye!")
+
+display_goodbye_message()
