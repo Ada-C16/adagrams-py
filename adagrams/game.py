@@ -55,10 +55,12 @@ def uses_available_letters(word, letter_bank):
         else:
             character_count[letter] = 1
 
+    word_is_valid = True
+
     for letter, value in character_count.items():
         if letter not in letter_bank_frequency or value > letter_bank_frequency[letter]:
-            return False
-    return True
+            word_is_valid = False
+    return word_is_valid
 
 def score_word(word):
     SCORE_CHART = {
