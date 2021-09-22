@@ -73,16 +73,20 @@ def score_word(word):
     score = 0
     word = word.upper()
     # check if each tuple contains a character from the word and if so add the value to the score
-    for letter_tuple in score_chart:
-        for char in word:
+    for char in word:
+        for letter_tuple in score_chart:
             if char in letter_tuple:
                 score += score_chart[letter_tuple]
+                break
 
     # increase score for long words
     if len(word) >= 7:
         score += 8
-
+        
     return score
+
+score_word("bc")
+
     
 # Wave 4
 def get_highest_word_score(word_list):
