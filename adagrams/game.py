@@ -33,8 +33,8 @@ def convert_letter_dictionary_to_list(letters):
     letter_list = []
     frequency = 0
     
-    for key, object in letters.items():
-        frequency = object
+    for key, value in letters.items():
+        frequency = value
         for i in range(frequency):
             letter_list.append(key)
     return letter_list
@@ -74,5 +74,35 @@ def score_word(word):
         user_score += 8
     return user_score
 
+def convert_word_list_to_list_of_tuples_with_scores(word_list):
+    word_score_list = []
+    word_score = 0
+
+    for word in word_list:
+        word_score = score_word(word)
+        word_score_list.append(tuple([word, word_score]))
+    return word_score_list
+
 def get_highest_word_score(word_list):
-    pass
+    word_score_list = convert_word_list_to_list_of_tuples_with_scores(word_list)
+    max_score = tuple(["", 0])
+
+    for i in range(len(word_score_list)):
+        if word_score_list[i][1] == max_score[1]: 
+            if len(word_score_list[i][0]) == len(max_score[0]):
+                return max_score
+            elif len(max_score[0]) == 10:
+                return max_score
+            elif len(word_score_list[1][0]) == 10:
+                max_score = word_score_list[i]
+                return max_score
+            elif len(word_score_list[i][0]) < len(max_score[0]):
+                max_score = word_score_list[i]
+                return max_score
+            else:
+                return max_score
+        elif word_score_list[i][1] > max_score[1]:   
+            max_score = word_score_list[i]
+        else:
+            return max_score
+    return max_score
