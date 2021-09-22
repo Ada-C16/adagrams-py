@@ -52,10 +52,6 @@ def uses_available_letters(word, letter_bank):
         else:
             letter_dict[letter] = 1
 
-# if rue if every letter in input word is available in the right quanities 
-#  if letter in word not in player hand,  or has too much of(letter) compared to letter bank
-    # return false
-    # 
     for letter in word:
         if letter not in letter_bank:
             return False
@@ -108,18 +104,12 @@ def score_word(word):
     return player_score
     
 def get_highest_word_score(word_list):
-    # for word in word_list
-    #  score each word by using score_word
-    # store the score info about each word in a tuple
     words_scores_list = []
 
     for word in word_list:
         word_score = score_word(word)
         words_scores_list.append((word, word_score))
-    # if a score is = to each other
-    # winner = the word with fewer letters
-    # EXCEPT if the lnegth of word is 10, then if it his the highest and length of 10 it is the winner
-    #  if scores in tow words = and length of 2 words =, then whichever comes first
+    
     winning_word = ""
     high_score = 0
 
