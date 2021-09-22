@@ -37,6 +37,7 @@ def draw_letters():
     # the chance to draw each letter is constant, regardless of what has been already drawn.
     # letters are never depleted, the pile is simply used to check for a maximum limit.
     # this behavior seems to align with the instructions provided.
+
     hand = list()
     while len(hand) < 10:
         draw = random.choice(letter_pile)
