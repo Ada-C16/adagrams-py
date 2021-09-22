@@ -60,4 +60,81 @@ def score_word(word):
    
 
 def get_highest_word_score(word_list):
-    pass
+    winning_word = [] # x (word), b (score)
+    x = []
+    comparing_word_scores = {}
+    current_word_score = 0
+    for word in word_list:
+        current_word_score = score_word(word)
+        if comparing_word_scores.get(current_word_score):
+            comparing_word_scores[current_word_score].append(word)
+        else:
+            comparing_word_scores[current_word_score] = []
+            comparing_word_scores[current_word_score].append(word)
+    b=0 #current highest score
+
+    for score, words in comparing_word_scores.items():
+        if score > b:
+            x.clear()
+            for word in words:
+                x.append(word)
+            b = score
+    
+    z = 1000
+    z_list = []
+    if len(x) == 1:
+        final_tuple = (x[0], b)
+        return final_tuple
+    elif len(x) > 1:
+        for word in x:
+            if len(word) == 10:
+                return (word, b)
+            else:
+                if len(word) <= z:
+                    z_list.append(word)
+                    z=len(word)
+        
+        return (z_list[0], b)
+        
+        # return (z_list[0], b)
+
+# else:
+#                 if len(word) <= z:
+#                     if not z_list:
+#                         if len(z_list[0]) == len(word):
+#                             pass
+#                         else:
+#                             z_list.clear()
+#                             z_list.append(word)
+#                             z = len(word)
+#                     else:
+#                         z_list.append(word)
+#                         z=len(word)
+#  else:
+#                 if len(word) <= z:
+#                     if len(z_list[0]) == len(word):
+#                         pass
+#                     else:
+#                         z_list.clear()
+#                         z_list.append(word)
+#                     z=len(word)
+        
+#         return (z_list[0], b)
+
+                # minimunWordLength = min([len(word) for word in x])
+
+                # (score), word, lengths of the word, order of tied words
+
+#working code 
+    # elif len(x) > 1:
+    #     for word in x:
+    #         if len(word) == 10:
+    #             return (word, b)
+    #         else:
+    #             if len(word) <= z:
+    #                 z_list.append(word)
+    #                 z=len(word)
+        
+    #     return (z_list[0], b)
+
+# comparing_word_score = { 2: ["hello", "bye"], 6: ["no"]}

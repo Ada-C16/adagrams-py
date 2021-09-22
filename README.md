@@ -279,7 +279,7 @@ Implement a function called `get_highest_score` in `game.py`. This method should
 
 - Has one parameter: `word_list`, which is a list of strings
 - Returns a tuple that represents the data of a winning word and it's score.  The tuple must contain the following elements:
-  - index 0 ([0]): a string of a word
+  - index 0 ([                                                                                                            ]): a string of a word
   - index 1 ([1]): the score of that word
 - In the case of tie in scores, use these tie-breaking rules:
     - prefer the word with the fewest letters...
