@@ -44,6 +44,8 @@ def draw_letters():
     return player_hand
 
 def uses_available_letters(word, letter_bank):
+    word = word.upper()
+
     letter_dict = dict()
 
     for letter in letter_bank:
@@ -60,13 +62,11 @@ def uses_available_letters(word, letter_bank):
             if letter_dict[letter] < 0:
                 return False
     return True
-    
-
 
 def score_word(word):
     
     player_score = 0
-    # make a score chart
+
     score_chart =  {
         "A": 1,
         "B": 3,
@@ -119,7 +119,7 @@ def get_highest_word_score(word_list):
             high_score = word_score
         elif word_score == high_score:
             if len(winning_word) == 10:
-                break
+                continue
             elif len(word) == 10:
                 winning_word = word
                 high_score = word_score
@@ -127,7 +127,6 @@ def get_highest_word_score(word_list):
                 winning_word = word
                 high_score = word_score
             elif len(word) == len(winning_word):
-                break
+                continue
         
     return (winning_word, high_score)
-
