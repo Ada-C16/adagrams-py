@@ -88,7 +88,7 @@ def score_word(word):
 def words_and_scores(word_list):
     words_and_scores_dict = {}
     for i in range(len(word_list)):
-        words_and_scores_dict[word_list[i]] = {"score": score_word(word_list[i]), "word_list_index": i}
+        words_and_scores_dict[word_list[i]] = {"score": score_word(word_list[i]), "word_list_index": i, "word_length": len(word_list[i])}
     return words_and_scores_dict
 
 def get_highest_word_score(word_list):
@@ -99,16 +99,18 @@ def get_highest_word_score(word_list):
     for word_key in words_and_scores_dict:
         score = words_and_scores_dict[word_key]["score"]
         index = words_and_scores_dict[word_key]["word_list_index"]
+        length = words_and_scores_dict[word_key]["word_length"] 
         if score > highest_score:
             highest_score = score
             highest_scoring_word = word_key
             highest_scoring_word_index = index
-        elif score == highest_score and len(word_key) == 10:
-            highest_score = score
-            highest_scoring_word = word_key
-        elif score == highest_score and len(word_key) == len(highest_scoring_word):
-            if index < highest_scoring_word_index:
+        elif score == highest_score:
+            if length == 10:
+                highest_score = score
                 highest_scoring_word = word_key
-        elif score == highest_score and len(word_key) < len(highest_scoring_word):
-            highest_scoring_word = word_key
+            elif length == len(highest_scoring_word):
+                if index < highest_scoring_word_index:
+                    highest_scoring_word = word_key
+            elif length < len(highest_scoring_word) and len(highest_scoring_word) != 10:
+                highest_scoring_word = word_key
     return highest_scoring_word, highest_score
