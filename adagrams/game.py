@@ -1,7 +1,7 @@
 # import ui_helper
+import random
 
 def draw_letters():
-    import random
 
     # Original letter pool that remains constant. 
     LETTER_POOL = {
@@ -13,7 +13,7 @@ def draw_letters():
         'Z': 1
     }
 
-    # reconstructing LETTER_POOL into a list that contains all of the 
+    # Reconstructing LETTER_POOL into a list that contains all of the 
     # possible letter choices.
     
     letter_choices = []
@@ -24,12 +24,11 @@ def draw_letters():
 
     letter_string = "".join(letter_choices)
 
-    for letter in letter_string:
-        expanded_letter_pool.append(letter)
-    
+    expanded_letter_pool = list(letter_string)
+
     # Selecting 10 letter from expanded_letter_pool to create letter_bank.
     letter_bank = random.sample(expanded_letter_pool, 10)
-    
+
     return letter_bank
 
 
@@ -108,6 +107,7 @@ def get_highest_word_score(word_list):
         elif max_score < score:
             high_score_words = [word_scores[i]]
             max_score = score
+
     if len(high_score_words) == 1:
         return high_score_words[0]
 
@@ -116,8 +116,8 @@ def get_highest_word_score(word_list):
     tied_words = []
     for (word, score) in high_score_words:
         tied_words.append(word)
-    sortedwords = sorted(tied_words, key=len)
-    print(sortedwords)
+
+    shortest_word_length = len(sorted(tied_words, key=len)[0])
 
     # Tiebreaker: if words the same length, return first value
     # Tiebreaker: shortest word wins
@@ -125,7 +125,7 @@ def get_highest_word_score(word_list):
     for i, (word, score) in enumerate(high_score_words):
         if len(word) == 10:
             return high_score_words[i]
-        elif len(word) == len(sortedwords[0]):
-            tiebreaker =high_score_words[i]
+        elif len(word) == shortest_word_length:
+            tiebreaker = high_score_words[i]
 
     return tiebreaker
