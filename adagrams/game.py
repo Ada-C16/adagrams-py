@@ -61,7 +61,28 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    SCORE_CHART = {
+        1: ('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'),
+        2: ('D', 'G'),
+        3: ('B', 'C', 'M', 'P'),
+        4: ('F', 'H', 'V', 'W', 'Y'),
+        5: ('K'),
+        8: ('J', 'X'),
+        10: ('Q', 'Z')
+    }
+    word = word.upper()
+    word_score = 0
+    if len(word) in range(7,11):
+        word_score += 8
+
+    for letter_score, letters in SCORE_CHART.items():
+        for letter in word:
+            if letter in letters:
+                word_score += letter_score
+    return word_score
+    
+word = 'gfgfgsgf'
+score_word(word)
 
 def get_highest_word_score(word_list):
     pass
