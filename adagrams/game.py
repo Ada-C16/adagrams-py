@@ -80,7 +80,7 @@ def score_word(word):
          if letter.upper() in letter_dict[i]:
            sum+=i
       
-    if len(word) in range(7,10):
+    if len(word) in range(7,11):
       sum+=8
     return sum
 
