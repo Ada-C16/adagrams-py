@@ -17,7 +17,22 @@ def draw_letters():
    
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_list = [letter for letter in letter_bank if letter in word]
+    if len(letter_list) == len(word):
+        return True
+    return False
+
+    # let_list =[]
+    # for letter in letter_bank:
+    #     if letter in word:
+    #         n = letter_bank[letter_bank.index(letter)]
+    #         let_list.append(n)
+    #         if len(let_list) == len(word):
+    #             return True
+    # return False
+
+
+
 
 def score_word(word):
     pass
