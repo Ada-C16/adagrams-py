@@ -72,7 +72,6 @@ $ cd adagrams-py
 
 ```bash
 $ python3 -m venv venv
-
 ```
 
 7. Activate this environment:
