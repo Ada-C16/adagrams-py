@@ -115,7 +115,54 @@ def score_word(word):
     # return sum
     return sum
 
+def tie_breaker(same_score_dict, word_list):
+    same_score_words = same_score_dict.keys()
+    ten_length_words = []
+    min_length_words = []
+    min_length = min(same_score_words, key=len)
+    
+    for word in same_score_words: 
+        if len(word) == 10:
+            ten_length_words.append(word)
+        elif len(word) == min_length: 
+            min_length_words.append(word)
+    
+    if len(ten_length_words) == 1: 
+        return ten_length_words[0],same_score_dict[ten_length_words[0]]
+    elif len(ten_length_words) > 1:
+        for word in word_list: 
+            if word in ten_length_words:
+                return word, same_score_dict[word]
+    elif len(min_length_words) == 1: 
+        return min_length_words[0], same_score_dict[min_length_words[0]]
+    elif len(min_length_words) > 1: 
+        for word in word_list: 
+            if word in min_length_words:
+                return word, same_score_dict[word]
+    
+    
 def get_highest_word_score(word_list):
-    pass
+    # initialize variables
+    scored_dict = {}
+    same_score_dict = {}
+
+    # score each word in word_list and put into dictionary(?)
+    for word in word_list: 
+        score = score_word(word)
+        scored_dict[word] = score
+
+    # identify max value(s)
+    all_values = scored_dict.values()
+    max_value = max(all_values)
+    for word, value in scored_dict.items(): 
+        if value == max_value:
+            same_score_dict[word] = value
+
+    if len(same_score_dict) == 1: 
+        # print(tuple(same_score_dict.items()))
+        return tuple(same_score_dict.items())
+    else: 
+        # print(tie_breaker(same_score_dict, word_list))
+        return tuple(tie_breaker(same_score_dict, word_list))
 
 draw_letters()
