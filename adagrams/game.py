@@ -91,37 +91,34 @@ def get_highest_word_score(word_list):
     word_dic = {}
 
     for word in word_list:
-        total = 0
-    
-        for char in word:
-                if char.upper() in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]:
-                    total += 1
-                elif char.upper() in ["D", "G"]:
-                    total += 2
-                elif char.upper() in ["B", "C", "M", "P" ]:
-                    total += 3
-                elif char.upper() in ["F", "H", "V", "W", "Y"]:
-                    total += 4
-                elif char.upper() in ["K"]:
-                    total += 5
-                elif char.upper() in ["J","X"]:
-                    total += 8
-                elif char.upper() in ["Q", "Z"]:
-                    total += 10
-        if len(word) in [7, 8, 9, 10]:
-            total += 8
-        word_dic[word] = total
-    
-
+        word_dic[word] = score_word(word)
+      
     max_point = 0
-    
     for value in word_dic.values():
         if max_point < value:
             max_point=value
         
+    tie_list = []
+    for key, value in word_dic.items():
 
-    for key,value in word_dic.items():
         if value == max_point:
-            return key,value
-                    
+            
+            tie_list.append((key,value))
+        
+
+    min_len = 0
+    if len(tie_list)>1:
+        min_len = len(tie_list[0][0])
+        winner = tie_list[0]
+        for item in tie_list:
+            if len(item[0]) == 10:
+                return item
+
+            elif min_len >len(item[0]):
+                min_len=len(item[0])
+                winner = item
+        return winner
+    else:
+        return tie_list[0]
+        
         
