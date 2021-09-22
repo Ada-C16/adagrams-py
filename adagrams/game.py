@@ -109,4 +109,6 @@ def get_highest_word_score(word_list):
         elif score == highest_score and len(word_key) == len(highest_scoring_word):
             if index < highest_scoring_word_index:
                 highest_scoring_word = word_key
+        elif score == highest_score and len(word_key) < len(highest_scoring_word):
+            highest_scoring_word = word_key
     return highest_scoring_word, highest_score
