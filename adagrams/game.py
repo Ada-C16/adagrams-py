@@ -30,6 +30,44 @@ LETTER_POOL = {
     'Z': 1
 }
 
+# |Letter                        | Value|
+# |:----------------------------:|:----:|
+# |A, E, I, O, U, L, N, R, S, T  |   1  |
+# |D, G                          |   2  |
+# |B, C, M, P                    |   3  |
+# |F, H, V, W, Y                 |   4  |
+# |K                             |   5  |
+# |J, X                          |   8  |
+# |Q, Z                          |   10 |
+
+LETTER_POOL_VALS = {
+    'A': 1, 
+    'B': , 
+    'C': , 
+    'D': , 
+    'E': 1, 
+    'F': , 
+    'G': , 
+    'H': , 
+    'I': 1, 
+    'J': , 
+    'K': , 
+    'L': , 
+    'M': , 
+    'N': , 
+    'O': 1, 
+    'P': , 
+    'Q': , 
+    'R': , 
+    'S': , 
+    'T': , 
+    'U': 1, 
+    'V': , 
+    'W': , 
+    'X': , 
+    'Y': , 
+    'Z': 
+}
 print("Welcome to Adagrams!")
 print("Let's draw 10 letters from the letter pool...")
 print("You have drawn the letters:")
@@ -104,10 +142,19 @@ def uses_available_letters(word, letter_bank):
     
 
 def score_word(word):
+
+
+    score = 0
+    for letter in word:
+        score += LETTER_POOL_VALS.get(letter)
+    if len(word) > 7:
+        score += 8
+    return score
+
     # Creates dictionary for letters and values
     # Elif for if letter in word - adds points, or not, does nothing
     # If length of word 8+, adds additional 8 points
-    pass
+    
 
 def get_highest_word_score(word_list):
     # Returns tuple - index 0 string of word, index 1 the score of the word
