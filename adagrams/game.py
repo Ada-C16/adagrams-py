@@ -60,14 +60,6 @@ def uses_available_letters(word, letter_bank):
     return True
     
 
-    
-
-
-    
-    
-
-
-
 def score_word(word):
     '''
     `score_word` in `game.py` has the following properties:
@@ -148,16 +140,12 @@ def get_highest_word_score(word_list):
         tie_chart = {word:len(word) for word in winning_words}
         # highest and lowest score
         first_max = max(tie_chart, key = tie_chart.get)
-        first_min = min(tie_chart, key = tie_chart.get)
+        
         # if there is a 10
         if tie_chart[first_max] == 10:
             winning_word = [k for k,v in tie_chart.items() if v == 10][0]
-            # winning_word = []
-            # for k, v in tie_chart.items():
-            #   if v == 10:
-            #       winning_word.append(k)
-            #
         else: # no tens, default to lowest score
+            first_min = min(tie_chart, key = tie_chart.get)
             winning_word = [k for k,v in tie_chart.items() if v == tie_chart[first_min]][0]
         winner = [winning_word, score_board[winning_word]]
     
