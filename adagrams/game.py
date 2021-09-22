@@ -1,4 +1,3 @@
-#need to import the random package
 import random
 
 LETTER_POOL = {
@@ -105,29 +104,12 @@ print(draw_letters())
     # Adds selected letter to list
     # Returns list
 
-    # First attempt in comments: 
-    # Create a for loop to return ten random letters and their values.
-    # for i in range (0, 10):
-    #     # Choose an integer position random between 1 and 26
-    #     # Add LETTER_POOL[random int] to return_list
-    #     # For the letters: Make a list of all letters, then remove as they're generated. 
-    #     try:
-    #         random_letter = random.randint(1, 26)
-    #         random_letter_val = list(LETTER_POOL.keys())[random_letter]
-    #         return_list.append(random_letter_val)
-    #     except Exception as e:
-    #         print(f"exception:{str(e)}")
-
-
 def uses_available_letters(word, letters):
-    #word = str()
     letter_found = True
     letter_bank = letters[:]
-    #Create a while loop to hold the status of whether we found the letter
+    
     while letter_found:
-        #Iterate over ech letter of the word
         for letter in word:
-            #If the letter is found continue the loop if not exit the loop
             if letter in letter_bank:
                 letter_found = True
                 letter_bank.remove(letter)
@@ -136,17 +118,34 @@ def uses_available_letters(word, letters):
 
         return letter_found
     
-
+    # Function 2 Comment Walkthrough:
     # Check to see if letters are in available word bank
+    # Create a while loop to hold the status of whether we found the letter
     # Elif returns True if in bank, False if not
     # *REMOVES* from letter bank so does not CHANGE letter bank
+    # The [:] makes a shallow copy of the array, hence allowing you to modify your copy without damaging the original
     
+    # Alternate solution: 
+    #draw_letters() = letter_bank
+    # word_list = []
+    # for char in word.upper():
+    #     word_list.append(char)
+    
+    # i = 0
+    # while all(char in letter_bank for char in word_list):
+    #     for letter in letter_bank:
+    #         for word in word_list:
+    #             if word_list.count(char) == letter_bank.count(letter):
+    #                 return True
+    #             else: 
+    #                 return False
+    #     i += 1
+    # return False
+
+    # all: Return True if all elements of the iterable are true (or if the iterable is empty)
+    # .count: returns the number of elements with the specified value.
 
 def score_word(word):
-
-    # Creates dictionary for letters and values
-    # Elif for if letter in word - adds points, or not, does nothing
-    # If length of word 8+, adds additional 8 points
     score = 0
     for letter in word:
         score += LETTER_POOL_VALS.get(letter.upper())
@@ -154,8 +153,12 @@ def score_word(word):
         score += 8
     return score
 
-
-    
+    # Function 3 Comment Walkthrough:
+    # Creates dictionary for letters and values
+    # Elif for if letter in word - adds points, or not, does nothing
+    # If length of word 8+, adds additional 8 points
+    # .upper returns strings where all letters are uppercase
+    # .get returns the value associated with a specific key
 
 def get_highest_word_score(word_list):
     # Returns tuple - index 0 string of word, index 1 the score of the word
