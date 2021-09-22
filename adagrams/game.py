@@ -105,9 +105,9 @@ def get_highest_word_score(word_list):
             highest_scoring_word = word_key
             highest_scoring_word_index = index
         elif score == highest_score:
-            if length == 10:
-                highest_score = score
-                highest_scoring_word = word_key
+            if length == 10 and len(highest_scoring_word) != 10:
+                    highest_score = score
+                    highest_scoring_word = word_key
             elif length == len(highest_scoring_word):
                 if index < highest_scoring_word_index:
                     highest_scoring_word = word_key
