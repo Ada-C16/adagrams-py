@@ -1,9 +1,11 @@
 import random
 
+'''
+    WAVE 1
+'''
 def draw_letters():
     #create a veriable and store letter pool in it
     #store it with a dict. where key is letter and value is how many available
-
     letter_pool = {
     'A': 9, 
     'B': 2, 
@@ -49,10 +51,13 @@ def draw_letters():
             del letter_pool[random_letter]
     return hand_list
 
-
+'''
+    WAVE 2
+'''
 
 def uses_available_letters(word, letter_bank):
     hand_list = letter_bank[:]
+
     # check if the letter in hand_list is a word 
     for letter in word:
         if letter in hand_list:
@@ -65,9 +70,17 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
+'''
+    WAVE 3
+'''
 
 def score_word(word):
     pass
 
+
+
+'''
+    WAVE 4
+'''
 def get_highest_word_score(word_list):
     pass
