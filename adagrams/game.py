@@ -105,7 +105,6 @@ def get_highest_word_score(word_list):
     max_score = max(score_list)
 
     words = [k for k, v in words_and_scores.items() if v == max_score]
-    print(words)
 
     for word in words:
         if len(words) == 1:
