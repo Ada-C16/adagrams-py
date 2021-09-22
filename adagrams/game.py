@@ -88,4 +88,40 @@ def score_word(word):
             
 
 def get_highest_word_score(word_list):
-    pass
+    word_dic = {}
+
+    for word in word_list:
+        total = 0
+    
+        for char in word:
+                if char.upper() in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]:
+                    total += 1
+                elif char.upper() in ["D", "G"]:
+                    total += 2
+                elif char.upper() in ["B", "C", "M", "P" ]:
+                    total += 3
+                elif char.upper() in ["F", "H", "V", "W", "Y"]:
+                    total += 4
+                elif char.upper() in ["K"]:
+                    total += 5
+                elif char.upper() in ["J","X"]:
+                    total += 8
+                elif char.upper() in ["Q", "Z"]:
+                    total += 10
+        if len(word) in [7, 8, 9, 10]:
+            total += 8
+        word_dic[word] = total
+    
+
+    max_point = 0
+    
+    for value in word_dic.values():
+        if max_point < value:
+            max_point=value
+        
+
+    for key,value in word_dic.items():
+        if value == max_point:
+            return key,value
+                    
+        
