@@ -36,9 +36,6 @@ def uses_available_letters(word, letter_bank):
 
     # freq_dict={}
     # counter_word={}
-
-    
-
     # for one_letter in word:
     #     if one_letter not in letter_bank:
     #         return False
@@ -62,7 +59,34 @@ def uses_available_letters(word, letter_bank):
     
 
 def score_word(word):
-    pass
+    total=0
+    modified_word=word.upper()
+    value1=["A","E","I","O","U","L","N", "R", "S", "T"]
+    value_2=["D", "G"]
+    value_3=["B", "C", "M", "P"]
+    value_4=["F", "H", "V", "W", "Y"]
+    value_5=["K"]
+    value_8=["J", "X"]
+    value_10=["Q", "Z"]
+
+    for letter in modified_word:
+        if letter in value1:
+            total+=1
+        elif letter in value_2:
+            total+=2
+        elif letter in value_3:
+            total+=3
+        elif letter in value_4:
+            total+=4
+        elif letter in value_5:
+            total+=5
+        elif letter in value_8:
+            total+=8
+        elif letter in value_10:
+            total+=10 
+    if len(modified_word)>=7:
+        total+=8
+    return(total)
 
 def get_highest_word_score(word_list):
     pass
