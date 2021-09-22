@@ -135,7 +135,8 @@ def tie_breaker(same_score_dict, word_list):
                 return word, same_score_dict[word]
     elif len(min_length_words) == 1: 
         return min_length_words[0], same_score_dict[min_length_words[0]]
-    elif len(min_length_words) > 1: 
+    elif len(min_length_words) > 1:
+        print(f"*****wordlist {word_list}")
         for word in word_list: 
             if word in min_length_words:
                 return word, same_score_dict[word]
@@ -159,10 +160,12 @@ def get_highest_word_score(word_list):
             same_score_dict[word] = value
 
     if len(same_score_dict) == 1: 
-        # print(tuple(same_score_dict.items()))
-        return tuple(same_score_dict.items())
+        print(same_score_dict)
+        for key, value in same_score_dict.items():
+            return key, value
+        # return same_score_dict.keys(), same_score_dict.values()
     else: 
         # print(tie_breaker(same_score_dict, word_list))
-        return tuple(tie_breaker(same_score_dict, word_list))
+        return tie_breaker(same_score_dict, word_list)
 
 draw_letters()
