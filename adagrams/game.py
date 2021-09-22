@@ -78,4 +78,41 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+    #get the score of each word by iterating through the word_list and using the score_word function
+    #create a new dictionary to store the words as a keys and the scores as its value
+    words_and_scores = {}
+    for word in word_list:
+        score = score_word(word)
+        words_and_scores[word] = score
+   
+   #all_scores is our variable that stores a list of all the scores and max_score finds the highest score
+   #we then find the words that have the highest score by iterating through our dictionary
+   #create a new list to put all the words that the highest score as their value
+    all_scores = words_and_scores.values()
+    max_score = max(all_scores)
+    words_with_max = []
+    for word in words_and_scores:
+        if words_and_scores[word] == max_score:
+            words_with_max.append(word)
+    
+    #if there's only one word in our list: add the score and return the list as a tuple
+    if len(words_with_max)== 1:
+        words_with_max.append(max_score)
+        return tuple(words_with_max)
+    #if multiple words and one word's length is 10: return the word with 10 letters and its score as tuple
+    for word in words_with_max:
+        if len(word) == 10:
+            return tuple([word, max_score])
+    #if multiple words and not a length of 10: return the word with fewest letters and its score as a tuple
+    #iterate through our list of words with the max score to find the word with the shortest length
+    lengths = [len(i) for i in words_with_max]
+    shortest_length = min(lengths)
+    for word in words_with_max:
+        if len(word) == shortest_length:
+            return tuple([word, max_score])
+    #these will all automatically return the first one if lengths are the same
+
+
+        
+    
+
