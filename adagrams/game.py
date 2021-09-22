@@ -19,34 +19,41 @@ LETTER_POOL = (
     }
 )
 
-
 def draw_letters():
-    hand_of_letters = []
     # create an empty list that will eventually hold
     # 10 strings,  letter "hand of letters"
-    letter_pool_list = []
+    hand_of_letters = []
+
     # create an empty list that will eventually hold all 
     # the letters in letter pool in accurate frequency. 
     # example of how list will eventually look like: 
     # letter_pool_list = ["A","A","A","A","A","A","A","A","A","B","B" etc...]
-    for letter in LETTER_POOL:
-        letter.keys()
-        
+    letter_pool_list = []
 
     # iterate through the LETTER_POOL tuple with a forloop
     # append each key (which will be a string like "A" or "B") to the list
     # letter_pool_list the appropriate number of times aka the value (which will be 
     # an int like 9 or 2). 
+    for letter_dict in LETTER_POOL:
+        for key in letter_dict:
+            freq = letter_dict[key]["frequency"]
+            for i in range(0, freq):
+                letter_pool_list.append(key)
     
     # create a for loop that will run 10x
-    #   generate a random int 
-    #   select a string from letter_pool_list with the index random int
-    #   example: letter_pool_list[random_int]
-    #   use the pop(index) function to remove the string at index random_int.
+    # generate a random int 
+    # select a string from letter_pool_list with the index position random int
+    # example: letter_pool_list[random_int]
+    # use the pop(index) function to remove the string at index random_int.
+    # append the popped value to hand of letter list
+    for i in range(10):
+        index = random.randint(0, len(letter_pool_list)-1)
+        letter = letter_pool_list[index]
+        hand_of_letters.append(letter)
+        letter_pool_list.pop(index)
 
-    #   append the popped value to hand of letter list
-
-    # return a list that contains 10 strings ["A", "B", "C" etc...]
+    # return a list that contains 10 strings ["A", "B", "C" etc...
+    return hand_of_letters
 
 def uses_available_letters(word, letter_bank):
     pass
@@ -74,4 +81,4 @@ def get_highest_word_score(word_list):
 # print(list)
 # print(hand_draw_letters)
 
-draw_letters()
+print(draw_letters())
