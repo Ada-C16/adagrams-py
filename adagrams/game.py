@@ -34,10 +34,11 @@ def draw_letters():
     with one letter in each string. The num of strings included in the array 
     cannot be more than the num alloted to that letter in the letter table
     """
+    letter_pool = list(LETTER_POOL.keys())
     letters = []
     letter_count = {}
-    for letter in range(10):
-        letter = random.choice(string.ascii_uppercase)
+    for letter in random.sample(letter_pool, 10):
+        # letter = random.choice(string.ascii_uppercase)
         if letter not in letters:
             letter_count[letter] = 0
             letters.append(letter)
