@@ -89,7 +89,7 @@ def uses_available_letters(word, letter_bank):
     # for loop to check letters in word in word_bank
     valid_letter = True
     while valid_letter:
-        for letter in word:
+        for letter in word.upper():
         # if statement to determine TRUE/FALSE for validity (letter in bank, not if real word)
             if letter in letter_bank_copy:
                 letter_bank_copy.remove(letter)
@@ -112,13 +112,46 @@ def uses_available_letters(word, letter_bank):
 #     additional 8 points
 
 def score_word(word):
-    # Create dictionary of letter score values
+    LETTER_VALUE = {
+        'A': 1, 
+        'B': 3, 
+        'C': 3, 
+        'D': 2, 
+        'E': 1, 
+        'F': 4, 
+        'G': 2, 
+        'H': 4, 
+        'I': 1, 
+        'J': 8, 
+        'K': 5, 
+        'L': 1, 
+        'M': 3, 
+        'N': 1, 
+        'O': 1, 
+        'P': 3, 
+        'Q': 10, 
+        'R': 1, 
+        'S': 1, 
+        'T': 1, 
+        'U': 1, 
+        'V': 4, 
+        'W': 4, 
+        'X': 8, 
+        'Y': 4, 
+        'Z': 10
+    }    
     # Create score variable = 0 
+    score = 0
     # For loop through each letter of word:
-    #   Reference each letter in dictionary key and add value to score
+    for letter in word.upper():
+        # Reference each letter in dictionary key and add value to score
+        score += LETTER_VALUE.get(letter)
+        print(f"{letter} is worth {LETTER_VALUE.get(letter)}")
     # If len(list) >= 7 add 8 points to score
+    if len(word) >= 7:
+        score += 8
     # Returns integer points
-    pass
+    return score
 
 
 
