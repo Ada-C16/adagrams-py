@@ -6,13 +6,13 @@ LETTER_POOL = {'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2,
     'U': 4, 'V': 2, 'W': 2, 'X': 1, 'Y': 2, 'Z': 1}
 
 SCORE_CHART = {
-    ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T") : 1,
-    ("D", "G") : 2,
-    ("B", "C", "M", "P") : 3,
-    ("F", "H", "V", "W", "Y") : 4,
-    ("K") : 5,
-    ("J", "X") : 8,
-    ("Q", "Z") : 10,
+    1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"],
 }
 
 # Wave 1
@@ -56,14 +56,23 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     """
     Takes one parameter word, 
-    returns integer total_score of string word
+    returns integer score of string word
     """
-    pass
-    # word: str of characters
-    # returns integer representing points
-    # each letter in word has a point value
-    # number of points of each letter is summed, total_score of word
-    # if len(word) >= 7 or len(word) <= 10, word +8 points
+
+    total_score = 0
+    # word = "DOG", score = 5
+    word_case_check = word.upper()
+    
+    for letter in word_case_check:
+        if letter in SCORE_CHART.values():
+            total_score += SCORE_CHART.keys()
+        if letter == "":
+            total_score += 0  
+
+    if len(word_case_check) >= 7 or len(word_case_check) <= 10:
+        total_score += 8    
+    
+    return total_score
 
 
 # Wave 4
