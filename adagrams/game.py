@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-
-import random
+# import ui_helper
 
 def draw_letters():
+    import random
 
+    # Original letter pool that remains constant. 
     LETTER_POOL = {
         'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 
         'F': 2, 'G': 3, 'H': 2, 'I': 9, 'J': 1, 
@@ -13,18 +13,16 @@ def draw_letters():
         'Z': 1
     }
 
-    # reconstructing LETTER_POOL into a list thats contains all of the 
+    # reconstructing LETTER_POOL into a list that contains all of the 
     # possible letter choices.
     
     letter_choices = []
     expanded_letter_pool = []
 
     for alphabet, distribution in LETTER_POOL.items():
-        if isinstance(distribution, (int)) == True:
-            letter_choices.append(alphabet * distribution)
+        letter_choices.append(alphabet * distribution)
 
     letter_string = "".join(letter_choices)
-    print(type(letter_string))
 
     for letter in letter_string:
         expanded_letter_pool.append(letter)
@@ -34,23 +32,14 @@ def draw_letters():
     
     return letter_bank
 
-=======
-# from tests.test_wave_01 import LETTER_POOL
-
-
-# def draw_letters():
-
-def display_game_instructions():
-    print("Please input your submission for the longest anagram you can come up with")
 
 def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
-    display_game_instructions()
->>>>>>> 248d49ca1a0e9482e566abaa4f4204de21bb73c6
+    # ui_helper.display_game_instructions()
 
 def uses_available_letters(word, letter_bank):
 #Call function to display game instructions and prompt user to enter a word
-    display_game_instructions()
+    # ui_helper.display_game_instructions()
 #Make a copy of the letter bank to use during round
 #So it doesn't change the letter_bank list directly
     user_letters = letter_bank.copy()
@@ -97,23 +86,46 @@ def score_word(word):
         elif letter in points10:
             score += 10
     
-    word_score = score
+    word_score = score  # does score need to be reassigned?
     
     if 7 <= len(word) <= 10:
             word_score +=8
 
-    final_score = word_score    
+    final_score = word_score  # same as above.
     
-    return final_score
+    return final_score  # can return score
 
-
-<<<<<<< HEAD
 
 def get_highest_word_score(word_list):
-    pass
-=======
-#     return score int(sum)
-#     """
-# def get_highest_word_score(word_list):
-#     pass
->>>>>>> 248d49ca1a0e9482e566abaa4f4204de21bb73c6
+    word_scores = []
+    for word in word_list:
+        word_scores.append((word, score_word(word)))
+
+    max_score = 0
+    for i, (word, score) in enumerate(word_scores):
+        if max_score == score:
+            high_score_words.append(word_scores[i])
+        elif max_score < score:
+            high_score_words = [word_scores[i]]
+            max_score = score
+    if len(high_score_words) == 1:
+        return high_score_words[0]
+
+    # Sorting tied words to find the shortest string length 
+    # to compare for tiebreakers.
+    tied_words = []
+    for (word, score) in high_score_words:
+        tied_words.append(word)
+    sortedwords = sorted(tied_words, key=len)
+    print(sortedwords)
+
+    # Tiebreaker: if words the same length, return first value
+    # Tiebreaker: shortest word wins
+    # Tiebreaker: word length equals 10 wins
+    for i, (word, score) in enumerate(high_score_words):
+        if len(word) == 10:
+            return high_score_words[i]
+        elif len(word) == len(sortedwords[0]):
+            tiebreaker =high_score_words[i]
+
+    return tiebreaker
