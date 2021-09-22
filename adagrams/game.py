@@ -1,3 +1,5 @@
+# THIS IS AN EXPERIMENT!
+
 import random
 
 LETTER_POOL = {
