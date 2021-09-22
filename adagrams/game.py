@@ -111,4 +111,4 @@ def tie_breaker(ties):
     """
     # I do not approve of this -mac
     # neither do i - lain
-    return filter(ties, lambda w: len(w) == 10).pop() or min(ties, key=len)
+    return next(filter(lambda w: len(w) == 10, ties), None) or min(ties, key=len)
