@@ -97,7 +97,7 @@ def score_word(word):
         score += letters_dict[letter]
     if len(word) >= 7:
         score += 8
-    return score    
+    return score   
 
 
 
@@ -105,4 +105,36 @@ def score_word(word):
     WAVE 4
 '''
 def get_highest_word_score(word_list):
-    pass
+    final_word =""
+    final_score =0
+    tie_words_list = []
+
+    for word in word_list:
+        score = score_word(word)
+
+        if score > final_score:
+            final_score = score
+            final_word = word 
+
+        elif score == final_score:
+            tie_words_list.append(final_word)
+            tie_words_list.append(word)
+
+            if len(word) == len(final_word):
+                final_word = tie_words_list[0]
+
+            elif len(word) == 10:
+                final_score = score 
+                final_word = word 
+
+            elif len(final_word) == 10:
+                final_word = final_word
+
+            elif len(word) < len(final_word):
+                final_score = score 
+                final_word = word
+
+
+    return (final_word, final_score)
+
+
