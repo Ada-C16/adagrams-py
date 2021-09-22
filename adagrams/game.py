@@ -67,9 +67,34 @@ LETTER_POOL_VALS = {
     'Y': 4, 
     'Z': 10
 }
-print("Welcome to Adagrams!")
-print("Let's draw 10 letters from the letter pool...")
-print("You have drawn the letters:")
+
+def display_welcome_message():
+    print("Welcome to Adagrams!")
+
+def display_drawn_letters(letters):
+    print("You have drawn the letters:")
+    print(', '.join(letters))
+
+def display_game_instructions():
+    print("Please input your submission for the longest anagram you can come up with")
+
+def display_needs_valid_input_message():
+    print("You entered in a word that contains characters not in the letter bank")
+    display_game_instructions()
+
+def display_score(score):
+    print(f"Your submitted anagram scored {score} points")
+
+def display_retry_instructions():
+    print("Should we play another round?")
+    print("Enter y to replay")
+
+
+def display_goodbye_message():
+    print("Goodbye!")
+
+display_welcome_message()
+
 
 def draw_letters():
     return_list = []
@@ -92,6 +117,7 @@ def draw_letters():
     return return_list
     
 print(draw_letters())
+#display_drawn_letters(letters)
 
     # Funtion 1 Comment Walkthrough:
     # While loop to return 10 random letters and their values
@@ -125,23 +151,6 @@ def uses_available_letters(word, letters):
     # *REMOVES* from letter bank so does not CHANGE letter bank
     # The [:] makes a shallow copy of the array, hence allowing you to modify your copy without damaging the original
     
-    # Alternate solution: 
-    #draw_letters() = letter_bank
-    # word_list = []
-    # for char in word.upper():
-    #     word_list.append(char)
-    
-    # i = 0
-    # while all(char in letter_bank for char in word_list):
-    #     for letter in letter_bank:
-    #         for word in word_list:
-    #             if word_list.count(char) == letter_bank.count(letter):
-    #                 return True
-    #             else: 
-    #                 return False
-    #     i += 1
-    # return False
-
     # all: Return True if all elements of the iterable are true (or if the iterable is empty)
     # .count: returns the number of elements with the specified value.
 
@@ -155,13 +164,23 @@ def score_word(word):
 
     # Function 3 Comment Walkthrough:
     # Creates dictionary for letters and values
-    # Elif for if letter in word - adds points, or not, does nothing
+    # If for if letter in word - adds points, or not, does nothing
     # If length of word 8+, adds additional 8 points
     # .upper returns strings where all letters are uppercase
     # .get returns the value associated with a specific key
 
 def get_highest_word_score(word_list):
-    # Returns tuple - index 0 string of word, index 1 the score of the word
+    # score_word = score_word()
+    # words = []
+
+    # for word in word_list:
+    #     if len(word
+
+    #     if best_word[0] == words[0]:
+        #this is the tie 
+        pass
+
+
+    # Returns tuple - index 0 string of word, index 1 the score of the word: tuple(x, y,)
     # If length of word1 == length of word2, tie break: 
     # Shortest length wins, unless length == 10 letters
-    pass
