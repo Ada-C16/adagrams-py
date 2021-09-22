@@ -32,7 +32,8 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-    #create a variable and store an empty list for the results that is drawn from the pool
+
+    #create a letter_pool and store an empty list for the results that is drawn from the pool
     hand_list = []
     #create a loop to go over items in the letter pool dict. 
     #while loop len list < 10 keep going 
@@ -53,7 +54,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     hand_list = letter_bank[:]
-    # check if the letter in hand_list is a word 
+    # check if the letter in hand_list is in a word 
     for letter in word:
         if letter in hand_list:
         #if is a  word return True
@@ -67,7 +68,29 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+#save letters in a dic with respective value 
+    letters_dict = {}
+    for key in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]:
+        letters_dict[key] = 1
+    for key in ["D", "G"]:
+        letters_dict[key] = 2
+    for key in ["B", "C", "M", "P"]:
+        letters_dict[key] = 3
+    for key in ["F", "H", "V", "W", "Y"]:
+        letters_dict[key] = 4
+    for key in ["K"]:
+        letters_dict[key] = 5
+    for key in ["J", "X"]:
+        letters_dict[key] = 8
+    for key in ["Q", "Z"]:
+        letters_dict[key] = 10
+#crete loop to run through the word
+    score = 0
+    for letter in word.upper():
+        score += letters_dict[letter]
+    if len(word) >= 7:
+        score += 8
+    return score    
 
 def get_highest_word_score(word_list):
     pass
