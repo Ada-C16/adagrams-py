@@ -50,8 +50,8 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    for char in word:
-        if word.count(char) > letter_bank.count(char):
+    for char in word: # word is the test because we're checking if these letters are valid to use
+        if word.count(char) > letter_bank.count(char): # if there are more char than char in bank
             valid = False
         else:
             valid = True
@@ -61,7 +61,12 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     """
     This function will calculate the user's score for their entered word.
+    It needs to calculate a score that ignores the lettercase, takes into
+    account an empty word, and gives extra points for longer words. 
     """
+    # a dict may be better to easily access the score. 
+    # could use ints as keys for the score and letters as the value
+    pass
 
 def get_highest_word_score(word_list):
     pass
