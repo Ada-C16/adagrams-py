@@ -37,7 +37,6 @@ def draw_letters():
             "Z" * 1,
         ]
     )
-
     # the following algorithm is not an accurate representation of drawing from a pile.
     # the chance to draw each letter is constant, regardless of what has been already drawn.
     # letters are never depleted, the pile is simply used to check for a maximum limit.
@@ -86,7 +85,7 @@ def score_word(word):
             for letter in letters
         ]
     )
-    if len(word) in range(7, 11):
+    if len(word) in range(7, 11):  # slurpee
         score += 8
 
     return score
@@ -100,22 +99,16 @@ def get_highest_word_score(word_list):
 
     word_scores = {word: score_word(word) for word in word_list}
     high_score = max(word_scores.values())
-    words_with_high_score = [
-        w for w in word_scores.keys() if word_scores[w] == high_score
-    ]
-
-    if len(words_with_high_score) > 1:
-        return tie_breaker(words_with_high_score), high_score
-
-    winning_word = words_with_high_score[0]
-    return winning_word, high_score
+    ties = [w for w in word_scores.keys() if word_scores[w] == high_score]
+    return tie_breaker(ties), high_score
 
 
 def tie_breaker(ties):
     """
     Returns:
-        word: A string containing the word with fewest letters earliest in sequence, or
+        word (str): A string containing the word with fewest letters earliest in sequence, or
         preferentailly a word with 10 letters.
     """
-
+    # I do not approve of this -mac
+    # neither do i - lain
     return filter(ties, lambda w: len(w) == 10).pop() or min(ties, key=len)
