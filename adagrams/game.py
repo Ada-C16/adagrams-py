@@ -9,12 +9,20 @@ def draw_letters():
     'O','O','O','O','O','O','O','O', 'P','P', 'Q', 'R','R','R','R','R','R',
     'S','S','S','S', 'T','T','T','T','T','T', 'U','U','U','U',
     'V','V', 'W','W', 'X', 'Y','Y','Z']
-    player_hand = random.sample(letter_pool, k=10)
+    # random sample function returns list of K size
+    player_hand = random.sample(letter_pool, k=10) 
     return player_hand
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    invalid = []
+    for letter in word:
+        if letter not in letter_bank or (word.count(letter) > letter_bank.count(letter)):
+            invalid.append(letter)
+    if len(invalid) > 0:
+        return False 
+    else:
+        return True 
 
 def score_word(word):
     pass
