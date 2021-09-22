@@ -37,18 +37,7 @@ def draw_letters():
             "Z" * 1,
         ]
     )
-    # the following algorithm is not an accurate representation of drawing from a pile.
-    # the chance to draw each letter is constant, regardless of what has been already drawn.
-    # letters are never depleted, the pile is simply used to check for a maximum limit.
-    # this behavior seems to align with the instructions provided.
-
-    hand = list()
-    while len(hand) < 10:
-        draw = random.choice(letter_pile)
-        if hand.count(draw) >= letter_pile.count(draw):
-            continue  # too many of this letter, pick another
-        hand.append(draw)
-    return hand
+    return random.sample(letter_pile, 10)
 
 
 def uses_available_letters(word, hand):
