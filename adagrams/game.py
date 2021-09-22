@@ -51,6 +51,7 @@ draw_letters()
 # Wave 2
 def uses_available_letters(word, letter_bank):
 
+    word = word.upper()
     # check if each character is in the word and occurs fewer or equal times to character in letter bank
     for character in word:
         if not word.count(character) <= letter_bank.count(character):
@@ -84,8 +85,6 @@ def score_word(word):
         score += 8
         
     return score
-
-score_word("bc")
 
     
 # Wave 4
