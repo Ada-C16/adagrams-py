@@ -15,7 +15,6 @@ SCORE_CHART = {
     ("Q", "Z") : 10,
 }
 
-
 # Wave 1
 def draw_letters():
     """
@@ -35,7 +34,6 @@ def draw_letters():
         i += 1
     return letters
 
-
 # Wave 2
 def uses_available_letters(word, letter_bank):
     """
@@ -43,21 +41,16 @@ def uses_available_letters(word, letter_bank):
     returns True if every letter in word is available,
     otherwise returns False.
     """
-    # word_list = []
-    # for letter in word:
-    #     word_list.append(letter)
-    
-    # i = 0
-    # while all(letter in letter_bank for letter in word_list):
-    #     for letter in letter_bank:
-    #         for letter in word_list:
-    #             if word_list.count(letter) == letter_bank.count(letter):
-    #                 return True
-    #             else:
-    #                 return False
-    #     i += 1
-    # return False
+    #this method copies the letter bank list
+    letter_bank_duplicate = letter_bank[:]
 
+    for letter in word:
+        if letter in letter_bank_duplicate:
+            letter_bank_duplicate.remove(letter)
+        else:
+            return False
+
+    return True
 
 # Wave 3        
 def score_word(word):
