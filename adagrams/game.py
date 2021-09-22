@@ -40,9 +40,8 @@ def draw_letters():
     4. this function should NOT change the pool of ltrs (user returns hand before drawing) unlike scrabble where pool decreases until it runs out
     '''
 
-
-    
-    pass
+    # refactor to make letters_pool outside of function?
+    # learn more abotu how random.sample is working
     #pseudocode
     # letters_pool = []iterate through dict to make list?
         # for letter in letters_dict: 
@@ -62,7 +61,23 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    '''
+    check if word uses only characters in the letter_bank (hand) and does not use
+    a letter more times than it appears in the letter_bank
+    return True or False
+    '''
+    # Make copy of letter_bank to be able to manipulate
+    # Iterate through word check if each letter is in letter_bank copy and remove
+    # from copy
+    # If not in, return False
+    # If make it all the way through, return True
+    temp_letter_bank = letter_bank.copy()
+    for letter in word:
+        if letter in temp_letter_bank:
+            temp_letter_bank.remove(letter)
+        else:
+            return False
+    return True
 
 SCORES = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2, 
     "F": 4, "I": 1, "H": 4, "K": 5, "J": 8, "M": 3, 
