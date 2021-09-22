@@ -2,6 +2,11 @@ import random
 
 
 def draw_letters():
+    """
+    Returns:
+        hand (list): An array of ten random letters representing the users hand.
+    """
+
     letter_pile = "".join(
         [
             "A" * 9,
@@ -48,11 +53,21 @@ def draw_letters():
 
 
 def uses_available_letters(word, hand):
-    # challenge accepted
+    """
+    Returns:
+        True if word uses only letters in users hand.
+    """
+
+    # sexy
     return all([word.count(letter) <= hand.count(letter) for letter in set(word)])
 
 
 def score_word(word):
+    """
+    Returns:
+        score (int): An integer representing the total score of word.
+    """
+
     word = word.upper()
     score_chart = {
         1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
@@ -78,15 +93,40 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
+    """
+    Returns:
+        winning word, high_score (tuple): A tuple containing the winning word (str) and high score (int).
+    """
+
     word_scores = {word: score_word(word) for word in word_list}
     high_score = max(word_scores.values())
-    ties = [w for w in word_scores.keys() if word_scores[w] == high_score]
+    words_with_high_score = [
+        w for w in word_scores.keys() if word_scores[w] == high_score
+    ]
 
-    shortest = ties[0]
+    if len(words_with_high_score) > 1:
+        tie_breaker(high_score, words_with_high_score)
+
+    winning_word = words_with_high_score[0]
+    return winning_word, high_score
+
+
+def tie_breaker(high_score, ties):
+    """
+    Returns:
+        word, high_score (tuple): A tuple containing a 10 letter word (str) and high score (int).
+        In case of a tie in scores, 10 letter word wins
+
+        shortest, high_score (tuple): A tuple containing the word with fewest letters (str) and high score (int).
+        If no 10 letter word, prefer word with fewest letters.
+    """
+
+    shortest = None
+
     for word in ties:
         if len(word) == 10:
             return word, high_score
-        if len(word) < len(shortest):
-            shortest = word
 
+        if not shortest or len(word) < len(shortest):
+            shortest = word
     return shortest, high_score
