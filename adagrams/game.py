@@ -170,16 +170,32 @@ def score_word(word):
     # .get returns the value associated with a specific key
 
 def get_highest_word_score(word_list):
-    # score_word = score_word()
-    # words = []
+    # later in this function, we will call the score_word function to assign the word's score
+    # word_score = score_word()
+    ordered_words = []
+    return_words = []
 
-    # for word in word_list:
-    #     if len(word
+    #1. Create and populate the dictionary with the tuples
+    # ordered_words = ["elephant", 33, "chocolate", 42, "xxx, 32]
+    for word in word_list:
+        ordered_words.append(word)
+        ordered_words.append(score_word(word))
+    
+    #2. Order the dictionary
+    #do a loop and create a new return_words off of ordered_words
+    for i in range(0,len(ordered_words)):
+        if ordered_words[i+1] > return_words[1]:
+            return_words.insert(0, return_words.pop(word))
+    return return_words
 
-    #     if best_word[0] == words[0]:
-        #this is the tie 
-        pass
+    #mylist.insert(0, mylist.pop(5))
 
+        
+    #Lenght of the word only matters if there is a tie,
+    #so go looking for ties after you set up all the data in the dictionary -or-
+    #do a lookup when you are ordering the dictionary
+    
+    #3. Return the list
 
     # Returns tuple - index 0 string of word, index 1 the score of the word: tuple(x, y,)
     # If length of word1 == length of word2, tie break: 
