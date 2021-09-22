@@ -42,31 +42,31 @@ LETTER_POOL = {
 
 LETTER_POOL_VALS = {
     'A': 1, 
-    'B': , 
-    'C': , 
-    'D': , 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
     'E': 1, 
-    'F': , 
-    'G': , 
-    'H': , 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
     'I': 1, 
-    'J': , 
-    'K': , 
-    'L': , 
-    'M': , 
-    'N': , 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
     'O': 1, 
-    'P': , 
-    'Q': , 
-    'R': , 
-    'S': , 
-    'T': , 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
     'U': 1, 
-    'V': , 
-    'W': , 
-    'X': , 
-    'Y': , 
-    'Z': 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
 }
 print("Welcome to Adagrams!")
 print("Let's draw 10 letters from the letter pool...")
@@ -119,9 +119,10 @@ print(draw_letters())
     #         print(f"exception:{str(e)}")
 
 
-def uses_available_letters(word, letter_bank):
+def uses_available_letters(word, letters):
     #word = str()
     letter_found = True
+    letter_bank = letters[:]
     #Create a while loop to hold the status of whether we found the letter
     while letter_found:
         #Iterate over ech letter of the word
@@ -143,17 +144,17 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
 
-
-    score = 0
-    for letter in word:
-        score += LETTER_POOL_VALS.get(letter)
-    if len(word) > 7:
-        score += 8
-    return score
-
     # Creates dictionary for letters and values
     # Elif for if letter in word - adds points, or not, does nothing
     # If length of word 8+, adds additional 8 points
+    score = 0
+    for letter in word:
+        score += LETTER_POOL_VALS.get(letter.upper())
+    if len(word) > 6:
+        score += 8
+    return score
+
+
     
 
 def get_highest_word_score(word_list):
