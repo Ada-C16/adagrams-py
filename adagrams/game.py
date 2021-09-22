@@ -80,9 +80,26 @@ def score_word(word):
             if letter in letters:
                 word_score += letter_score
     return word_score
-    
-word = 'gfgfgsgf'
-score_word(word)
 
 def get_highest_word_score(word_list):
-    pass
+    best_words = []
+    best_score = 0
+    
+    for word in word_list:
+        word_score = score_word(word)
+        if word_score == best_score:
+            best_words.append(word)
+        elif word_score > best_score:
+            best_words = [word]
+            best_score = word_score
+    
+    best_words_by_length = sorted(best_words, key=len)
+    best_length = 0
+    if len(best_words_by_length[-1]) == 10:
+        best_length = 10
+    else:
+        best_length = len(best_words_by_length[0])
+
+    for word in best_words:
+        if len(word) == best_length:
+            return (word, best_score)
