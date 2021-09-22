@@ -50,7 +50,17 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    valid = False 
+    for char in word:
+        if char not in letter_bank:
+            valid = False
+            break
+        else:
+            for letter in letter_bank:
+                if word.count(char) == letter_bank.count(letter):
+                    valid = True
+    return valid
+
 
 def score_word(word):
     pass
