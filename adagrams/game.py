@@ -46,17 +46,6 @@ def draw_letters():
 
     return drawn_letters
 
-def uses_available_letters(word, letter_bank):
-    letter_bank_copy = letter_bank.copy()
-    word_list = []
-    for letter in word:
-        if letter in letter_bank_copy: 
-            letter_bank_copy.remove(letter)
-            word_list.append(letter)  
-    if len(word_list)== len(word):
-        return True
-    else:
-        return False 
 
 
 def score_word(word):
@@ -89,7 +78,21 @@ def score_word(word):
                 word_score += 10
     return word_score
 
+def uses_available_letters(word, letter_bank):
+    # make a copy of the letter bank
+    available_letters = letter_bank.copy()
+    # loop through the letters in word and if the letter is in the list, remove it
+    # if a letter is not in the list, return False
+    for letter in word:
+        if letter in available_letters:
+            available_letters.remove(letter)
+            continue
+        else: 
+            return False
+    return True
+    
+
+
 
 def get_highest_word_score(word_list):
-    pass
-
+  pass
