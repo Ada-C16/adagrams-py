@@ -40,6 +40,8 @@ def draw_letters():
     while len(letters_drawn) != 10:
         random_entry = random.choice(letter_pool_list)
         letters_drawn.append(random_entry)
+        letter_pool_list.remove(random_entry)
+
     return letters_drawn
 
 
@@ -74,28 +76,28 @@ def uses_available_letters(word, letter_bank):
     #  we don't want to have a side effect of changing the list outside of this function
     word_length = len(word)
 
-    while is_letter_in_letter_bank == True and word_length > 0:
-        for letter in word:
-            if letter in letters_copy:
-                letters_copy.remove(letter)
-                word_length -= 1
-            else:
-                is_letter_in_letter_bank = False
-                break
-    return is_letter_in_letter_bank
+    # while is_letter_in_letter_bank == True and word_length > 0:
+    #     for letter in word:
+    #         if letter in letters_copy:
+    #             letters_copy.remove(letter)
+    #             word_length -= 1
+    #         else:
+    #             is_letter_in_letter_bank = False
+    #             break
+    # return is_letter_in_letter_bank
 
-# # ALTERNATE OPTION
-#     try:
-#         while word_length > 0:
-#             for letter in word:
-#                 if letter in letters_copy:
-#                     letters_copy.remove(letter)
-#                     word_length -= 1
-#                 else:
-#                     raise ValueError
-#         return True
-#     except ValueError:
-#         return False
+# ALTERNATE OPTION
+    try:
+        while word_length > 0:
+            for letter in word:
+                if letter in letters_copy:
+                    letters_copy.remove(letter)
+                    word_length -= 1
+                else:
+                    raise ValueError
+        return True
+    except ValueError:
+        return False
 
 def score_word(word):
     # return a score (int) of inputted word
@@ -107,14 +109,20 @@ def score_word(word):
         # for each score value (key)
         #   access the letter which is the value and a list
         #   iteratre thru the list to flag if the letter exists
-    # add up the points from each letter in word
+        #  perhaps use continue?? when letter is found
+    #   add up the points from each letter in word
     #   define var for total points (count)
-    # for letter in word
-    #   what is the value of the letter
-    #   count values
     # count length of word
     #   if length 7 -10 letters long, add 8 pts
     pass
 
 def get_highest_word_score(word_list):
+    # returns a tuple (winning_word, score)
+    # must be able to return multiple tuples for any ties
+    # create data structure of the higheset scoring words (tuples)
+    # iterate over the highest scoring words tuple data structure
+        # conditional for fewest letters in word (index 0 of tuple)
+        # elif one word == 10 letters this one gets chosen
+        # if 3 way tie of same len, pick 1st in word_list
+    
     pass
