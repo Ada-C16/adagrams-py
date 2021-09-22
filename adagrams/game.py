@@ -97,27 +97,17 @@ def get_highest_word_score(word_list):
         if score_word(word) > highest_score:
             highest_score = score_word(word)
             highest_scoring_word = word
-        # add another if statement: if score_word(word) is equal to the highest_scoring_word:
         elif score_word(word) == highest_score:
-            # test for two things:
-            # if there are multiple words that have the same score and the same length, return highest_scoring_word which was the first one
             if len(word) == len(highest_scoring_word):
                 continue
             elif len(highest_scoring_word) == 10:
                 continue
-            # if one of the words has ten letters, reassign highest_scoring_word to that word
             elif len(word) == 10:
                 highest_scoring_word = word
                 highest_score = score_word(word)
-            # if there's no word with ten letters, choose the word that has the fewest letters, and that word is the winner
             elif len(word) < len(highest_scoring_word):
                 highest_scoring_word = word
                 highest_score = score_word(word)
     
     return highest_scoring_word, highest_score
-
-    # temporary variable for highest score 
-    # compare the highest score to previous highest score in the variable 
-    # if this highest score is higher than the variable initialized outside of loop, update first two variables to match this word
-    # return highest scoring word and highest score as a tuple 
 
