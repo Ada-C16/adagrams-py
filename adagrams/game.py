@@ -47,8 +47,6 @@ def draw_letters():
 
     return drawn_letters
 
-
-
 def score_word(word):
     word = word.upper()
     one_point = ['A','E','I','O', 'U', 'L', 'N','R','S','T']
@@ -93,8 +91,32 @@ def uses_available_letters(word, letter_bank):
     return True
     
 
-
-
 def get_highest_word_score(word_list):
+    words_and_scores = {}
+    score_list = []
     
-    pass
+
+    for word in word_list:
+        score = score_word(word)
+        words_and_scores[word] = score
+        score_list.append(score)
+        
+    # find the max score
+    max_score = max(score_list)
+
+    words = [k for k, v in words_and_scores.items() if v == max_score]
+    print(words)
+
+    for word in words:
+        if len(words) == 1:
+            return word, max_score
+        elif len(word) == 10:
+            return word, max_score
+    else: 
+        return min(words, key=len), max_score
+    
+    
+        
+
+
+        
