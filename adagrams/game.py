@@ -1,9 +1,11 @@
 import random
 
+'''
+    WAVE 1
+'''
 def draw_letters():
     #create a veriable and store letter pool in it
     #store it with a dict. where key is letter and value is how many available
-
     letter_pool = {
     'A': 9, 
     'B': 2, 
@@ -50,7 +52,9 @@ def draw_letters():
             del letter_pool[random_letter]
     return hand_list
 
-
+'''
+    WAVE 2
+'''
 
 def uses_available_letters(word, letter_bank):
     hand_list = letter_bank[:]
@@ -66,6 +70,9 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
+'''
+    WAVE 3
+'''
 
 def score_word(word):
 #save letters in a dic with respective value 
@@ -90,56 +97,44 @@ def score_word(word):
         score += letters_dict[letter]
     if len(word) >= 7:
         score += 8
-    return score 
+    return score   
 
+
+
+'''
+    WAVE 4
+'''
 def get_highest_word_score(word_list):
-    final_score = 0 
-    final_word = ""
-    #create 2 empty variables - 1 for final_score(integer) and final_word(string)
-    #loop through list of word and apply score_word function
+    final_word =""
+    final_score =0
+    tie_words_list = []
+
     for word in word_list:
-        result_word = []
         score = score_word(word)
-        
+
         if score > final_score:
             final_score = score
             final_word = word 
 
         elif score == final_score:
-            result_word.append(word)
-            if len(word) > 9:
+            tie_words_list.append(final_word)
+            tie_words_list.append(word)
+
+            if len(word) == len(final_word):
+                final_word = tie_words_list[0]
+
+            elif len(word) == 10:
                 final_score = score 
                 final_word = word 
-            if  len(word) < len(final_word):
+
+            elif len(final_word) == 10:
+                final_word = final_word
+
+            elif len(word) < len(final_word):
                 final_score = score 
                 final_word = word
-            if len(word) == len(final_word):
-                final_word = result_word[0]   
-    return (final_word, final_score) 
-# def get_highest_word_score(word_list):
-#     final_score = 0 
-#     final_word = ""
-#     #create 2 empty variables - 1 for final_score(integer) and final_word(string)
-#     #loop through list of word and apply score_word function
-#     for word in word_list:
-#         result_scores = []
-#         score = score_word(word)
-        
-#         if score > final_score:
-#             final_score = score
-#             final_word = word 
-#         elif score == final_score and len(word) == 10:
-#             final_score = score 
-#             final_word = word 
-#         if score == final_score and len(word) < len(final_word):
-#             final_score = score 
-#             final_word = word
-#         if score == final_score and len(word) == len(final_word):
-#             final_score = score 
-#             final_word = word
 
 
+    return (final_word, final_score)
 
 
-     
-            
