@@ -28,6 +28,7 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
+
 def draw_letters():
     """
     Build a hand of 10 letters for the user. Returns an array of strings
@@ -38,7 +39,6 @@ def draw_letters():
     letters = []
     letter_count = {}
     for letter in random.sample(letter_pool, 10):
-        # letter = random.choice(string.ascii_uppercase)
         if letter not in letters:
             letter_count[letter] = 0
             letters.append(letter)
@@ -50,20 +50,18 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    valid = False 
     for char in word:
-        if char not in letter_bank:
+        if word.count(char) > letter_bank.count(char):
             valid = False
-            break
         else:
-            for letter in letter_bank:
-                if word.count(char) == letter_bank.count(letter):
-                    valid = True
+            valid = True
     return valid
 
 
 def score_word(word):
-    pass
+    """
+    This function will calculate the user's score for their entered word.
+    """
 
 def get_highest_word_score(word_list):
     pass
