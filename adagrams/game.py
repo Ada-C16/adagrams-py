@@ -52,53 +52,19 @@ def draw_letters():
         letters.append(chosen_letter)
     return letters
 
-# def build_letter_pool():
-#     letter_pool = {
-#     "A": ["A" for i in range(9)],
-#     "B": ["B" for i in range (2)],
-#     "C": ["C" for i in range (2)],
-#     "D": ["D" for i in range (4)],
-#     "E": ["E" for i in range (12)],
-#     "F": ["F" for i in range (2)],
-#     "G": ["G" for i in range (3)],
-#     "H": ["H" for i in range (2)],
-#     "I": ["I" for i in range (9)],
-#     "J": ["J" for i in range (1)],
-#     "K": ["K" for i in range (1)],
-#     "L": ["L" for i in range (4)],
-#     "M": ["M" for i in range (2)],
-#     "N": ["N" for i in range (6)],
-#     "O": ["O" for i in range (8)],
-#     "P": ["P" for i in range (2)],
-#     "Q": ["Q" for i in range (1)],
-#     "R": ["R" for i in range (6)],
-#     "S": ["S" for i in range (4)],
-#     "T": ["T" for i in range (6)],
-#     "U": ["U" for i in range (6)],
-#     "V": ["V" for i in range (2)],
-#     "W": ["W" for i in range (2)],
-#     "X": ["X" for i in range (1)],
-#     "Y": ["Y" for i in range (2)],
-#     "Z": ["Z" for i in range (1)] }
-#     return letter_pool
-
-# def draw_letters():
-#     letter_pool = build_letter_pool()
-
-#     list_letter_pool = []
-#     for letter_frequencies in letter_pool.values():
-#         for i in range(len(letter_frequencies)):
-#             list_letter_pool.append(letter_frequencies[i])
-    
-#     letters = []
-#     while len(letters) < 10:
-#         chosen_letter = random.choice(list_letter_pool)
-#         list_letter_pool.remove(chosen_letter)
-#         letters.append(chosen_letter)
-#     return letters
-
 def uses_available_letters(word, letter_bank):
-    pass
+    for char in word:
+        if char in letter_bank:
+            letter_bank.remove(char)
+        else:
+            return False
+    
+    # Adds back used letters do letter_bank is not changed
+    i = 0
+    for char in word:
+        letter_bank.insert(i, char)
+        i += 1
+    return True
 
 def score_word(word):
     pass
