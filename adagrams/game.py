@@ -41,13 +41,16 @@ def uses_available_letters(word, letter_bank):
     returns True if every letter in word is available,
     otherwise returns False.
     """
-    pass
-    # word: str, describes input word
-    # letter_bank: letters list from draw_letters()
-    # returns True or False
-        # True: if every letter is available in letter_bank
-        # False: letter not in letter_bank, too much compared to letter_bank
+    #this method copies the letter bank list
+    letter_bank_duplicate = letter_bank[:]
 
+    for letter in word:
+        if letter in letter_bank_duplicate:
+            letter_bank_duplicate.remove(letter)
+        else:
+            return False
+
+    return True
 
 # Wave 3        
 def score_word(word):
