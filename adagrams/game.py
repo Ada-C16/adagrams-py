@@ -25,7 +25,27 @@ def uses_available_letters(word, letter_bank):
         return True 
 
 def score_word(word):
-    pass
+    
+    letter_values = {
+    1:['A','E','I','O','U','L','N','R','S','T'],
+    2:['D','G'],
+    3:['B','C','M','P'],
+    4:['F','H','V','W','Y'],
+    5:['K'],
+    8:['J','X'],
+    10:['Q','Z'],
+    }
+    lng_wrd_pnts = 8
+    score = 0
+    cap_word = word.upper()
+    for letter in cap_word:
+        for key,val in letter_values.items():
+            if letter in val:
+                score += key
+    if len(cap_word) >= 7 and len(cap_word) <= 10:
+        score += lng_wrd_pnts
+
+    return score
 
 def get_highest_word_score(word_list):
     pass
