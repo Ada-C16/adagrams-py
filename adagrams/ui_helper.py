@@ -6,7 +6,7 @@ def display_drawn_letters(letters):
     print(', '.join(letters))
 
 def display_game_instructions():
-    print("Please input your submission for the longest anagram you can come up with")
+    print("Please input your submission for the longest anagram you can come up with\n")
 
 def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
