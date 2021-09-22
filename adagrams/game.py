@@ -1,4 +1,20 @@
 import random
+import sys 
+
+def load(file):
+    """Open textfile & return list of uppercase strings."""
+    try:
+        with open(file) as in_file:
+            loaded_txt = in_file.read().strip().split('\n')
+            loaded_txt = [x.upper() for x in loaded_txt]
+            return loaded_txt
+    except IOError as e:
+        print("{}\nError opening {}. Terminating program.".format(e, file), file=sys.stderr)
+        sys.exit(1)
+
+def load_dictionary():
+    dictionary_words = load('adagrams/dictionary_words.txt')
+    return dictionary_words
 
 def intialize_letter_pool():
     letter_pool = {
@@ -72,6 +88,13 @@ def get_valid_word_from_user():
     else:
         return user_word.upper()
 
+def checks_user_word_in_dictionary(user_word):
+    words = set(load_dictionary())
+    for word in words:
+        if user_word == word:
+            return True
+    return False
+
 def initialize_letter_value_dictionary():
     letter_value_dictionary = {
         'A': 1, 
@@ -114,7 +137,6 @@ def score_word(word):
     
     return sum
 
-
 def get_highest_word_score(word_list):
     highest_score = score_word(word_list[0])
     winning_word = word_list[0]
@@ -133,6 +155,3 @@ def get_highest_word_score(word_list):
                 winning_word = word 
 
     return (winning_word, highest_score)
-
-
-

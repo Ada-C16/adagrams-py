@@ -12,6 +12,10 @@ def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
     display_game_instructions()
 
+def display_needs_word_in_dictionary_message():
+    print("You entered in a word that does not exist in the English dictionary")
+    display_game_instructions()
+
 def display_score(score):
     print(f"Your submitted anagram scored {score} points")
 
