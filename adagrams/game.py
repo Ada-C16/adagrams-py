@@ -46,7 +46,7 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     temp_bank = letter_bank.copy()
-    for letter in word:
+    for letter in word.upper():
         if letter not in temp_bank:
             return False
         else:
@@ -100,4 +100,10 @@ def get_highest_word_score(word_list):
         if score > highest_score:
             highest_score = score
             highest_word = word
+        elif score == highest_score and len(highest_word) != 10:
+            if len(word) < len(highest_word):
+                highest_word = word
+            elif len(word) == 10:
+                highest_word = word
+
     return highest_word, highest_score
