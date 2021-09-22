@@ -29,6 +29,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_CHART_DICT = {
+        1 : ["A","E","I", "O", "U", "L", "N", "R", "S", "T"],
+        2 : ["D", "G"],
+        3 : ["B", "C", "M", "P"],
+        4 : ["F", "H", "V", "W", "Y"],
+        5 : ["K"],
+        8 : ["J", "X"],
+        10: ["Q", "Z"]
+    }
+
 def draw_letters():
     # 3 tests
     # no parameters
@@ -89,7 +99,28 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+# one parameter: word
+# 4 tests
+# Return an integar that is the number of points
+# for each letter in word, check if letter is in 
+# dict = {1 : [" A, E, I "]} -> ["A, E, I"] = dict[1]
+# pointage = 0
+# for key, value in dict.items():
+    # if letter in dict[key]:
+        # pointage += key
+# if length of word is range 7 to 11, then add 8 points
+
+    
+    point_count = 0
+    for letter in word.upper():
+        for key, value in SCORE_CHART_DICT.items():
+            if letter in SCORE_CHART_DICT[key]:
+                point_count += key
+    
+    if len(word) in range(7, 11):
+        point_count += 8
+    
+    return point_count
 
 def get_highest_word_score(word_list):
     pass
