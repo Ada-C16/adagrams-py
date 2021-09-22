@@ -63,4 +63,22 @@ def score_word(word):
 
 ## WAVE 4##
 def get_highest_word_score(word_list):
-    pass
+    #wordlist into a dictionary we will use the function from the top that scores the word/
+    #use that as a key value 
+    
+    words_and_scores = {word: score_word(word) for word in word_list}
+    #create a high score list using the max function 
+    highest_score = max(words_and_scores.values())
+    #this next bit of codes finds any ties 
+    find_ties = [i for i in words_and_scores.keys()if words_and_scores[i] == highest_score]
+
+    winning_word = find_ties[0]
+    for word in find_ties: 
+        if len(word) == 10:
+            return word, highest_score
+
+        if len(word) < len(winning_word):
+            winning_word = word
+    return winning_word, highest_score
+
+
