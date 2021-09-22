@@ -88,23 +88,25 @@ def score_word(word):
 def words_and_scores(word_list):
     words_and_scores_dict = {}
     for i in range(len(word_list)):
-        words_and_scores_dict[word_list[i]] = score_word(word_list[i])
-    print(words_and_scores_dict)
+        words_and_scores_dict[word_list[i]] = {"score": score_word(word_list[i]), "word_list_index": i}
     return words_and_scores_dict
-
 
 def get_highest_word_score(word_list):
     words_and_scores_dict = words_and_scores(word_list)
     highest_score = 0
     highest_scoring_word = None
-    for word, score in words_and_scores_dict.items():
+    highest_scoring_word_index = None
+    for word_key in words_and_scores_dict:
+        score = words_and_scores_dict[word_key]["score"]
+        index = words_and_scores_dict[word_key]["word_list_index"]
         if score > highest_score:
             highest_score = score
-            highest_scoring_word = word
-        elif score == highest_score and len(word) == 10:
+            highest_scoring_word = word_key
+            highest_scoring_word_index = index
+        elif score == highest_score and len(word_key) == 10:
             highest_score = score
-            highest_scoring_word = word
-        elif score == highest_score and len(word) == len(highest_scoring_word):
-            pass
-
-    return highest_score, highest_scoring_word
+            highest_scoring_word = word_key
+        elif score == highest_score and len(word_key) == len(highest_scoring_word):
+            if index < highest_scoring_word_index:
+                highest_scoring_word = word_key
+    return highest_scoring_word, highest_score
