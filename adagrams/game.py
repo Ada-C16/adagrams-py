@@ -72,7 +72,7 @@ def get_valid_word_from_user():
     else:
         return user_word.upper()
 
-def score_word(word):
+def initialize_letter_value_dictionary():
     letter_value_dictionary = {
         'A': 1, 
         'E': 1, 
@@ -101,7 +101,10 @@ def score_word(word):
         'Q': 10,
         'Z': 10
     }
-    
+    return letter_value_dictionary
+
+def score_word(word):
+    letter_value_dictionary = initialize_letter_value_dictionary()
     sum = 0 
     for letter in word:
         sum += letter_value_dictionary[letter.upper()]
@@ -113,14 +116,12 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    #
     highest_score = score_word(word_list[0])
     winning_word = word_list[0]
 
     for index in range(1, len(word_list)):
         word = word_list[index]
         this_words_score = score_word(word)
-        
         if this_words_score > highest_score:
             highest_score = this_words_score
             winning_word = word
@@ -131,7 +132,6 @@ def get_highest_word_score(word_list):
             elif len(word) < len(winning_word):
                 winning_word = word 
 
-    
     return (winning_word, highest_score)
         
 
