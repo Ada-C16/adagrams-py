@@ -1,3 +1,4 @@
+
 # import random module
 import random
 
@@ -5,29 +6,32 @@ import random
 # filled with nested dictionaries that hold the letter info
 # 
 # example: 
-# LETTER_POOL = (
-#     {"A" : {
-#         "frequency" : 9,
-#         "point_value" : 1
-#         }
-#     },
-#     { "B" : {
-#         "frequency" : 2,
-#         "point_value" : 3
-#         }
-#     }
-# )
+LETTER_POOL = (
+    {"A" : {
+        "frequency" : 9,
+        "point_value" : 1
+        }
+    },
+    { "B" : {
+        "frequency" : 2,
+        "point_value" : 3
+        }
+    }
+)
 
 
 def draw_letters():
-    pass
+    hand_of_letters = []
     # create an empty list that will eventually hold
     # 10 strings,  letter "hand of letters"
-
+    letter_pool_list = []
     # create an empty list that will eventually hold all 
     # the letters in letter pool in accurate frequency. 
     # example of how list will eventually look like: 
     # letter_pool_list = ["A","A","A","A","A","A","A","A","A","B","B" etc...]
+    for letter in LETTER_POOL:
+        letter.keys()
+        
 
     # iterate through the LETTER_POOL tuple with a forloop
     # append each key (which will be a string like "A" or "B") to the list
@@ -69,3 +73,5 @@ def get_highest_word_score(word_list):
 
 # print(list)
 # print(hand_draw_letters)
+
+draw_letters()
