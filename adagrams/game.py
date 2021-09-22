@@ -47,7 +47,7 @@ def create_list_of_letters(LETTER_POOL):
             count = count - 1
     return (list_of_letters)
 
-# create_list_of_letters(pool_of_letters)
+
 
 def draw_letters():
     list_of_letters = create_list_of_letters(LETTER_POOL)
@@ -93,6 +93,7 @@ def score_word(word):
     return total_score
 
 
+#WAVE4
 def get_words_score(word_list):
     dic_of_scores = {}
     for index in range(len(word_list)):
@@ -101,4 +102,49 @@ def get_words_score(word_list):
     return dic_of_scores
 
 
+def get_highest_score(word_list):
+    list_of_highest_scores = []
+    dic_of_scores = get_words_score(word_list)
+    scores_list = list(dic_of_scores.values())
+    print(scores_list)
+    highest = scores_list[0]
+
+    for index in range(len(scores_list)):
+        if scores_list[index] > highest:
+            highest = scores_list[index]
+
+    for index in range(len(scores_list)):
+        if highest == scores_list[index]:
+            list_of_highest_scores.append(highest)
+    return list_of_highest_scores
+
+
 def get_highest_word_score(word_list):
+    list_of_words = []
+    list_of_highest_scores = get_highest_score(word_list)
+    dic_of_scores = get_words_score(word_list)
+
+    if len(list_of_highest_scores) <= 1:
+        for word, score in dic_of_scores.items():
+            if score in list_of_highest_scores:
+                winner =(word, score)
+    else: 
+        for word, score in dic_of_scores.items():
+            if score in list_of_highest_scores:
+                list_of_words.append(word)
+
+        winner = (list_of_words[0], score)
+        min_length = len(list_of_words[0])
+
+        for index in range(len(list_of_words)):
+            if len(list_of_words[index]) == 10:
+                winner =(list_of_words[index], score)
+                return winner
+
+            elif len(list_of_words[index]) < min_length:
+                min_length = len(list_of_words[index])
+                winner =(list_of_words[index], score)
+                
+    return (winner)        
+            
+get_highest_word_score(["BBBBBB", "AAAAAAAAAA"])
