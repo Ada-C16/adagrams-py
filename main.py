@@ -89,7 +89,7 @@ def wave_5_run_game():
     game_continue = True
     played_words = []
     while game_continue:
-        print("Let's draw 10 letters from the letter pool...")
+        print("\nLet's draw 10 letters from the letter pool...")
         letter_bank = draw_letters()
         display_drawn_letters(letter_bank)
         display_game_instructions()
@@ -109,7 +109,7 @@ def wave_5_run_game():
 
         display_retry_instructions()
         continue_input = input()
-        game_continue = continue_input == "y"
+        game_continue = continue_input.lower() == "y"
     display_highest_score(get_highest_word_score(played_words))
     display_goodbye_message()
 
