@@ -41,9 +41,50 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    matched_list=[characters in letter_bank for characters in word]
+    letter_bank_copy = letter_bank[:]
+    matched_list=[]
+    for letter in word:
+        if letter in letter_bank_copy:
+            matched_list.append(True)
+            letter_bank_copy.remove(letter)
+        else:
+            matched_list.append(False)
     string_contains_chars = all(matched_list)
     return string_contains_chars
+
+    # for char in word:
+    #     if char not in letter_bank_copy:
+    #         return False
+    #     elif char in letter_bank_copy:
+    #         letter_bank_copy.remove(char)
+    #     # else:
+    #         return True
+    # for char in letter_bank:
+    # letter_bank_copy=letter_bank
+    # for char in word:
+    #     if char in letter_bank_copy:
+    #         return True
+    #         letter_bank_copy.remove(char)
+    #     else:
+    #         return False
+        # for char in word:
+        #     if char and word in letter_bank:
+        #         return True
+        #     else:
+        #         return False
+
+
+    # letter_bank_copy=letter_bank
+    # matched_list=[]
+    # for char in letter_bank_copy:
+    #     for char in word:
+    #         if char in letter_bank_copy:
+    #             matched_list.append(True)
+    #             letter_bank_copy.remove(char)
+    #         else:
+    #             matched_list.append(False)
+    # string_contains_chars = all(matched_list)
+    # return string_contains_chars
 
 
 def score_word(word):
