@@ -106,15 +106,38 @@ def score_word(word):
     if len(word) in range(7, 11):
         player_score += 8
     return player_score
-    # at each letter, it sums the value of each letter
-    # total score = sum of all letter values
-    # if len(word) = 7,8,9,10, score gets 8 additional points  
+    
 def get_highest_word_score(word_list):
     # for word in word_list
     #  score each word by using score_word
     # store the score info about each word in a tuple
+    words_scores_list = []
 
+    for word in word_list:
+        word_score = score_word(word)
+        words_scores_list.append((word, word_score))
     # if a score is = to each other
     # winner = the word with fewer letters
     # EXCEPT if the lnegth of word is 10, then if it his the highest and length of 10 it is the winner
     #  if scores in tow words = and length of 2 words =, then whichever comes first
+    winning_word = ""
+    high_score = 0
+
+    for word, word_score in words_scores_list:
+        if word_score > high_score:
+            winning_word = word
+            high_score = word_score
+        elif word_score == high_score:
+            if len(winning_word) == 10:
+                break
+            elif len(word) == 10:
+                winning_word = word
+                high_score = word_score
+            elif len(word) < len(winning_word):
+                winning_word = word
+                high_score = word_score
+            elif len(word) == len(winning_word):
+                break
+        
+    return (winning_word, high_score)
+
