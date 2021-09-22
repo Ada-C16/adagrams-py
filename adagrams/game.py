@@ -29,31 +29,42 @@ def draw_letters():
     "Y" : 2,
     "Z" : 1,
     }
-
-
-    # letter_bank = dict.fromkeys(range(11))
-    # keys = random.sample(list(letter_bank), 10)
-    letters = []
-    i = 0
-    keys = letter_bank.keys()
-    for i in range(10):
-        letters.append(random.choice(list(keys)))
-    print(letters)
-
+    # Initialize variables
+    letter_bank_keys = letter_bank.keys()
     letter_bank_copy = letter_bank.copy()
-    for letter in letter_bank_copy:
-        if letter in letters:
+    letters = []
+    hand_size = 0
+
+    # Hand draw logic, including incrementer and non-zero value check
+    while hand_size < 10:
+        letter = random.choice(list(letter_bank_keys))
+        if letter_bank_copy[letter] > 0:
+            letters.append(letter)
             letter_bank_copy[letter] -= 1
-    print(letter_bank_copy)
+            hand_size += 1
 
-draw_letters()
-
-
+    return letters
 def uses_available_letters(word, letter_bank):
     pass
+    # Declare variables
+    # Deep copy letter_bank
+    # Check for, and update letter bank copy
+    # Return False if insufficient letters, otherwise True
 
 def score_word(word):
-    pass
+    # Initialize and Sanitize variables
+    score = 0
+    word = word.upper()
+    # Scoring for length
+    # Scoring for each letter.  Could also be list variables. 
+    # Return total score
 
 def get_highest_word_score(word_list):
-    pass
+    score_tuples = ()
+    # Initialize variables
+    # Iterate through each word
+    # Check for new high score
+    # If tied for high score
+    # Length 10 edge case
+    #return high score as tuple 
+    return score_tuples
