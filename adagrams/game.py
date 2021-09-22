@@ -64,10 +64,10 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def get_valid_word_from_user():
-    user_word = input("Enter word here: ")
+    user_word = input("Enter word here: ").replace(" ", "")
         # isalpha will also return False if any spaces are present or if string is empty
     if not user_word.isalpha():
-        print("Try again. Please make sure your input contains only letters and no spaces!")
+        print("Try again. Please make sure your input contains only letters!")
         get_valid_word_from_user()
     else:
         return user_word.upper()
@@ -133,6 +133,6 @@ def get_highest_word_score(word_list):
                 winning_word = word 
 
     return (winning_word, highest_score)
-        
+
 
 
