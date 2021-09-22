@@ -37,7 +37,6 @@ def draw_letters():
     letter_bank = []
     for x in random_numbers:
         letter_bank.append(letter_pool_list[x])
-    print(letter_bank)
     return letter_bank
     
 def uses_available_letters(word, letter_bank):
