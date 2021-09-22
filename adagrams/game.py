@@ -75,6 +75,7 @@ def draw_letters():
 #for testing: draw_letters()
 
 def uses_available_letters(word, letter_bank):
+    word = word.upper()
     #Return True if every letter in input word is available (in the right quantities) in letter_bank
     for letter in word:
         if letter in letter_bank and word.count(letter) <= letter_bank.count(letter):
@@ -95,4 +96,22 @@ def score_word(word):
     return score
 
 def get_highest_word_score(word_list):
-    pass
+
+    highest_score = 0
+    highest_words = []
+    for word in word_list:
+        score = score_word(word)
+        if highest_score < score:
+            highest_score = score
+            highest_words = [word]
+        elif highest_score == score:
+            highest_words.append(word)
+
+    if len(highest_words) == 1: # This means that there is no tie
+        return(highest_words[0], highest_score)
+    else:                       # This means there is a tie, applies tie-breaking logic
+        for word in highest_words:
+            if len(word) == 10:
+                return(word, highest_score)
+        return(min(highest_words, key=len), highest_score)
+  
