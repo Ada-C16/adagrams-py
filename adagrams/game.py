@@ -29,6 +29,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_LIST = [
+    {1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]},
+    {2: ["D", "G"]},
+    {3: ["B", "C", "M", "P"]},
+    {4: ["F", "H", "V", "W", "Y"]},
+    {5: ["K"]},
+    {8: ["J", "X"]},
+    {10: ["Q", "Z"]}
+]
+
 def create_list_of_letters(LETTER_POOL):
     list_of_letters = []
     for letter, count in LETTER_POOL.items():
@@ -52,21 +62,43 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    letter_bank = draw_letters()
-    print(word) 
-    print(letter_bank)
-    for letter in word:
-        if letter in letter_bank:
-            letter_bank.remove(letter)
-            return True
-        else:
-            return False
+
+    letter_bank_copy = letter_bank[:]
+    condition = None
+
+    while len(word) > 0:
+        for letter in word:
+            if letter in letter_bank_copy:
+                letter_bank_copy.remove(letter)
+                condition = True
+                word = word.replace(letter,"")
+            else:
+                return False
+    return condition
     
 
 
+def score_word(word): 
+    total_score = 0
 
-def score_word(word):
-    pass
+    if len(word) == 0:
+        return total_score
+    for letter in word.upper():
+        for index in range(len(SCORE_LIST)):
+            for key, value in SCORE_LIST[index].items():
+                if letter in SCORE_LIST[index][key]:
+                    total_score += key
+
+    if len(word) >= 7:
+        total_score += 8
+    return total_score
+
+
+def get_words_score(word_list):
+    dic_of_scores = {}
+    for index in range(len(word_list)):
+        word_score = score_word(word_list[index])
+        dic_of_scores[word_list[index]] = word_score
+    return dic_of_scores
 
 def get_highest_word_score(word_list):
-    pass
