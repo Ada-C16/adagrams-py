@@ -105,28 +105,17 @@ def get_highest_word_score(word_list):
     ]
 
     if len(words_with_high_score) > 1:
-        tie_breaker(high_score, words_with_high_score)
+        return tie_breaker(words_with_high_score), high_score
 
     winning_word = words_with_high_score[0]
     return winning_word, high_score
 
 
-def tie_breaker(high_score, ties):
+def tie_breaker(ties):
     """
     Returns:
-        word, high_score (tuple): A tuple containing a 10 letter word (str) and high score (int).
-        In case of a tie in scores, 10 letter word wins
-
-        shortest, high_score (tuple): A tuple containing the word with fewest letters (str) and high score (int).
-        If no 10 letter word, prefer word with fewest letters.
+        word: A string containing the word with fewest letters earliest in sequence, or
+        preferentailly a word with 10 letters.
     """
 
-    shortest = None
-
-    for word in ties:
-        if len(word) == 10:
-            return word, high_score
-
-        if not shortest or len(word) < len(shortest):
-            shortest = word
-    return shortest, high_score
+    return filter(ties, lambda w: len(w) == 10).pop() or min(ties, key=len)
