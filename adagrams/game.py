@@ -116,11 +116,10 @@ def score_word(word):
     return sum
 
 def tie_breaker(same_score_dict, word_list):
-    same_score_words = same_score_dict.keys()
+    same_score_words = list(same_score_dict.keys())
     ten_length_words = []
     min_length_words = []
-    min_length = min(same_score_words, key=len)
-    
+    min_length = len(min(same_score_words, key=len))
     for word in same_score_words: 
         if len(word) == 10:
             ten_length_words.append(word)
