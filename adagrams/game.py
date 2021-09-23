@@ -4,7 +4,7 @@ import random
     WAVE 1 - function returns an array of ten random letters
 '''
 def draw_letters():
-    letter_pool = letter_dic()
+    letter_pool = letter_dict()
     hand_list = []
     while len(hand_list) < 10:
         key, value = random.choice(list(letter_pool.items()))
@@ -50,34 +50,35 @@ def score_word(word):
     respective word
 '''
 def get_highest_word_score(word_list):
-    final_word =""
-    final_score =0
+    word_highest_score =""
+    highest_score =0
     tie_list = []
     #for loop
     for word in word_list:
         score = score_word(word)
-        if score > final_score:
-            final_score = score
-            final_word = word 
-        elif score == final_score:
-            tie_list.append(final_word)
+        if score > highest_score:
+            highest_score = score
+            word_highest_score = word 
+        elif score == highest_score:
+            #create a list of tie values
+            tie_list.append(word_highest_score)
             tie_list.append(word)
-            if len(word) == len(final_word):
-                final_word = tie_list[0]
+            if len(word) == len(word_highest_score):
+                word_highest_score = tie_list[0]
             elif len(word) == 10:
-                final_score = score 
-                final_word = word 
-            elif len(final_word) == 10:
+                highest_score = score 
+                word_highest_score = word 
+            elif len(word_highest_score) == 10:
                 pass
-            elif len(word) < len(final_word):
-                final_score = score 
-                final_word = word
+            elif len(word) < len(word_highest_score):
+                highest_score = score 
+                word_highest_score = word
 
-    return (final_word, final_score)
+    return (word_highest_score, highest_score)
 
 
 '''
-    helper function stores a and returns a dictionary - each letter within the
+    helper function stores and returns a dictionary - each letter within the
     dictionary has a point value. 
 '''
 def word_dict():
@@ -103,7 +104,7 @@ def word_dict():
     helper function stores and returns a dictionary. 
 '''
 
-def letter_dic():
+def letter_dict():
     letter_pool = {
     'A': 9, 
     'B': 2, 
