@@ -54,7 +54,32 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_list = letter_bank[:]
+    if len(word) > len(letter_list):
+        return False
+    
+    elif len(word) == len(letter_list):
+        for letter in word:
+            if letter in letter_list:
+                letter_list.remove(letter)
+        if letter_list is False:
+            return True
+        else:
+            return False
+    
+    else:
+        whole_word = []
+        for letter in word:
+            if letter not in letter_list:
+                return False
+            else:
+                whole_word.append(letter)
+                letter_list.remove(letter)
+        if len(whole_word) == len(word):
+            return True
+        else:
+            return False
+
 
 def score_word(word):
     pass
