@@ -46,10 +46,17 @@ def score_word(word):
 
 
 def tie_breaker(same_score_dict, word_list):
-    same_score_words = same_score_dict.keys()
+    # Issue 1: We were missing the list(). Without this, the return value is "dict_keys(['MMMM', 'WWW'])" instead of "['MMMM', 'WWW']"
+    same_score_words = list(same_score_dict.keys())
+    # print statement below for reference
+    # print(same_score_dict.keys())
+
     ten_length_words = []
     min_length_words = []
-    min_length = min(same_score_words, key=len)
+    # Issue 2: We were missing the len(). Without this, the return value is the min length word, not the min length
+    min_length = len(min(same_score_words, key=len))
+    # print statement below for reference
+    # print(min(same_score_words, key=len))
     
     for word in same_score_words: 
         if len(word) == 10:
@@ -66,7 +73,6 @@ def tie_breaker(same_score_dict, word_list):
     elif len(min_length_words) == 1: 
         return min_length_words[0], same_score_dict[min_length_words[0]]
     elif len(min_length_words) > 1:
-        print(f"*****wordlist {word_list}")
         for word in word_list: 
             if word in min_length_words:
                 return word, same_score_dict[word]
@@ -83,7 +89,7 @@ def get_highest_word_score(word_list):
         scored_dict[word] = score
 
     # identify max value(s)
-    all_values = scored_dict.values()
+    all_values = list(scored_dict.values())
     max_value = max(all_values)
     for word, value in scored_dict.items(): 
         if value == max_value:
@@ -94,8 +100,7 @@ def get_highest_word_score(word_list):
         for key, value in same_score_dict.items():
             return key, value
         # return same_score_dict.keys(), same_score_dict.values()
-    else: 
-        # print(tie_breaker(same_score_dict, word_list))
+    else:
         return tie_breaker(same_score_dict, word_list)
 
 
