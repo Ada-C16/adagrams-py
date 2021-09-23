@@ -163,7 +163,6 @@ def gets_best_possible(all_possible):
     
     return highest_score_possible, all_highest_words
     
-
 def score_word(word):
     letter_value_dictionary = initialize_letter_value_dictionary()
     sum = 0 
