@@ -1,0 +1,29 @@
+# First attempt in comments: 
+    # Create a for loop to return ten random letters and their values.
+    # for i in range (0, 10):
+    #     # Choose an integer position random between 1 and 26
+    #     # Add LETTER_POOL[random int] to return_list
+    #     # For the letters: Make a list of all letters, then remove as they're generated. 
+    #     try:
+    #         random_letter = random.randint(1, 26)
+    #         random_letter_val = list(LETTER_POOL.keys())[random_letter]
+    #         return_list.append(random_letter_val)
+    #     except Exception as e:
+    #         print(f"exception:{str(e)}")
+
+        # Alternate solution: 
+    #draw_letters() = letter_bank
+    # word_list = []
+    # for char in word.upper():
+    #     word_list.append(char)
+    
+    # i = 0
+    # while all(char in letter_bank for char in word_list):
+    #     for letter in letter_bank:
+    #         for word in word_list:
+    #             if word_list.count(char) == letter_bank.count(letter):
+    #                 return True
+    #             else: 
+    #                 return False
+    #     i += 1
+    # return False
