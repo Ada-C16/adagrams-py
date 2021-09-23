@@ -43,20 +43,21 @@ def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
 
 def uses_available_letters(word, letter_bank):
-#Call function to display game instructions and prompt user to enter a word
     display_game_instructions()
+#Call function to display game instructions and prompt user to enter a word
 #Make a copy of the letter bank to use during round
 #So it doesn't change the letter_bank list directly
     user_letters = letter_bank.copy()
 #try statement to raise error if not enough letters
 #look at letters in word and remove letters
 #will return true if all letters are in word
+#if runs out of letter
+#remove() method raises an ValueError exception, if specified item doesn’t exist in a list.    
     try: 
         for letter in word:
             user_letters.remove(letter)
         return True
-#if runs out of letter
-#remove() method raises an ValueError exception, if specified item doesn’t exist in a list.
+
     except ValueError:
         display_needs_valid_input_message()
         return False 
@@ -66,10 +67,10 @@ def display_score(score):
 
 def score_word(word):
 #to avoid case conflicts, assign word to a new variable and add .upper so it's able to compare
+#start the scoreboard with zero    
+#list of tuples for the board and score points    
     user_word = word.upper()
-#start the scoreboard with zero
     score = 0
-#list of tuples for the board and score points
     point1 = ("A", "E", "I", "O", "U", "L", "N", "R", "S", "T")
     points2 = ("D", "G")
     points3 = ("B", "C", "M", "P")
@@ -97,14 +98,15 @@ def score_word(word):
         elif letter in points10:
             score += 10
     word_score = score  
-#totals up the word score
-#however, Bonus points for a word that is between 7-10 letters long of 8 points
+#Totals up the score for the word only
+#Bonus points for a word that is between 7-10 letters long of 8 points
+#add up word score plus total bonus, to return the final score
     if 7 <= len(word) <= 10:
             word_score +=8
-#add up word score plus total bonus, to return the final score
     final_score = word_score  
     display_score(score)
     return final_score  
+
 
 def display_retry_instructions():
     print("Should we play another round?")
@@ -115,35 +117,24 @@ def display_highest_score(word_score):
     print(f"The highest score from this game was {word_score[0]}, which was worth {word_score[1]} points.")
 
 def get_highest_word_score(word_list):
-#begin by initializing a list assinged to word_scores
-#start loop for each word in the word_list and create a tupple to add the word and their score
     word_scores = []
     high_score_words = []
     for word in word_list:
         word_scores.append((word, score_word(word)))
-#calculating the maximum score
-#enumerate() allows us to iterate through a sequence but it keeps track of both 
-#the index and the element. The enumerate() function takes in an iterable as an 
-#argument, such as a list, string, tuple, or dictionary.
+
     max_score = 0
     for i, (word, score) in enumerate(word_scores):
         if max_score == score:
             high_score_words.append(word_scores[i])
-#else if the max score is less than the score, reassign that value as it loops 
-#final result at the end of the loop assigning max value to that score
         elif max_score < score:
             high_score_words = [word_scores[i]]
             max_score = score
-#if there is only one word in high score - return that word 
     if len(high_score_words) == 1:
         return high_score_words[0]
-#if not begin the tiebreaker sequence of logic
-#create a list of tied words as they pile up from high scores above
     tied_words = []
     for (word, score) in high_score_words:
         tied_words.append(word)
 
-# Sorting tied words to find the shortest string length 
     shortest_word_length = len(sorted(tied_words, key=len)[0])
 
     # Tiebreaker: if words the same length, return first value as loop iterates
