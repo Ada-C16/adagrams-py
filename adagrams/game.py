@@ -42,7 +42,7 @@ def draw_letters():
     
     for draw in range(10):
         
-        # need this flag when exiting the while loop to search for other letter
+        # need this flag when exiting while loop to search for other letter
         letter_not_found = True
         
         while letter_not_found:
