@@ -4,8 +4,102 @@ import random
     WAVE 1
 '''
 def draw_letters():
-    #create a veriable and store letter pool in it
-    #store it with a dict. where key is letter and value is how many available
+    letter_pool = letter_dic()
+    hand_list = []
+    while len(hand_list) < 10:
+        key, value = random.choice(list(letter_pool.items()))
+        random_letter = key 
+        if letter_pool[random_letter] != 0:
+            hand_list.append(random_letter)
+            letter_pool[random_letter] -= 1
+        else:
+            del letter_pool[random_letter]
+    return hand_list
+
+
+'''
+    WAVE 2
+'''
+def uses_available_letters(word, letter_bank):
+    hand_list = letter_bank[:]
+    for letter in word:
+        if letter in hand_list:
+            hand_list.remove(letter)
+            print(hand_list)
+        else:
+            return False
+    print(hand_list)
+    return True
+
+
+'''
+    WAVE 3
+'''
+def score_word(word):
+    letters_dict = word_dict()
+    score = 0
+    for letter in word.upper():
+        score += letters_dict[letter]
+    if len(word) >= 7:
+        score += 8
+    return score    
+
+
+'''
+    WAVE 4
+'''
+def get_highest_word_score(word_list):
+    final_word =""
+    final_score =0
+    tie_list = []
+    #for loop
+    for word in word_list:
+        score = score_word(word)
+        if score > final_score:
+            final_score = score
+            final_word = word 
+        elif score == final_score:
+            tie_list.append(final_word)
+            tie_list.append(word)
+            if len(word) == len(final_word):
+                final_word = tie_list[0]
+            elif len(word) == 10:
+                final_score = score 
+                final_word = word 
+            elif len(final_word) == 10:
+                pass
+            elif len(word) < len(final_word):
+                final_score = score 
+                final_word = word
+
+        
+    return (final_word, final_score)
+
+
+'''
+    helper functions
+'''
+def word_dict():
+    letters_dict = {}
+
+    for key in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]:
+        letters_dict[key] = 1
+    for key in ["D", "G"]:
+        letters_dict[key] = 2
+    for key in ["B", "C", "M", "P"]:
+        letters_dict[key] = 3
+    for key in ["F", "H", "V", "W", "Y"]:
+        letters_dict[key] = 4
+    for key in ["K"]:
+        letters_dict[key] = 5
+    for key in ["J", "X"]:
+        letters_dict[key] = 8
+    for key in ["Q", "Z"]:
+        letters_dict[key] = 10
+
+    return letters_dict
+
+def letter_dic():
     letter_pool = {
     'A': 9, 
     'B': 2, 
@@ -34,107 +128,4 @@ def draw_letters():
     'Y': 2, 
     'Z': 1
 }
-
-    #create a letter_pool and store an empty list for the results that is drawn from the pool
-    hand_list = []
-    #create a loop to go over items in the letter pool dict. 
-    #while loop len list < 10 keep going 
-    while len(hand_list) < 10:
-        key, value = random.choice(list(letter_pool.items()))
-        random_letter = key 
-        # if statement to check if the letter is allowed 
-        if letter_pool[random_letter] != 0:
-            hand_list.append(random_letter)
-        # letters are being added to hand list so decrease letter value
-            letter_pool[random_letter] -= 1
-        else:
-        #delete letter_pool[random_letter]
-            del letter_pool[random_letter]
-    return hand_list
-
-'''
-    WAVE 2
-'''
-
-def uses_available_letters(word, letter_bank):
-    hand_list = letter_bank[:]
-    # check if the letter in hand_list is in a word 
-    for letter in word:
-        if letter in hand_list:
-        #if is a  word return True
-            hand_list.remove(letter)
-            print(hand_list)
-        else:
-            return False
-    print(hand_list)
-    return True
-
-
-'''
-    WAVE 3
-'''
-
-def score_word(word):
-#save letters in a dic with respective value 
-    letters_dict = {}
-    for key in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]:
-        letters_dict[key] = 1
-    for key in ["D", "G"]:
-        letters_dict[key] = 2
-    for key in ["B", "C", "M", "P"]:
-        letters_dict[key] = 3
-    for key in ["F", "H", "V", "W", "Y"]:
-        letters_dict[key] = 4
-    for key in ["K"]:
-        letters_dict[key] = 5
-    for key in ["J", "X"]:
-        letters_dict[key] = 8
-    for key in ["Q", "Z"]:
-        letters_dict[key] = 10
-#crete loop to run through the word
-    score = 0
-    for letter in word.upper():
-        score += letters_dict[letter]
-    if len(word) >= 7:
-        score += 8
-    return score   
-
-
-
-'''
-    WAVE 4
-'''
-def get_highest_word_score(word_list):
-    final_word =""
-    final_score =0
-    tie_words_list = []
-
-    for word in word_list:
-        score = score_word(word)
-
-        if score > final_score:
-            final_score = score
-            final_word = word 
-
-        elif score == final_score:
-            tie_words_list.append(final_word)
-            tie_words_list.append(word)
-
-            if len(word) == len(final_word):
-                final_word = tie_words_list[0]
-
-            elif len(word) == 10:
-                final_score = score 
-                final_word = word 
-
-            elif len(final_word) == 10:
-                final_word = final_word
-
-            elif len(word) < len(final_word):
-                final_score = score 
-                final_word = word
-
-
-    return (final_word, final_score)
-
-
+    return letter_pool
