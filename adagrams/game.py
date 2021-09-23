@@ -38,6 +38,7 @@ def draw_letters():
             choice_ten.append(letter) #adding chosen letter to list
             letters_left[letter] -= 1 #short hand to say variable is now equal to variable minus one 
                                       # ex: letters_left[letter] = letters_left[letter] - 1
+    return choice_ten
     # print(choice_ten)
     # print(letters_left)
         
@@ -52,4 +53,4 @@ def score_word(word):
 def get_highest_word_score(word_list):
     pass
 
-draw_letters()
+# draw_letters()
