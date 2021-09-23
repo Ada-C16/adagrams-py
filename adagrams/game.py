@@ -95,9 +95,8 @@ def get_highest_word_score(word_list):
 def tie_breaker(ties):
     """
     Returns:
-        word (str): A string containing the word with fewest letters earliest in sequence, or
-        preferentailly a word with 10 letters.
+        word (str): The word with fewest letters earliest in list of ties,
+        or preferentailly the first word with 10 letters.
     """
-    # I do not approve of this -mac
-    # neither do i - lain
-    return next(filter(lambda w: len(w) == 10, ties), None) or min(ties, key=len)
+    word_ten_letters = next((word for word in ties if len(word) == 10), None)
+    return word_ten_letters or min(ties, key=len)
