@@ -61,7 +61,42 @@ def draw_letters():
     # return list of drawn letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    # check if input word uses some or all of the given letters in the hand
+    # if a letter in word is in the letter bank
+        # remove the letter from a copy of the letter bank 
+    # consider how to exit loop (word length)
+    # return boolean
+        # True if every letter in the word is available
+        # false if a letter is not in the list or is not available
+
+    is_letter_in_letter_bank = True
+    letters_copy = letter_bank.copy()
+    # we have to make a copy of the letter bank because the list is mutable
+    #  we don't want to have a side effect of changing the list outside of this function
+    word_length = len(word)
+
+    # while is_letter_in_letter_bank == True and word_length > 0:
+    #     for letter in word:
+    #         if letter in letters_copy:
+    #             letters_copy.remove(letter)
+    #             word_length -= 1
+    #         else:
+    #             is_letter_in_letter_bank = False
+    #             break
+    # return is_letter_in_letter_bank
+
+# ALTERNATE OPTION
+    try:
+        while word_length > 0:
+            for letter in word:
+                if letter in letters_copy:
+                    letters_copy.remove(letter)
+                    word_length -= 1
+                else:
+                    raise ValueError
+        return True
+    except ValueError:
+        return False
 
 # return a score (int) of inputted word
     # create score chart data structure
@@ -122,4 +157,12 @@ def score_word(word):
     return total_points
 
 def get_highest_word_score(word_list):
+    # returns a tuple (winning_word, score)
+    # must be able to return multiple tuples for any ties
+    # create data structure of the higheset scoring words (tuples)
+    # iterate over the highest scoring words tuple data structure
+        # conditional for fewest letters in word (index 0 of tuple)
+        # elif one word == 10 letters this one gets chosen
+        # if 3 way tie of same len, pick 1st in word_list
+    
     pass
