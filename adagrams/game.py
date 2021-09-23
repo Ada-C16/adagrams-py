@@ -94,14 +94,16 @@ def get_highest_word_score(word_list):
     
     ties_list = [(top_word, top_word_score)]
     for word, score in score_dictionary.items():
-        if score == top_word_score:
+        if top_word_score == score:
             if len(word) < len(top_word):
-                top_word = word
+                ties_list.insert(0,(word, score))
             elif len(word) == len(top_word):
                 ties_list.append((word, score))
             elif len(word) == 10:
-                top_word = word
-    
+               ties_list.insert(0, (word, score))
+            #else:
+            #    ties_list.insert(0, (top_word, top_word_score))
+        
     highest_score = ties_list[0]
     return highest_score
 
