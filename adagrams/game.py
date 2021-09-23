@@ -11,27 +11,35 @@ def draw_letters():
     with one letter in each string. The num of strings included in the array 
     cannot be more than the num alloted to that letter in the letter table
     """
-    letter_pool = list(LETTER_POOL.keys())
-    letters = []
+    letter_to_draw = list(LETTER_POOL.keys())
+    letters_drawn = []
     letter_count = {}
-    for letter in random.sample(letter_pool, 10):
-        if letter not in letters:
+    for letter in random.sample(letter_to_draw, 10):
+        if letter not in letters_drawn:
             letter_count[letter] = 0
-            letters.append(letter)
+            letters_drawn.append(letter)
             letter_count[letter] = 1
         elif letter_count[letter] < LETTER_POOL[letter]:
-            letters.append(letter)
+            letters_drawn.append(letter)
             letter_count[letter] += 1
         
-    return letters
+    return letters_drawn
 
 def uses_available_letters(word, letter_bank):
     for char in word: # word is the test because we're checking if these letters are valid to use
         if word.count(char) > letter_bank.count(char): # if there are more char than char in bank
+            # return True
             valid = False
         else:
             valid = True
+            # return False
+    
     return valid
+            # return False
+        # elif char not in letter_bank:
+        #     return False
+        # else:
+        #     return True
 
 
 def score_word(word):
