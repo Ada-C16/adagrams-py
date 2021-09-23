@@ -65,20 +65,7 @@ class Word:
     def __init__(self, word):
         self.word = word
         self.length = len(word)
-        self.score = self.get_word_score(word)
-
-    def get_word_score(self, word):
-        total_word_score = 0
-        for char in word.upper():
-            total_word_score += LETTER_SCORE[char]
-        if len(word) >= 7:
-            total_word_score += 8
-        return total_word_score
-
-# Bob = Word('bob')
-# print(Bob.score)
-# xylophone = Word('xylophone')
-# print(xylophone.score)
+        self.score = score_word(word)
 
 def draw_letters():
     # create list of randomly selected letters from letter pool
@@ -111,29 +98,33 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    word = Word(word)
-    return word.score
+    # word = Word(word)
+    # return word.score
+    total_word_score = 0
+    for char in word.upper():
+        total_word_score += LETTER_SCORE[char]
+    if len(word) >= 7:
+        total_word_score += 8
+    return total_word_score
 
 def get_highest_word_score(word_list):
     # returns highest scoring word and its score
-    list_of_word_objects = []
-    for word in word_list:
-        word = Word(word)
-        list_of_word_objects.append(word)
-    max_score = max(word.score for word in list_of_word_objects)
-    high_words = [word for word in list_of_word_objects if word.score == max_score]
-    if len(high_words) > 1:
-        return tie_breaker(high_words, max_score)
-    # winning_word = high_words[0]
-    return high_words[0].word, high_words[0].score
-
+    list_of_word_objects = [Word(word) for word in word_list]
+    high_score = max(word.score for word in list_of_word_objects)
+    high_score_words = [word for word in list_of_word_objects if word.score == high_score]
+    if len(high_score_words) > 1:
+        return tie_breaker(high_score_words, high_score)
+    winning_word = high_score_words[0]
+    return winning_word.word, winning_word.score
 
 def tie_breaker(word_list, score):
+    # return word if 10 chars long
     for word in word_list:
         if word.length == 10:
-            return word.word, word.score
-    winning_word = min((word.word for word in word_list), key=len)
-    return winning_word, score
+            return word.word, score
+    # otherwise return shortest word
+    winning_word = min(word_list, key= lambda w: w.length)
+    return winning_word.word, score
 
     ## the following solution accesses the Word objects
     # min_length = min(word.length for word in word_list)
@@ -144,3 +135,8 @@ def tie_breaker(word_list, score):
 
 # get_highest_word_score(['bob', 'rose', 'xylophone', 'WWW', 'MMMM'])
 # get_highest_word_score(['WWW', 'MMMM'])
+# get_highest_word_score(['WWW', 'MMMM', ''])
+# get_highest_word_score(["AAAAAAAAAA", "BBBBBB"])
+# words = ["BBBBBB", "AAAAAAAAAA"] # test_get_highest_word_tie_prefers_ten_letters_unsorted_list
+# words = ["AAAAAAAAAA", "EEEEEEEEEE"] # return first instance of two 10 letter words
+# get_highest_word_score(words)
