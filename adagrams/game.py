@@ -54,11 +54,13 @@ def draw_letters():
 def uses_available_letters(word, hand):
     """
     Returns:
-        True if word uses only letters in users hand.
+        True if word uses letters available in user's hand.
     """
 
-    # sexy
-    return all([word.count(letter) <= hand.count(letter) for letter in set(word)])
+    letters_are_available = [
+        word.count(letter) <= hand.count(letter) for letter in set(word)
+    ]
+    return all(letters_are_available)
 
 
 def score_word(word):
