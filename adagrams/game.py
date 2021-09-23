@@ -47,16 +47,17 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    letter_bank = draw_letters()
+    # Removed draw_letters() since it was overwriting letters in test case
     letter_bank_copy = letter_bank.copy()
     for char in letter_bank_copy:
         for char in word:
             if char not in letter_bank_copy:
                 return False
-            elif char in letter_bank_copy and word.count(char) == letter_bank_copy.count(char):
-                return True
-            else:
+            # I like this logic, but changed it to run for False outcomes instead of True.      
+            elif char in letter_bank_copy and word.count(char) > letter_bank_copy.count(char):
                 return False
+        # Moved True to only run after entire letter_bank_copy had been iterated. 
+        return True
     
     # matches = [char in letter_bank_copy for char in word]
     # letter_bank_contains_word = all(matches)
