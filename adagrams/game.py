@@ -30,7 +30,7 @@ LETTER_POOL = {
 }
 
 def draw_letters():
-    letters_left = LETTER_POOL #initializing local variable so it can be manipulated
+    letters_left = LETTER_POOL.copy() #initializing local variable as copy of LETTER_POOL so it can be manipulated
     choice_ten = [] #initializing empty list to hold randomly chosen letters
     while len(choice_ten) < 10: #the final loop will result in 10 letters in the list
         letter = random.choice(list(letters_left)) #randomly choosing letter from dictionary
@@ -44,13 +44,20 @@ def draw_letters():
         
         
 
-def uses_available_letters(word, letter_bank):
-    pass
+def uses_available_letters(word, choice_ten):
+    letters_in_hand = choice_ten.copy()
+    for letter in word:
+        if letter in letters_in_hand:
+            letters_in_hand.remove(letter)
+        else:
+            return False
+    return True
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
+
     pass
 
 # draw_letters()
