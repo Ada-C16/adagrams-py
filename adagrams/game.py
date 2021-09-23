@@ -1,4 +1,5 @@
 import random
+
 def draw_letters():
 
     letter_bank = {
@@ -44,8 +45,12 @@ def draw_letters():
             hand_size += 1
 
     return letters
+
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_bank_copy = letter_bank.copy()
+    matches = [char in letter_bank_copy for char in word]
+    letter_bank_contains_word = all(matches)
+    return letter_bank_contains_word
     # Declare variables
     # Deep copy letter_bank
     # Check for, and update letter bank copy
