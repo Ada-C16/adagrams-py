@@ -1,13 +1,17 @@
 import random
+
 def display_welcome_message():
     print("Welcome to Adagrams!")
+
 
 def display_drawn_letters(letters):
     print("You have drawn the letters:")
     print(', '.join(letters))
 
+
 def draw_letters():
     display_welcome_message()
+
     # Original letter pool that remains constant. 
     LETTER_POOL = {
         'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 
@@ -31,16 +35,19 @@ def draw_letters():
 
     expanded_letter_pool = list(letter_string)
 
-    # Selecting 10 letter from expanded_letter_pool to create letter_bank.
+    # Selecting 10 letters from expanded_letter_pool to create letter_bank.
     letter_bank = random.sample(expanded_letter_pool, 10)
     display_drawn_letters(letter_bank)
     return letter_bank
 
+
 def display_game_instructions():
     print("Please input your submission for the longest anagram you can come up with")
 
+
 def display_needs_valid_input_message():
     print("You entered in a word that contains characters not in the letter bank")
+
 
 def uses_available_letters(word, letter_bank):
     display_game_instructions()
@@ -62,8 +69,10 @@ def uses_available_letters(word, letter_bank):
         display_needs_valid_input_message()
         return False 
 
+
 def display_score(score):
     print(f"Your submitted anagram scored {score} points")
+
 
 def score_word(word):
 #to avoid case conflicts, assign word to a new variable and add .upper so it's able to compare
@@ -112,16 +121,18 @@ def display_retry_instructions():
     print("Should we play another round?")
     print("Enter y to replay")
 
+
 def display_highest_score(word_score):
     print("Thanks for playing Adagrams!")
     print(f"The highest score from this game was {word_score[0]}, which was worth {word_score[1]} points.")
 
+
 def get_highest_word_score(word_list):
     word_scores = []
-    high_score_words = []
     for word in word_list:
         word_scores.append((word, score_word(word)))
 
+    high_score_words = []
     max_score = 0
     for i, (word, score) in enumerate(word_scores):
         if max_score == score:
@@ -129,9 +140,11 @@ def get_highest_word_score(word_list):
         elif max_score < score:
             high_score_words = [word_scores[i]]
             max_score = score
+
     if len(high_score_words) == 1:
         return high_score_words[0]
     tied_words = []
+
     for (word, score) in high_score_words:
         tied_words.append(word)
 
@@ -145,12 +158,17 @@ def get_highest_word_score(word_list):
             return high_score_words[i]
         elif len(word) == shortest_word_length:
             tiebreaker = high_score_words[i]
-    display_highest_score(tiebreaker)            
+
+    display_highest_score(tiebreaker)
+
     return tiebreaker
+
 
 display_retry_instructions()
 
+
 def display_goodbye_message():
     print("Goodbye!")
+
 
 display_goodbye_message()
