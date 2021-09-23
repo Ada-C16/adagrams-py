@@ -125,4 +125,16 @@ def get_highest_word_score(word_list):
         # elif one word == 10 letters this one gets chosen
         # if 3 way tie of same len, pick 1st in word_list
     
-    pass
+    highest_scoring_word = [("",0)]
+    for word in word_list:
+        score = score_word(word)
+        if score >= highest_scoring_word[1]:
+            if len(word) >= 10:
+                highest_scoring_word[0][0] = word
+                highest_scoring_word[0][1] = score
+            elif len(word)< len(highest_scoring_word[0]):
+                highest_scoring_word[0][0] = word
+                highest_scoring_word[0][1] = score
+            if score == highest_scoring_word[0][1]:
+                highest_scoring_word.append((word, score))
+    return highest_scoring_word[0]
