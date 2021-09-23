@@ -118,6 +118,7 @@ def get_highest_word_score(word_list):
 #begin by initializing a list assinged to word_scores
 #start loop for each word in the word_list and create a tupple to add the word and their score
     word_scores = []
+    high_score_words = []
     for word in word_list:
         word_scores.append((word, score_word(word)))
 #calculating the maximum score
