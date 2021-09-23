@@ -132,22 +132,21 @@ def initialize_letter_value_dictionary():
 
 def finds_all_possible_words_with_scores(letter_bank):
     possible_words = []
-    letter_bank_copy = letter_bank[:]
     dictionary_words = set(load_dictionary())
 
     for word in dictionary_words:
         possible = True
+        letter_bank_copy = letter_bank[:]
         for letter in word:
             if letter not in letter_bank_copy:
                 possible = False
                 break # Stop checking
             else:
                 letter_bank_copy.remove(letter)
-        if possible == True:
-            # Get the scores for every possible word
-            for letter in word:
-                total = score_word(word)
-                possible_words.append([total, word])
+        if possible:
+            # append possible word with its score
+            score = score_word(word)
+            possible_words.append((score, word))
 
     return possible_words
 
@@ -180,6 +179,3 @@ def get_highest_word_score(word_list):
                 winning_word = word 
 
     return (winning_word, highest_score)
-
-#letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-#finds_all_possible_words_with_scores(letters)
