@@ -86,7 +86,7 @@ def wave_4_run_game():
 
 def wave_5_run_game():
     display_welcome_message()
-    print("\nType 9 to quit game at any time.")
+    print("Type 9 to quit game at any time.")
     game_continue = True
     played_words = []
     while game_continue:
