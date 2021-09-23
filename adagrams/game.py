@@ -63,7 +63,6 @@ def uses_available_letters(word, letter_bank):
 def score_word(word):
     
     score_chart = {
-    
     'A': 1, 
     'B': 3, 
     'C': 3, 
