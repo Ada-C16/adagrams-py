@@ -57,7 +57,7 @@ def score_word(word):
     """
 
     word = word.upper()
-    score_chart = {
+    points_chart = {
         1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
         2: ["D", "G"],
         3: ["B", "C", "M", "P"],
@@ -66,18 +66,13 @@ def score_word(word):
         8: ["J", "X"],
         10: ["Q", "Z"],
     }
-
-    score = sum(
+    return sum(
         [
             letter_points * word.count(letter)
-            for letter_points, letters in score_chart.items()
+            for letter_points, letters in points_chart.items()
             for letter in letters
         ]
-    )
-    if len(word) in range(7, 11):  # slurpee
-        score += 8
-
-    return score
+    ) + (8 if len(word) >= 7 else 0)
 
 
 def get_highest_word_score(word_list):
