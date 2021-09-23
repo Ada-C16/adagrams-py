@@ -116,55 +116,66 @@ def score_word(word):
     return sum
 
 def tie_breaker(same_score_dict, word_list):
-    same_score_words = list(same_score_dict.keys())
-    ten_length_words = []
-    min_length_words = []
-    min_length = len(min(same_score_words, key=len))
-    for word in same_score_words: 
+    """
+    Returns winning word in the event of a tie.
+    """
+    # Get a list of tie words 
+    same_score_words_list = list(same_score_dict.keys())
+
+    # Initializing list variables to hold tie words
+    ten_length_words_list = []
+    min_length_words_list = []
+ 
+    # Get min length of tie words
+    min_length = len(min(same_score_words_list, key=len))
+
+    # Make list for words with 10 char or min length 
+    for word in same_score_words_list: 
         if len(word) == 10:
-            ten_length_words.append(word)
+            ten_length_words_list.append(word)
         elif len(word) == min_length: 
-            min_length_words.append(word)
+            min_length_words_list.append(word)
     
-    if len(ten_length_words) == 1: 
-        return ten_length_words[0],same_score_dict[ten_length_words[0]]
-    elif len(ten_length_words) > 1:
+    # If tie word is 10 char, returns first 10 char word as winner.
+    # Otherwise return first shortest word as winner. 
+    if len(ten_length_words_list) == 1: 
+        return ten_length_words_list[0],same_score_dict[ten_length_words_list[0]]
+    elif len(ten_length_words_list) > 1:
         for word in word_list: 
-            if word in ten_length_words:
+            if word in ten_length_words_list:
                 return word, same_score_dict[word]
-    elif len(min_length_words) == 1: 
-        return min_length_words[0], same_score_dict[min_length_words[0]]
-    elif len(min_length_words) > 1:
-        print(f"*****wordlist {word_list}")
+    elif len(min_length_words_list) == 1: 
+        return min_length_words_list[0], same_score_dict[min_length_words_list[0]]
+    elif len(min_length_words_list) > 1:
         for word in word_list: 
-            if word in min_length_words:
+            if word in min_length_words_list:
                 return word, same_score_dict[word]
     
     
 def get_highest_word_score(word_list):
-    # initialize variables
+    """
+    Returns winning word. 
+    """
+    # Initialize dictionary variables for scored words.
     scored_dict = {}
     same_score_dict = {}
 
-    # score each word in word_list and put into dictionary(?)
+    # Score each word in word_list and put into dictionary.
     for word in word_list: 
         score = score_word(word)
         scored_dict[word] = score
 
-    # identify max value(s)
+    # Identify max value(s)
     all_values = scored_dict.values()
     max_value = max(all_values)
     for word, value in scored_dict.items(): 
         if value == max_value:
             same_score_dict[word] = value
 
+    # Return winning word when tie breaker unneccessary 
     if len(same_score_dict) == 1: 
-        print(same_score_dict)
         for key, value in same_score_dict.items():
             return key, value
-        # return same_score_dict.keys(), same_score_dict.values()
+    # Initialize tie_breaker function in event of tie
     else: 
-        # print(tie_breaker(same_score_dict, word_list))
         return tie_breaker(same_score_dict, word_list)
-
-draw_letters()
