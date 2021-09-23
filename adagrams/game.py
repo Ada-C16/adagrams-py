@@ -91,25 +91,31 @@ def score_word(word):
 def get_highest_word_score(word_list):
     word_dict = {}
     for word in word_list:
-        word_dict[word] = score_word(word)
+        word_dict[word] = score_word(word) 
 
+   
+    max_value = max(word_dict.values())
+    max_values = [k for k, v in word_dict.items() if v == max_value]
+
+    min_word_length = min(len(k) for k, v in word_dict.items())
     max_key = max(word_dict, key=word_dict.get)
+
+
+    if len(max_values) > 1:
+
+        for k ,v in word_dict.items():
+          tie_breaker = []
+          if len(k) == 10:
+            tie_breaker.append(k)
+            tie_breaker.append(v)
+            return tuple(tie_breaker)
+          elif len(k) == min_word_length and len(k) != 10:
+              tie_breaker.append(k)
+              tie_breaker.append(v)
+
+        return tuple(tie_breaker)
+    else:
+      return max_key, word_dict[max_key]    
+  
     
-    return max_key, word_dict[max_key]
-    
-    # Dictionayr = {key word, value points}
-
-#     for word in word_list
-#         score_word(word) add to dictionary as k, v
-
-
-
-#     max = find the max with dictionary 
-#         tie breaking rules  
-#         prefer the word with the fewest letters...
-
-# ...unless one word has 10 letters. If the top score is tied between multiple words and one is 10 letters long, choose the one with 10 letters over the one with fewer tiles
-# If the there are multiple words that are the same score and the same length, pick the first one in the supplied list  
-
-#     retrun highest score (word, points)
-#     pass
+    # return tuple(tie_breaker)    
