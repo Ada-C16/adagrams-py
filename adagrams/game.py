@@ -17,9 +17,9 @@ def load(file):
         print("{}\nError opening {}. Terminating program.".format(e, file), file=sys.stderr)
         sys.exit(1)
 
-#def load_dictionary():
-dictionary_words = load('adagrams/dictionary_words.txt')
-    #return dictionary_words
+def load_dictionary():
+    dictionary_words = load('adagrams/dictionary_words.txt')
+    return dictionary_words
 
 def intialize_letter_pool():
     letter_pool = {
@@ -93,7 +93,7 @@ def get_valid_word_from_user():
         return user_word.upper()
 
 def checks_user_word_in_dictionary(user_word):
-    words = set(dictionary_words)
+    words = set(load_dictionary())
     for word in words:
         if user_word == word:
             return True
@@ -130,8 +130,26 @@ def initialize_letter_value_dictionary():
     }
     return letter_value_dictionary
 
-def finds_highest_possible_wordscore(letter_bank):
-    pass
+def finds_all_possible_words_with_scores(letter_bank):
+    possible_words = []
+    letter_bank_copy = letter_bank[:]
+    dictionary_words = set(load_dictionary())
+
+    for word in dictionary_words:
+        possible = True
+        for letter in word:
+            if letter not in letter_bank_copy:
+                possible = False
+                break # Stop checking
+            else:
+                letter_bank_copy.remove(letter)
+        if possible == True:
+            # Get the scores for every possible word
+            for letter in word:
+                total = score_word(word)
+                possible_words.append([total, word])
+
+    return possible_words
 
 def score_word(word):
     letter_value_dictionary = initialize_letter_value_dictionary()
@@ -162,3 +180,6 @@ def get_highest_word_score(word_list):
                 winning_word = word 
 
     return (winning_word, highest_score)
+
+letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+finds_all_possible_words(letters)
