@@ -79,8 +79,48 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
-# def score_word(word):
-#     pass
+def score_word(word):
+    word = word.lower()
+    
+    SCORE_CHART = {
+    'a': 1, 
+    'b': 3, 
+    'c': 3, 
+    'd': 2, 
+    'e': 1, 
+    'f': 4, 
+    'g': 2, 
+    'h': 4, 
+    'i': 1, 
+    'j': 8, 
+    'k': 5, 
+    'l': 1, 
+    'm': 3, 
+    'n': 6, 
+    'o': 1, 
+    'p': 3, 
+    'q': 10, 
+    'r': 1, 
+    's': 1, 
+    't': 1, 
+    'u': 1, 
+    'v': 4, 
+    'w': 4, 
+    'x': 8, 
+    'y': 4, 
+    'z': 10
+}
 
-# def get_highest_word_score(word_list):
-#     pass
+
+    word_score = 0
+
+    for letter in word:
+        word_score += SCORE_CHART[letter]  
+        
+    if 6 < len(word) < 11:
+        word_score += 8
+    
+    return word_score
+
+def get_highest_word_score(word_list):
+    pass
