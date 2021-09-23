@@ -67,7 +67,8 @@ def score_word(word):
             if letter in key:
                 total_score += value
     
-    if len(word_case_check) >= 7 or (len(word_case_check) > 7 and len(word_case_check) < 10):
+    if (len(word_case_check) >= 7 or 
+       (len(word_case_check) > 7 and len(word_case_check) < 10)):
         total_score += 8    
     
     return total_score
