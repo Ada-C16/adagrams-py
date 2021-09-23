@@ -16,6 +16,126 @@ LETTER_POOL = (
         "frequency" : 2,
         "point_value" : 3
         }
+    },
+    {"C" : {
+        "frequency" : 2,
+        "point_value" : 3
+           }
+    },
+    {"D" : {
+        "frequency" : 4,
+        "point_value" : 2
+        }
+    },
+    {"E" : {
+        "frequency" : 12,
+        "point_value" : 1
+        }
+    },
+    {"F" : {
+        "frequency" : 2, 
+        "point_value" : 4
+        }
+    },
+    {"G" : {
+        "frequency" : 3,
+        "point_value" : 2
+        }
+    },
+    {"H" : {
+        "frequency" : 2,
+        "point_value" : 4
+        }
+    },
+    {"I" : {
+        "frequency" : 9,
+        "point_value" : 1
+        }
+    },
+    {"J" : {
+        "frequency" : 1,
+        "point_value" : 8
+        }   
+    },
+    {"K" : {
+        "frequency" : 1,
+        "point_value" : 5
+        }
+    },
+    {"L" : {
+        "frequency" : 4,
+        "point_value" : 1
+        }
+    },
+    {"M" : {
+        "frequency" : 2,
+        "point_value" : 3
+        }
+    },
+    {"N": {
+        "frequency" : 6,
+        "point_value" : 1
+        }
+    },
+    {"O" : {
+        "frequency" : 8,
+        "point_value" : 1
+        }
+    },
+    {"P" : {
+        "frequency" : 2,
+        "point_value" : 3
+        }
+    },
+    {"Q" : {
+        "frequency" : 1,
+        "point_value" : 10
+        }
+    },
+    {"R" : {
+        "frequency" : 6,
+        "point_value" : 1
+        }
+    },
+    {"S" : {
+        "frequency" : 4,
+        "point_value" : 1
+        }
+    },
+    {"T" : {
+        "frequency" : 6,
+        "point_value" : 1
+        }
+    },
+    {"U" : {
+        "frequency" : 4,
+        "point_value" : 1
+        }
+    },
+    {"V" : {
+        "frequency" : 2,
+        "point_value" : 4
+        }
+    },
+    {"W" : {
+        "frequency" : 2,
+        "point_value" : 4
+        }
+    },
+    {"X" : {
+        "frequency" : 1,
+        "point_value" : 8
+        }
+    },
+    {"Y" : {
+        "frequency" : 2,
+        "point_value" : 4
+        }
+    },
+    {"Z": {
+        "frequency" : 1,
+        "point_value" : 10
+        }
     }
 )
 
