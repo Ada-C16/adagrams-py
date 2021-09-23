@@ -2,9 +2,9 @@ import random
 
 def initialize_letter_list():
     """ 
-    Initialize the letter tuple for game based on "LETTER_POOL" dictionary. This dictionary has the count for each letter as the value.
+    Returns a letter tuple based on "LETTER_POOL" dictionary that has count for each letter. 
     """
-    # Letter dict
+    # Letter dictionary with count for each letter
     LETTER_POOL_DICT = {
     'A': 9, 
     'B': 2, 
@@ -33,7 +33,8 @@ def initialize_letter_list():
     'Y': 2, 
     'Z': 1
     }
-    # creating letter tuple, starting with a list data type in order to append
+
+    # Return letter tuple, starting with a list data type.
     letter_list = []
     for letter, count in LETTER_POOL_DICT.items():
         for i in range(count):
@@ -42,25 +43,24 @@ def initialize_letter_list():
 
 def draw_letters(letter_choices = initialize_letter_list()):
     """
-    Choose 10 letters from letter_choices tuple for user to create words with.
+    Returns 10 letters from letter_choices tuple for user to create words with.
     """
-    # This random.sample() function takes two arguments, our tuple and number of selections. 
-    # The ".sample" funtion randomly selects letters without replacement and returns a list.
+    # Randomly select letters without replacement to original list. 
+    # Return a list.
     letters_drawn_list = random.sample(letter_choices, 10)
     
-    # Return 10 letters (as str elements)
+    # Return 10 letters as str elements.
     return letters_drawn_list
 
 def uses_available_letters(word, letter_bank):
     """
-    Checks if user input, "word", is in the the letters they were provided. 
+    Checks if user input, "word", is in the the letters provided. 
     """
-    # copying letter_bank so it stays unchaged and doesn't produce side effects
+    # Copy letter_bank so it stays unchaged and doesn't produce side effects.
     working_bank_list = letter_bank.copy()
 
-    # looking at each letter in user input, "word", and seeing if it is in working_bank
-    # remove letter from working_bank to prevent duplicates 
-    # return false if user guesses letter that is not in working_bank
+    # Return false if user guesses letter that is not in working_bank.
+    # Remove letter from working_bank_list to account for duplicates.
     for letter in word: 
         if letter in working_bank_list: 
             working_bank_list.remove(letter)
@@ -73,7 +73,7 @@ def score_word(word):
     """
     Returns score of user word per values in letters_value_dict
     """
-    # Initialize dictionary with letter values
+    # Initialize dictionary with letter scores.
     letters_value_dict = {
         'A': 1, 
         'B': 3, 
@@ -102,17 +102,22 @@ def score_word(word):
         'Y': 4, 
         'Z': 10
         }
-    # Initialize sum variable
+
+    # Initialize sum variable.
     sum = 0
-    # Change user input to uppercase
+
+    # Change user input to uppercase.
     word = word.upper()
-    # Loop through each letter in word and find value to add to sum
+
+    # Loop through each letter in word and find value to add to sum.
     for letter in word:
         sum += letters_value_dict.get(letter)
-    # Add 8 to sum if word is longer than 6
+
+    # Add 8 to sum if word is longer than 6.
     if len(word) > 6:
         sum += 8
-    # return sum
+
+    # Return sum.
     return sum
 
 def tie_breaker(same_score_dict, word_list):
@@ -122,7 +127,7 @@ def tie_breaker(same_score_dict, word_list):
     # Get a list of tie words 
     same_score_words_list = list(same_score_dict.keys())
 
-    # Initializing list variables to hold tie words
+    # Initialize list variables to hold tie words
     ten_length_words_list = []
     min_length_words_list = []
  
@@ -176,6 +181,6 @@ def get_highest_word_score(word_list):
     if len(same_score_dict) == 1: 
         for key, value in same_score_dict.items():
             return key, value
-    # Initialize tie_breaker function in event of tie
+    # Call tie_breaker function in event of tie
     else: 
         return tie_breaker(same_score_dict, word_list)
