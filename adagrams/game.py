@@ -31,8 +31,8 @@ def draw_letters():
     }
 
     letters_drawn = []
-
     letter_pool_list = []
+
     for key in letter_pool:
         for idx in range(letter_pool[key]):
             letter_pool_list.append(key)
@@ -43,25 +43,11 @@ def draw_letters():
         letter_pool_list.remove(random_entry)
     return letters_drawn
 
-
 def uses_available_letters(word, letter_bank):
 
-    # is_letter_in_letter_bank = True
     letters_copy = letter_bank.copy()
-
     word_length = len(word)
 
-    # while is_letter_in_letter_bank == True and word_length > 0:
-    #     for letter in word:
-    #         if letter in letters_copy:
-    #             letters_copy.remove(letter)
-    #             word_length -= 1
-    #         else:
-    #             is_letter_in_letter_bank = False
-    #             break
-    # return is_letter_in_letter_bank
-
-# ALTERNATE OPTION
     try:
         while word_length > 0:
             for letter in word:
