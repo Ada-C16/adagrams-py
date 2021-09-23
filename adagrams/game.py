@@ -41,10 +41,18 @@ def draw_letters():
     return letter_hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word_checker = letter_bank.copy()
+    for char in word:
+        if char not in word_checker:
+            return False
+        else:
+            word_checker.remove(char)
+    return True
 
 def score_word(word):
     pass
 
 def get_highest_word_score(word_list):
     pass
+
+
