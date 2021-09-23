@@ -98,8 +98,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    # word = Word(word)
-    # return word.score
     total_word_score = 0
     for char in word.upper():
         total_word_score += LETTER_SCORE[char]
@@ -125,18 +123,3 @@ def tie_breaker(word_list, score):
     # otherwise return shortest word
     winning_word = min(word_list, key= lambda w: w.length)
     return winning_word.word, score
-
-    ## the following solution accesses the Word objects
-    # min_length = min(word.length for word in word_list)
-    # for word in word_list:
-    #     if word.length == min_length:
-    #         return word.word, word.score
-
-
-# get_highest_word_score(['bob', 'rose', 'xylophone', 'WWW', 'MMMM'])
-# get_highest_word_score(['WWW', 'MMMM'])
-# get_highest_word_score(['WWW', 'MMMM', ''])
-# get_highest_word_score(["AAAAAAAAAA", "BBBBBB"])
-# words = ["BBBBBB", "AAAAAAAAAA"] # test_get_highest_word_tie_prefers_ten_letters_unsorted_list
-# words = ["AAAAAAAAAA", "EEEEEEEEEE"] # return first instance of two 10 letter words
-# get_highest_word_score(words)
