@@ -82,11 +82,11 @@ def get_highest_word_score(word_list):
     Returns:
         winning word, high_score (tuple): A tuple containing the winning word (str) and high score (int).
     """
-
-    word_scores = {word: score_word(word) for word in word_list}
-    high_score = max(word_scores.values())
-    ties = [word for word, score in word_scores.items() if score == high_score]
-    return tie_breaker(ties), high_score
+    words_by_score = dict()
+    for word in word_list:
+        words_by_score.setdefault(score_word(word), []).append(word)
+    high_score = max(words_by_score)
+    return tie_breaker(words_by_score[high_score]), high_score
 
 
 def tie_breaker(ties):
