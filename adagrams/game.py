@@ -47,15 +47,20 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
+    letter_bank = draw_letters()
     letter_bank_copy = letter_bank.copy()
-    matches = [char in letter_bank_copy for char in word]
-    letter_bank_contains_word = all(matches)
-    return letter_bank_contains_word
-    # Declare variables
-    # Deep copy letter_bank
-    # Check for, and update letter bank copy
-    # Return False if insufficient letters, otherwise True
-
+    for char in letter_bank_copy:
+        for char in word:
+            if char not in letter_bank_copy:
+                return False
+            elif char in letter_bank_copy and word.count(char) == letter_bank_copy.count(char):
+                return True
+            else:
+                return False
+    
+    # matches = [char in letter_bank_copy for char in word]
+    # letter_bank_contains_word = all(matches)
+    # return letter_bank_contains_word
 def score_word(word):
     # Initialize and Sanitize variables
     score = 0
