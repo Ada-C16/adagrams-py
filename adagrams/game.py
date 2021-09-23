@@ -85,12 +85,22 @@ def uses_available_letters(word, letter_bank):
 
 def get_valid_word_from_user():
     user_word = input("Enter word here: ").replace(" ", "")
-        # isalpha will also return False if any spaces are present or if string is empty
+    if let_user_quit(user_word):
+        sys.exit()
+    # isalpha will also return False if any spaces are present or if string is empty
     if not user_word.isalpha():
         print("Try again. Please make sure your input contains only letters!")
         get_valid_word_from_user()
     else:
         return user_word.upper()
+
+def let_user_quit(user_word):
+    try:
+        if int(user_word) == 9:
+            return True
+    except:
+        return False 
+
 
 def checks_user_word_in_dictionary(user_word):
     words = set(load_dictionary())
