@@ -140,7 +140,7 @@ def finds_all_possible_words_with_scores(letter_bank):
         for letter in word:
             if letter not in letter_bank_copy:
                 possible = False
-                break # Stop checking
+                break # stop checking
             else:
                 letter_bank_copy.remove(letter)
         if possible:
@@ -149,6 +149,20 @@ def finds_all_possible_words_with_scores(letter_bank):
             possible_words.append((score, word))
 
     return possible_words
+
+def gets_best_possible(all_possible):
+    all_highest_words = []
+    sorted_all_possible = sorted(all_possible, key = lambda x: x[0], reverse=True)  
+    highest_score_possible = sorted_all_possible[0][0]
+    
+    for possible in sorted_all_possible:
+        score = possible[0]
+        word = possible[1]
+        if score == highest_score_possible:
+            all_highest_words.append(word)
+    
+    return highest_score_possible, all_highest_words
+    
 
 def score_word(word):
     letter_value_dictionary = initialize_letter_value_dictionary()

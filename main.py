@@ -105,6 +105,9 @@ def wave_5_run_game():
 
         score = score_word(user_input_word)
         display_score(score)
+        all_possible = finds_all_possible_words_with_scores(letter_bank)
+        best_score, best_words = gets_best_possible(all_possible)
+        print(f"The best possible word(s): {best_words} with a score of {best_score}.")
         played_words.append(user_input_word)
 
         display_retry_instructions()
