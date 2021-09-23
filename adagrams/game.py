@@ -1,6 +1,11 @@
 import random
 import sys 
 
+# with statement will automatically close file after nested block
+# read returns entire file
+# split items in separate lines
+# convert all words into uppercase since our game is uppercase
+# if there is an error opening file, we terminate program
 def load(file):
     """Open textfile & return list of uppercase strings."""
     try:
@@ -12,9 +17,9 @@ def load(file):
         print("{}\nError opening {}. Terminating program.".format(e, file), file=sys.stderr)
         sys.exit(1)
 
-def load_dictionary():
-    dictionary_words = load('adagrams/dictionary_words.txt')
-    return dictionary_words
+#def load_dictionary():
+dictionary_words = load('adagrams/dictionary_words.txt')
+    #return dictionary_words
 
 def intialize_letter_pool():
     letter_pool = {
@@ -74,7 +79,6 @@ def uses_available_letters(word, letter_bank):
         if letter not in letter_bank_copy:
             return False
         else:
-            word_letter_list.remove(letter)
             letter_bank_copy.remove(letter)
     
     return True
@@ -89,7 +93,7 @@ def get_valid_word_from_user():
         return user_word.upper()
 
 def checks_user_word_in_dictionary(user_word):
-    words = set(load_dictionary())
+    words = set(dictionary_words)
     for word in words:
         if user_word == word:
             return True
@@ -125,6 +129,9 @@ def initialize_letter_value_dictionary():
         'Z': 10
     }
     return letter_value_dictionary
+
+def finds_highest_possible_wordscore(letter_bank):
+    pass
 
 def score_word(word):
     letter_value_dictionary = initialize_letter_value_dictionary()
