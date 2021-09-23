@@ -68,36 +68,9 @@ LETTER_POOL_VALS = {
     'Z': 10
 }
 
-def display_welcome_message():
-    print("Welcome to Adagrams!")
-
-def display_drawn_letters(letters):
-    print("You have drawn the letters:")
-    print(', '.join(letters))
-
-def display_game_instructions():
-    print("Please input your submission for the longest anagram you can come up with")
-
-def display_needs_valid_input_message():
-    print("You entered in a word that contains characters not in the letter bank")
-    display_game_instructions()
-
-def display_score(score):
-    print(f"Your submitted anagram scored {score} points")
-
-def display_retry_instructions():
-    print("Should we play another round?")
-    print("Enter y to replay")
-
-
-def display_goodbye_message():
-    print("Goodbye!")
-
-display_welcome_message()
-
 
 def draw_letters():
-    return_list = []
+    hand = []
     letter_freq = {}
     counter = 0
     
@@ -111,18 +84,15 @@ def draw_letters():
                 letter_freq[random_letter_val] = 1
 
             if letter_freq[random_letter_val] <= LETTER_POOL[random_letter_val]:
-                return_list.append(random_letter_val)
+                hand.append(random_letter_val)
                 counter += 1
 
-    return return_list
-    
-print(draw_letters())
-#display_drawn_letters(letters)
+    return hand
 
     # Funtion 1 Comment Walkthrough:
     # While loop to return 10 random letters and their values
     # Choose an integer position random between 1 and 26
-    # Add LETTER_POOL[random int] to return_list
+    # Add LETTER_POOL[random int] to hand
     # Grab just the keys of the dictionary and convert those to a list.
     # Then grab the index of that list using the random_letter number (1-26)
     # Because lists are 0-based, we need to subtract 1 otherwise we grab the letter before
@@ -148,11 +118,7 @@ def uses_available_letters(word, letters):
     # Check to see if letters are in available word bank
     # Create a while loop to hold the status of whether we found the letter
     # Elif returns True if in bank, False if not
-    # *REMOVES* from letter bank so does not CHANGE letter bank
-    # The [:] makes a shallow copy of the array, hence allowing you to modify your copy without damaging the original
-    
-    # all: Return True if all elements of the iterable are true (or if the iterable is empty)
-    # .count: returns the number of elements with the specified value.
+    # The [:] makes a copy of the array
 
 def score_word(word):
     score = 0
@@ -169,34 +135,42 @@ def score_word(word):
     # .upper returns strings where all letters are uppercase
     # .get returns the value associated with a specific key
 
-def get_highest_word_score(word_list):
-    # later in this function, we will call the score_word function to assign the word's score
-    # word_score = score_word()
-    ordered_words = []
-    return_words = []
+def get_highest_words_and_score(word_list):
+    # Helper Function
+    highest_words = []
+    highest_score = 0
 
-    #1. Create and populate the dictionary with the tuples
-    # ordered_words = ["elephant", 33, "chocolate", 42, "xxx, 32]
     for word in word_list:
-        ordered_words.append(word)
-        ordered_words.append(score_word(word))
+        score = score_word(word)
+        if score > highest_score:
+            highest_score = score
+
+    for word in word_list:
+        score = score_word(word)
+        if score == highest_score:
+            highest_words.append(word)
+
+    return highest_words, highest_score
+
+def get_highest_word_score(word_list):
+    highest_words, highest_score = get_highest_words_and_score(word_list)
+    # First element is highest words, second element is highest score in tuple return
+    winning_word = highest_words[0]
     
-    #2. Order the dictionary
-    #do a loop and create a new return_words off of ordered_words
-    for i in range(0,len(ordered_words)):
-        if ordered_words[i+1] > return_words[1]:
-            return_words.insert(0, return_words.pop(word))
-    return return_words
+    for word in highest_words:
+        if len(word) == 10:
+            winning_word = word
+            break
+        else: 
+            if len(word) < len(winning_word):
+                winning_word = word
 
-    #mylist.insert(0, mylist.pop(5))
+    return winning_word, highest_score
 
-        
-    #Lenght of the word only matters if there is a tie,
-    #so go looking for ties after you set up all the data in the dictionary -or-
-    #do a lookup when you are ordering the dictionary
-    
-    #3. Return the list
 
-    # Returns tuple - index 0 string of word, index 1 the score of the word: tuple(x, y,)
-    # If length of word1 == length of word2, tie break: 
-    # Shortest length wins, unless length == 10 letters
+    # Function 4 Comment Walkthrough: 
+    # Calls on the helper function to bring in the highest scoring word and the highest score of that word
+    # Creates the winning word variable which is the first index in the highest words list
+    # Loops through the words in the highest words list - if length of word == 10, winning word is updated to that word, and breaks the loop
+    # Else: if length of word is less than the length of the winning word, then winning word becomes that word 
+    # Returns the winning word and it's score
