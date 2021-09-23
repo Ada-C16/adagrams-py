@@ -33,10 +33,8 @@ def draw_letters():
     for letter, value in LETTER_POOL.items():
         letter_pool_list += letter * value
 
-    random_numbers = random.sample(range(0, len(letter_pool_list)), 10)
-    letter_bank = []
-    for x in random_numbers:
-        letter_bank.append(letter_pool_list[x])
+    letter_bank = random.sample(letter_pool_list, 10)
+  
     return letter_bank
     
 def uses_available_letters(word, letter_bank):
