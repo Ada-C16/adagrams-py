@@ -41,7 +41,6 @@ def draw_letters():
         random_entry = random.choice(letter_pool_list)
         letters_drawn.append(random_entry)
         letter_pool_list.remove(random_entry)
-
     return letters_drawn
 
 
@@ -99,13 +98,12 @@ def uses_available_letters(word, letter_bank):
     except ValueError:
         return False
 
-def score_word(word):
-    # return a score (int) of inputted word
+# return a score (int) of inputted word
     # create score chart data structure
         # dictionary with score int as the key and a list of string letters as the values
     #for each letter in the word
-    #   find the letter in the score chart 
-        # will need to access the list of letters 
+    #   find the letter in the score chart
+        # will need to access the list of letters
         # for each score value (key)
         #   access the letter which is the value and a list
         #   iteratre thru the list to flag if the letter exists
@@ -115,6 +113,48 @@ def score_word(word):
     # count length of word
     #   if length 7 -10 letters long, add 8 pts
     pass
+
+def score_word(word):
+    
+    score_chart = {
+    
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+    }
+
+    word = word.upper()
+    total_points = 0
+
+    for letter in word:
+        total_points += score_chart[letter]
+    if len(word) >= 7 and len(word) <= 10:
+        total_points += 8
+    
+    return total_points
 
 def get_highest_word_score(word_list):
     # returns a tuple (winning_word, score)
@@ -126,15 +166,19 @@ def get_highest_word_score(word_list):
         # if 3 way tie of same len, pick 1st in word_list
     
     highest_scoring_word = [("",0)]
+
     for word in word_list:
         score = score_word(word)
-        if score >= highest_scoring_word[1]:
-            if len(word) >= 10:
-                highest_scoring_word[0][0] = word
-                highest_scoring_word[0][1] = score
-            elif len(word)< len(highest_scoring_word[0]):
-                highest_scoring_word[0][0] = word
-                highest_scoring_word[0][1] = score
-            if score == highest_scoring_word[0][1]:
-                highest_scoring_word.append((word, score))
+        if score > highest_scoring_word[0][1]:
+            highest_scoring_word[0]= (word, score)
+        elif score == highest_scoring_word[0][1]:
+            if len(word) == len(highest_scoring_word[0][0]):
+                continue
+            if len(highest_scoring_word[0][0]) >= 10:
+                continue
+            elif len(word) >= 10:
+                highest_scoring_word[0]= (word, score)
+            elif len(word)< len(highest_scoring_word[0][0]):
+                highest_scoring_word[0]= (word, score)
+
     return highest_scoring_word[0]
