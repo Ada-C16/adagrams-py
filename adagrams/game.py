@@ -39,6 +39,11 @@ SCORE_LIST = [
     {10: ["Q", "Z"]}
 ]
 
+
+"""
+Create_list_of_letters function returns a list of all letters in. 
+Based on letter_pool there are total 98 letters in the list. 
+"""
 def create_list_of_letters(LETTER_POOL):
     list_of_letters = []
     for letter, count in LETTER_POOL.items():
@@ -48,7 +53,11 @@ def create_list_of_letters(LETTER_POOL):
     return (list_of_letters)
 
 
+"""
+ draw_letters function returns a list of random 10 letters 
+ from create_list_of_letters function.  
 
+"""
 def draw_letters():
     list_of_letters = create_list_of_letters(LETTER_POOL)
     list_of_random_letters = []
@@ -61,11 +70,14 @@ def draw_letters():
     return (list_of_random_letters)
 
 
-def uses_available_letters(word, letter_bank):
+"""
+ uses_available_letters returns true if every letter in the word is available in the letter bank.
+returns false if not.  
 
+"""
+def uses_available_letters(word, letter_bank):
     letter_bank_copy = letter_bank[:]
     condition = None
-
     while len(word) > 0:
         for letter in word:
             if letter in letter_bank_copy:
@@ -76,10 +88,11 @@ def uses_available_letters(word, letter_bank):
                 return False
     return condition
     
-    
+"""
+score_word function returns the total points for the word based on score chart.
+"""
 def score_word(word): 
     total_score = 0
-
     if len(word) == 0:
         return total_score
     for letter in word.upper():
@@ -87,21 +100,26 @@ def score_word(word):
             for key, value in SCORE_LIST[index].items():
                 if letter in SCORE_LIST[index][key]:
                     total_score += key
-
     if len(word) >= 7:
         total_score += 8
     return total_score
 
+"""
+get_word_score function retuns dictionary of scores, where letter is a key and the score is a value.
 
-#WAVE4
+"""
 def get_words_score(word_list):
     dic_of_scores = {}
     for index in range(len(word_list)):
         word_score = score_word(word_list[index])
         dic_of_scores[word_list[index]] = word_score
+    print(dic_of_scores)
     return dic_of_scores
-
-
+    
+"""
+get_highest_score function retturns list of highest scores (integer)
+based on get_words_score function. 
+"""
 def get_highest_score(word_list):
     list_of_highest_scores = []
     dic_of_scores = get_words_score(word_list)
@@ -119,6 +137,10 @@ def get_highest_score(word_list):
     return list_of_highest_scores
 
 
+"""
+get_highest_word_score function retuns a tuple with a word as a first element, 
+and the highest score as a second element. 
+"""
 def get_highest_word_score(word_list):
     list_of_words = []
     list_of_highest_scores = get_highest_score(word_list)
@@ -146,5 +168,4 @@ def get_highest_word_score(word_list):
                 winner =(list_of_words[index], score)
                 
     return (winner)        
-            
-get_highest_word_score(["BBBBBB", "AAAAAAAAAA"])
+
