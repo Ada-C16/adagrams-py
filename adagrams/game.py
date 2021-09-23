@@ -181,5 +181,5 @@ def get_highest_word_score(word_list):
 
     return (winning_word, highest_score)
 
-letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-finds_all_possible_words(letters)
+#letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+#finds_all_possible_words_with_scores(letters)
