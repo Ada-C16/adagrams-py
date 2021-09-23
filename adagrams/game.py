@@ -68,13 +68,16 @@ def score_word(word):
     """
 
     word = word.upper()
-    return sum(
+    score = sum(
         [
             letter_points * word.count(letter)
-            for letter_points, letters in POINTS_CHART.items()
-            for letter in letters
+            for letter_points, letter_list in POINTS_CHART.items()
+            for letter in letter_list
         ]
-    ) + (8 if len(word) >= 7 else 0)
+    )
+    if len(word) >= 7:
+        score += 8
+    return score
 
 
 def get_highest_word_score(word_list):
