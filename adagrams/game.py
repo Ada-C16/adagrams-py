@@ -1,4 +1,8 @@
 import random
+import english_dictionary
+from english_dictionary.scripts.read_pickle import get_dict
+english_dict = get_dict()
+
 LETTER_POOL = ["A", "A", "A", "A", "A", "A", "A", "A", "A", 
 "B", "B", 
 "C", "C", 
@@ -114,4 +118,9 @@ def get_highest_word_score(word_list):
             if len(word) == 10:
                 return(word, highest_score)
         return(min(highest_words, key=len), highest_score)
-  
+
+def word_in_english_dictionary(word):
+    if word in english_dict.keys():
+        return True
+    else:
+        return False
