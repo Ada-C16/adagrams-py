@@ -88,16 +88,23 @@ def get_highest_word_score(word_list):
     tie_breaker = []
 
     for word, score in word_scores:
-        if score >= highest_score:
+        if score > highest_score:
             highest_score = score
 
     for word, score in word_scores:
-        if highest_score == score:
+        if score == highest_score :
             tie_breaker.append((word, score))
 
-    for word, score in tie_breaker:
-        if len(word) >= 10:
+    for tie in tie_breaker:
+        word = tie[0]
+        score = tie[1]
+        if len(word) == 10:
             return ((word, score))
-        if len(word) < fewest_letters:
+        elif len(word) < fewest_letters:
             fewest_letters = len(word)
-            return((word, score))
+
+    for tie in tie_breaker:
+        word = tie[0]
+        score = tie[1]
+        if len(word)==fewest_letters:
+            return((word,score))
