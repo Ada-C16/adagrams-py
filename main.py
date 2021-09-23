@@ -99,7 +99,7 @@ def wave_5_run_game():
             if not uses_available_letters(user_input_word, letter_bank):
                 display_needs_valid_input_message()
                 user_input_word = get_valid_word_from_user()
-            elif checks_user_word_in_dictionary(user_input_word) == False:
+            else:
                 display_needs_word_in_dictionary_message()
                 user_input_word = get_valid_word_from_user()
 
