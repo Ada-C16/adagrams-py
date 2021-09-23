@@ -1,7 +1,7 @@
 import random
 
 '''
-    WAVE 1
+    WAVE 1 - function returns an array of ten random letters
 '''
 def draw_letters():
     letter_pool = letter_dic()
@@ -18,22 +18,21 @@ def draw_letters():
 
 
 '''
-    WAVE 2
+    WAVE 2 - function checks if an input word is within the hand of letters and 
+    returns a boolean value
 '''
 def uses_available_letters(word, letter_bank):
     hand_list = letter_bank[:]
     for letter in word:
         if letter in hand_list:
             hand_list.remove(letter)
-            print(hand_list)
         else:
             return False
-    print(hand_list)
     return True
 
 
 '''
-    WAVE 3
+    WAVE 3 - function returns the score of a given word
 '''
 def score_word(word):
     letters_dict = word_dict()
@@ -46,7 +45,9 @@ def score_word(word):
 
 
 '''
-    WAVE 4
+    WAVE 4 - function checks which word has the highest score 
+    and returns a tuple that contains the highest vaue and its
+    respective word
 '''
 def get_highest_word_score(word_list):
     final_word =""
@@ -72,16 +73,15 @@ def get_highest_word_score(word_list):
                 final_score = score 
                 final_word = word
 
-        
     return (final_word, final_score)
 
 
 '''
-    helper functions
+    helper function stores a and returns a dictionary - each letter within the
+    dictionary has a point value. 
 '''
 def word_dict():
     letters_dict = {}
-
     for key in ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]:
         letters_dict[key] = 1
     for key in ["D", "G"]:
@@ -98,6 +98,10 @@ def word_dict():
         letters_dict[key] = 10
 
     return letters_dict
+
+'''
+    helper function stores and returns a dictionary. 
+'''
 
 def letter_dic():
     letter_pool = {
