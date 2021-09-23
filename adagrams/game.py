@@ -88,7 +88,7 @@ def get_highest_word_score(word_list):
 
     word_scores = {word: score_word(word) for word in word_list}
     high_score = max(word_scores.values())
-    ties = [w for w in word_scores.keys() if word_scores[w] == high_score]
+    ties = [word for word, score in word_scores.items() if score == high_score]
     return tie_breaker(ties), high_score
 
 
