@@ -42,14 +42,14 @@ def draw_letters():
     
     for draw in range(10):
         
-        #need this flag when exiting the while loop to search for other letter
+        # need this flag when exiting the while loop to search for other letter
         letter_not_found = True
         
         while letter_not_found:
             letter = random.choice(letter_list_from_pool)
             letter_count = temp_letter_pool[letter]
             
-            #this conditional checks that there's a letter available and changes the flag to letter found
+            # this conditional checks that there's a letter available and changes the flag to letter found
             if letter_count > 0:
                 letter_not_found = False
                 
