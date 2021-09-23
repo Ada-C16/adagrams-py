@@ -67,20 +67,46 @@ def score_word(word):
             if letter in key:
                 total_score += value
     
-    if (len(word_case_check) >= 7 or 
-       (len(word_case_check) > 7 and len(word_case_check) < 10)):
+    if len(word) >= 7:
         total_score += 8    
     
     return total_score
 
 
 # Wave 4
+def get_score_dict(word_list):
+    score_dict = {}
+    for word in word_list:
+        word_score = score_word(word)
+        score_dict[word] = word_score
+    return score_dict
+
+
 def get_highest_word_score(word_list):
     """
     Takes one parameter word_list to find the highest scoring word,
     returns the winning word in a tuple: (winning_word, top_score)
     """
-    pass
+    score_dictionary = get_score_dict(word_list)
+    top_word = max(score_dictionary, key=score_dictionary.get)
+    all_scores = get_score_dict(word_list).values()
+    top_word_score = max(all_scores)
+    
+    ties_list = [(top_word, top_word_score)]
+    for word, score in score_dictionary.items():
+        if score == top_word_score:
+            if len(word) < len(top_word):
+                top_word = word
+            elif len(word) == len(top_word):
+                ties_list.append((word, score))
+            elif len(word) == 10:
+                top_word = word
+    
+    highest_score = ties_list[0]
+    return highest_score
+
+
+
     # word_list: list of strings
     # tie-breaking rules:
         # prefer word with fewest letters
