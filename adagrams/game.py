@@ -47,28 +47,51 @@ def draw_letters():
     return letters
 
 def uses_available_letters(word, letter_bank):
-    # Removed draw_letters() since it was overwriting letters in test case
     letter_bank_copy = letter_bank.copy()
     for char in letter_bank_copy:
         for char in word:
             if char not in letter_bank_copy:
                 return False
-            # I like this logic, but changed it to run for False outcomes instead of True.      
             elif char in letter_bank_copy and word.count(char) > letter_bank_copy.count(char):
                 return False
-        # Moved True to only run after entire letter_bank_copy had been iterated. 
         return True
-    
-    # matches = [char in letter_bank_copy for char in word]
-    # letter_bank_contains_word = all(matches)
-    # return letter_bank_contains_word
+
+
 def score_word(word):
-    # Initialize and Sanitize variables
+    val_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
+    val_2 = ["D", "G"]
+    val_3 = ["B", "C", "M", "P"]
+    val_4 = ["F", "H", "V", "W", "Y"]
+    val_5 = ["K"]
+    val_6 = ["J", "X"]
+    val_7 = ["Q", "Z"]
+
+
     score = 0
-    word = word.upper()
-    # Scoring for length
-    # Scoring for each letter.  Could also be list variables. 
-    # Return total score
+    if len(word) in range(7,11):
+        score += 8
+    elif word == "":
+        score = 0
+    elif word != word.upper():
+        word = word.upper()
+    for char in word:
+        if char in val_1:
+            score += 1
+        elif char in val_2:
+            score += 2
+        elif char in val_3:
+            score += 3
+        elif char in val_4:
+            score += 4
+        elif char in val_5:
+            score += 5
+        elif char in val_6:
+            score += 8
+        elif char in val_7:
+            score += 10
+
+    return score
+        
 
 def get_highest_word_score(word_list):
     score_tuples = ()
