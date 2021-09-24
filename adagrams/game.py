@@ -56,21 +56,20 @@ def uses_available_letters(word, letter_bank):
 
     return True
 
-"""
-I have a string word
-I want to loop through the chars in word
-check to see if theyre in letter bank
-if they are, remove from letter bank
 
-keep checking until I return false
+#
 
-if you go through all of the letters and check them, return true
-
-
-"""
 
 def score_word(word):
-    pass
+    score_chart = {
+        1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
+        2 : ["D", "G"],
+        3 : ["B", "C", "M", "P"],
+        4 : ["F", "H", "V", "W", "Y"],
+        5 : ["K"],
+        8 : ["J", "X"],
+        10: ["Q", "Z"]
+    }
 
 def get_highest_word_score(word_list):
     pass
