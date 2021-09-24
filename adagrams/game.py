@@ -98,6 +98,8 @@ def get_highest_word_score(word_list):
             if len(word) < len(top_word):
                 ties_list.insert(0,(word, score))
             elif len(word) == len(top_word):
+                if word == ties_list[0][0]:
+                    ties_list.append((word, score))
                 ties_list.append((word, score))
             elif len(word) == 10:
                ties_list.insert(0, (word, score))
@@ -106,8 +108,6 @@ def get_highest_word_score(word_list):
         
     highest_score = ties_list[0]
     return highest_score
-
-
 
     # word_list: list of strings
     # tie-breaking rules:
