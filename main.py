@@ -1,6 +1,6 @@
 import sys
 from adagrams.ui_helper import *
-from adagrams.game import draw_letters, uses_available_letters, score_word, get_highest_word_score
+from adagrams.game import draw_letters, uses_available_letters, score_word, get_highest_word_score, word_in_english_dictionary
 
 def wave_1_run_game():
     display_welcome_message()
@@ -95,7 +95,7 @@ def wave_5_run_game():
         display_game_instructions()
         user_input_word = input()
 
-        while( not uses_available_letters(user_input_word, letter_bank) or word_in_english_dictionary(user_iput_word)):
+        while not (uses_available_letters(user_input_word, letter_bank) and word_in_english_dictionary(user_input_word)):
             display_needs_valid_input_message_2()
             user_input_word = input()
         
