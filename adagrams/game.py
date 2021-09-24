@@ -29,6 +29,35 @@ LETTER_POOL = {
     'Z': 1
 }
 
+LETTER_VALUES = {
+    'A': 1, 
+    'B': 3, 
+    'C': 3, 
+    'D': 2, 
+    'E': 1, 
+    'F': 4, 
+    'G': 2, 
+    'H': 4, 
+    'I': 1, 
+    'J': 8, 
+    'K': 5, 
+    'L': 1, 
+    'M': 3, 
+    'N': 1, 
+    'O': 1, 
+    'P': 3, 
+    'Q': 10, 
+    'R': 1, 
+    'S': 1, 
+    'T': 1, 
+    'U': 1, 
+    'V': 4, 
+    'W': 4, 
+    'X': 8, 
+    'Y': 4, 
+    'Z': 10
+}
+
 def draw_letters():
     letters_left = LETTER_POOL.copy() #initializing local variable as copy of LETTER_POOL so it can be manipulated
     choice_ten = [] #initializing empty list to hold randomly chosen letters
@@ -37,24 +66,28 @@ def draw_letters():
         if letters_left[letter] > 0: # making sure there are still letters in the bag
             choice_ten.append(letter) #adding chosen letter to list
             letters_left[letter] -= 1 #short hand to say variable is now equal to variable minus one 
-                                      # ex: letters_left[letter] = letters_left[letter] - 1
+    # ex: letters_left[letter] = letters_left[letter] - 1
     return choice_ten
-    # print(choice_ten)
-    # print(letters_left)
         
         
 
 def uses_available_letters(word, choice_ten):
-    letters_in_hand = choice_ten.copy()
-    for letter in word:
+    letters_in_hand = choice_ten.copy() #copy so it won't affect letters
+    for letter in word:        #conditional 
         if letter in letters_in_hand:
-            letters_in_hand.remove(letter)
-        else:
+            letters_in_hand.remove(letter) #Will remove letter that creates word
+        else:               #ultimateum if letters cant create the word given for ex: yellow 
             return False
     return True
 
 def score_word(word):
-    pass
+    total = 0
+    for letter in word:
+        total += LETTER_VALUES[letter]
+    if len(word) >= 7:
+        total + 8
+    
+    return total
 
 def get_highest_word_score(word_list):
     pass
