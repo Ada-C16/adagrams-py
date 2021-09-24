@@ -85,3 +85,14 @@ def test_get_highest_word_tie_same_length_prefers_first():
     assert score_word(words[1]) == 18
     assert best_word[0] == words[0]
     assert best_word[1] == 18
+
+# Student made test, not used
+# def test_get_highest_word_input_empty_list():
+#     # Arrange
+#     words = []
+
+#     # Act
+#     best_word = get_highest_word_score(words)
+
+#     # Assert
+#     assert best_word == (None, 0)

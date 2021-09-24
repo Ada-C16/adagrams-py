@@ -48,3 +48,14 @@ def test_uses_available_letters_does_not_change_letter_bank():
     assert is_valid == True
     assert letters == letters_copy
     
+# Student made test
+def test_uses_available_letters_not_case_sensitive():
+    # Arrange
+    letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    word = "acd"
+
+    # Act
+    is_valid = uses_available_letters(word, letters)
+
+    # Assert
+    assert is_valid == True
