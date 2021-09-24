@@ -90,7 +90,7 @@ def convert_word_list_to_list_of_tuples_with_scores(word_list):
 
 def get_highest_word_score(word_list):
     """
-
+    Looks at user words and returns highest scoring word
     """
     word_score_list = convert_word_list_to_list_of_tuples_with_scores(word_list)
     max_score = tuple(["", 0])
