@@ -31,11 +31,15 @@ def draw_letters(): # Time complexity: O(1)  Space complexity: O(1)
     for i in range (10):
         random_letter = random.choice(list_letters_pool)
         list_letters_drawn.append(random_letter)
-        list_letters_pool.remove(random_letter)  # remove the drawn letter from the original list of letter pool after each random draw
+        # remove the drawn letter from the original list of letter pool after 
+        # each random draw
+        list_letters_pool.remove(random_letter)  
     return list_letters_drawn
 
-def uses_available_letters(word, letter_bank):  # Time complexity: O(2n)  Space complexity: O(n)
-    # This portion of function is to count the frequency of each letter drawn and store it in dict
+def uses_available_letters(word, letter_bank):  
+    # Time complexity: O(n)  Space complexity: O(n)
+    # This portion of function is to count the frequency of each letter drawn 
+    # and store it in dict
     letter_bank_dict = {}
     for each_letter in letter_bank:
         if each_letter not in letter_bank_dict:
@@ -58,7 +62,8 @@ def uses_available_letters(word, letter_bank):  # Time complexity: O(2n)  Space 
             return False
     return True
 
-def score_word(word):  # Time complexity: O(n)  Space complexity: O(1)
+def score_word(word):  
+    # Time complexity: O(n)  Space complexity: O(1)
     dict_score_chart = {
                         "A" : 1,
                         "E" : 1,
@@ -96,30 +101,24 @@ def score_word(word):  # Time complexity: O(n)  Space complexity: O(1)
     return score
 
 def get_highest_word_score(word_list): 
-    # calculate the score of each word in the list and put them in word-score pair to dict
+    # Time complexity: O(n) Space complexity: O(1)
     dict_word_score = {}
     for each_word in word_list:                                                     
         dict_word_score[each_word] = score_word(each_word)
     
-    # find out the max score by looping through the values of dict
-    max_score = max([each_word_score for each_word_score in dict_word_score.values()]) 
+    max_score = max([each_word_score for each_word_score in 
+    dict_word_score.values()]) 
 
-    # looping through the keys(words) of the dict, compare if its value equals max_score, 
-    # append the key(word) to an empty if it is True
     list_word_with_max_score = [word for word in dict_word_score.keys()if 
                                 dict_word_score[word] == max_score]
         
-    max_length = max([len(each_word)for each_word in list_word_with_max_score])
+    max_length = max([len(each_word)for each_word in list_word_with_max_score])  
 
-    # if max_length > 10, it loops through the keys(words) of the dict, compare if its length equals max_length, 
-    # if it does, return a tuple (each_word, max_score)
     if max_length >= 10:
         for each_word in dict_word_score.keys():
             if len(each_word) == max_length:
                 return (each_word, max_score) 
     else:
-        # if max_length < 10, it finds out the min length. It loops through the keys(words) of the dict, compare if its length equals min_length, 
-        # if it does, return a tuple (each_word, max_score)
         min_length = min([len(each_word)for each_word in list_word_with_max_score])
 
         for each_word in dict_word_score.keys():
