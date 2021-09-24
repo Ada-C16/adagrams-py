@@ -28,6 +28,12 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
+    """
+    This function will compare the letters in the user's word to the letter_bank.
+    If letters in user's word are not in letter_bank, or if the user uses more letters
+    than they have, the function will return False. 
+    Function will return False if the user doesn't empty a word. Else, it returns True.
+    """
     is_valid = True
     if word == False:
         is_valid = False
