@@ -105,7 +105,7 @@ def get_highest_word_score(word_list):
             
     highest_word_score = ties_list[0]
     return highest_word_score
-
+    
     # tie-breaking rules:
         # prefer word with fewest letters
         # if top_score is btwn multiple words
