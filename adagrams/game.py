@@ -17,56 +17,38 @@ def draw_letters():
         chosen_letters.append(letter)
     return chosen_letters
         
-    # letters = {
-    #     'A': 9, 
-    #     'B': 2, 
-    #     'C': 2, 
-    #     'D': 4, 
-    #     'E': 12, 
-    #     'F': 2, 
-    #     'G': 3, 
-    #     'H': 2, 
-    #     'I': 9, 
-    #     'J': 1, 
-    #     'K': 1, 
-    #     'L': 4, 
-    #     'M': 2, 
-    #     'N': 6, 
-    #     'O': 8, 
-    #     'P': 2, 
-    #     'Q': 1, 
-    #     'R': 6, 
-    #     'S': 4, 
-    #     'T': 6, 
-    #     'U': 4, 
-    #     'V': 2, 
-    #     'W': 2, 
-    #     'X': 1, 
-    #     'Y': 2, 
-    #     'Z': 1
-    #     }   
-    # dict_letters = letters.copy()
-    # chosen_letters = []
-    # for i in range(9):
-    #     letter = random.choice(dict_letters.keys())
-    #     chosen_letters.append(letter)
-    #     dict_letters["letter"] += -1
-    # return chosen_letters
-        
-
-
-
-    
-
-    # loop 10 times
-    # for i in range 10 
-    # the letter that it chooses, take it out of the list and 
-
 def uses_available_letters(word, letter_bank):
-    pass
+
+    letters_used = letter_bank.copy()
+    for letter in word:
+        if letter in letters_used:
+            letters_used.remove(letter)
+        else:
+            return False
+            break
+    return True    
 
 def score_word(word):
-    pass
 
-def get_highest_word_score(word_list):
-    pass
+    letter_points = {
+            1:['A', 'E', 'I','O', 'U', 'L', 'N', 'R', 'S', 'T' ],
+            2:['D', 'G' ], 
+            3:['B', 'C', 'M', 'P' ],
+            4:['F', 'H', 'V', 'W', 'Y' ],
+            5:['K'],
+            8:['J', 'X'],
+            10:['Q', 'Z']
+        }
+    sum = 0
+    word_length = len(word)
+    cap_word = word.upper()
+    for letter in cap_word:
+        for score in letter_points:
+            if letter in letter_points[score]:
+                sum += score
+    if word_length >= 7:
+        sum += 8  
+    return sum
+
+
+
