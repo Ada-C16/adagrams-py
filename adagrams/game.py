@@ -92,8 +92,8 @@ def get_highest_word_score(word_list):
     '''
     input: word_list 
     output:  (winning_word, score)
-    This will only work if there is a two-way tie and does not account for 3+-way 
-    ties
+    Tie-breaker conditions will only work if there is a two-way tie and does not 
+    account for 3+-way ties
     '''
     score_list = []
     index_highest_score = []
@@ -106,10 +106,12 @@ def get_highest_word_score(word_list):
     if len(index_highest_score) == 1:
         return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
     else:
+        if len(word_list[index_highest_score[0]]) == len(word_list[index_highest_score[1]]):
+            return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
         for index in index_highest_score:
             if len(word_list[index]) == 10:
                 return word_list[index], score_list[index]
         if len(word_list[index_highest_score[0]]) < len(word_list[index_highest_score[1]]):
             return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
-        elif len(word_list[index_highest_score[0]]) > len(word_list[index_highest_score[1]]):
+        else:
             return word_list[index_highest_score[1]], score_list[index_highest_score[1]]
