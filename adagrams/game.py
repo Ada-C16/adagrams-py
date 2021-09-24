@@ -28,28 +28,24 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    for char in word:  # word is the test because we're checking if these letters are valid to use
-        # if there are more char than char in bank
-        if word.count(char) > letter_bank.count(char):
-            # return True
-            valid = False
-        else:
-            valid = True
-            # return False
+    is_valid = True
+    if word == False:
+        is_valid = False
+    else:
+        for letter in word:
+            if letter not in letter_bank:
+                is_valid = False
+            if word.count(letter) > letter_bank.count(letter):
+                is_valid = False
 
-    return valid
-    # return False
-    # elif char not in letter_bank:
-    #     return False
-    # else:
-    #     return True
+    return is_valid
 
 
-letter_points = {
+LETTER_POINTS = {
     'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8,
     'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1,
     'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10
-}
+} # changed to caps to signifiy sentinel variable; may want this at top of file.
 
 
 def score_word(word):
@@ -68,10 +64,10 @@ def score_word(word):
     # could use ints as keys for the score and letters as the value
     # assign each letter in the word we pass in a point value
     total = 0
-
+    bonus_range = [7, 8, 9, 10] # created variable to demonstrate significance of these nums
     for letter in word.upper():
-        total += letter_points[letter]
-    if len(word) in [7, 8, 9, 10]:
+        total += LETTER_POINTS[letter]
+    if len(word) in bonus_range:
         total += 8
 
     return total
