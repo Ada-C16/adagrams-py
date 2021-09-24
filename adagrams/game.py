@@ -29,26 +29,43 @@ LETTERS_DICT = {
 'Z': 1
 }
 
+'''
+We generated LETTERS_POOL from LETTERS_DICT using the following code so that we
+would not have to run it every time draw_letters is called since the pool of 
+letters will be a constant
+LETTERS_POOL = []
+for letter in LETTERS_DICT:
+    letters_string = letter * LETTERS_DICT[letter]
+    for letter in letters_string:
+        LETTERS_POOL.append(letter)
+'''
+LETTERS_POOL = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'C', \
+'C', 'D', 'D', 'D', 'D', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', \
+'E', 'E', 'F', 'F', 'G', 'G', 'G', 'H', 'H', 'I', 'I', 'I', 'I', 'I', 'I', \
+'I','I', 'I', 'J', 'K', 'L', 'L', 'L', 'L', 'M', 'M', 'N', 'N', 'N', 'N', 'N', \
+'N', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'P', 'P', 'Q', 'R', 'R', 'R', 'R', \
+'R', 'R', 'S', 'S', 'S', 'S', 'T', 'T', 'T', 'T', 'T', 'T', 'U', 'U', 'U', 'U', \
+'V', 'V', 'W', 'W', 'X', 'Y', 'Y', 'Z']
+
+SCORES = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2, 
+    "F": 4, "I": 1, "H": 4, "K": 5, "J": 8, "M": 3, 
+    "L": 1, "O": 1, "N": 1, "Q": 10, "P": 3, "S": 1, 
+    "R": 1, "U": 1, "T": 1, "W": 4, "V": 4, "Y": 4, 
+    "X": 8, "Z": 10}
+
 def draw_letters():
-    letters_pool = []
-    for letter in LETTERS_DICT:
-        letters_string = letter * LETTERS_DICT[letter]
-        for letter in letters_string:
-            letters_pool.append(letter)
-    hand = random.sample(letters_pool, 10)
-    return hand
+    '''
+    Returns a hand of 10 letters drawn randomly without replacement from the 
+    letter pool
+    '''
+    return random.sample(LETTERS_POOL, 10)
 
 def uses_available_letters(word, letter_bank):
     '''
-    check if word uses only characters in the letter_bank (hand) and does not use
+    Checks if word uses only letters in the letter_bank (hand) and does not use 
     a letter more times than it appears in the letter_bank
-    return True or False
+    Returns True or False
     '''
-    # Make copy of letter_bank to be able to manipulate
-    # Iterate through word check if each letter is in letter_bank copy and remove
-    # from copy
-    # If not in, return False
-    # If make it all the way through, return True
     temp_letter_bank = letter_bank.copy()
     for letter in word:
         if letter in temp_letter_bank:
@@ -57,21 +74,16 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-SCORES = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2, 
-    "F": 4, "I": 1, "H": 4, "K": 5, "J": 8, "M": 3, 
-    "L": 1, "O": 1, "N": 1, "Q": 10, "P": 3, "S": 1, 
-    "R": 1, "U": 1, "T": 1, "W": 4, "V": 4, "Y": 4, 
-    "X": 8, "Z": 10}
+
 
 def score_word(word):
-    # return sum(SCORES[letter] for letter in word) 
-    # would like to refactor to the above 
+    '''
+    Returns score of word based on letter values in SCORES. If the length of the
+    word is 7, 8, 9, or 10, then the word gets an additional 8 points.
+    '''
     total = 0 
-    # for char in word: 
     if len(word) >= 7:
-            total +=8   
-    # for letter in word.upper():       
-    #     total += SCORES[letter]  
+        total += 8
     total += sum(SCORES[letter] for letter in word.upper())      
     return total      
 
@@ -80,7 +92,8 @@ def get_highest_word_score(word_list):
     '''
     input: word_list 
     output:  (winning_word, score)
-    this will only work if there is a two-way tie
+    This will only work if there is a two-way tie and does not account for 3+-way 
+    ties
     '''
     score_list = []
     index_highest_score = []
