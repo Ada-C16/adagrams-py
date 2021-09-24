@@ -57,7 +57,7 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
-#
+
 
 #Iterates through all letters in word to check values of dict
 #When found in a value, the key is added to score
