@@ -63,7 +63,6 @@ def uses_available_letters(word, letter_bank):
     for letter in word:
         if letter in letter_bank_dict and letter_bank_dict[letter] > 0:
             letter_bank_dict[letter] -= 1
-            print(letter_bank_dict)
         else:
             return False
     return True
