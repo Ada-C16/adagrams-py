@@ -94,11 +94,25 @@ def score_word(word):
         
 
 def get_highest_word_score(word_list):
-    score_tuples = ()
     # Initialize variables
+    score_tuples  = []
+    current_high_score = 0
+    winning_word_length = 0
     # Iterate through each word
-    # Check for new high score
-    # If tied for high score
-    # Length 10 edge case
+    for word in word_list:
+        #check for new high score
+        if score_word(word) > current_high_score:
+            current_high_score = score_word(word)
+            winning_word_length = len(word)
+            score_tuples = ((word, score_word(word)))
+        # If tied for high score
+        if score_word(word) == current_high_score:
+            if len(word) < winning_word_length and winning_word_length != 10:
+                score_tuples = ((word, score_word(word)))
+                winning_word_length = len(word)
+            # Length 10 edge case
+            elif len(word) == 10 and winning_word_length != 10:
+                score_tuples = ((word, score_word(word)))
+                winning_word_length = len(word)
     #return high score as tuple 
     return score_tuples
