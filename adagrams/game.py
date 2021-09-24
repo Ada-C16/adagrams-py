@@ -50,5 +50,23 @@ def score_word(word):
         sum += 8  
     return sum
 
-
-
+def get_highest_word_score(word_list):
+    words_and_scores = []
+    for word in word_list:
+        score = score_word(word)
+        words_and_scores.append(tuple([word, score]))
+    num=(0, 0)
+    for item in words_and_scores:
+        if item[1]>num[1]:
+            num=item
+        elif item[1]==num[1]: 
+            if len(num[0])==10:
+                break
+            elif len(item[0])==len(num[0]):
+                break
+            elif len(item[0])==10:
+                num=item
+                break
+            elif len(item[0])<len(num[0]):
+                num=item
+    return num
