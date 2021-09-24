@@ -85,7 +85,7 @@ def get_score_dict(word_list):
 def get_highest_word_score(word_list):
     """
     Takes one parameter word_list to find the highest scoring word,
-    returns the winning word in a tuple: (winning_word, top_score)
+    returns the winning word tuple: (winning_word, top_score)
     """
     score_dictionary = get_score_dict(word_list)
     top_word = max(score_dictionary, key=score_dictionary.get)
@@ -98,18 +98,14 @@ def get_highest_word_score(word_list):
             if len(word) < len(top_word):
                 ties_list.insert(0,(word, score))
             elif len(word) == len(top_word):
-                if word == ties_list[0][0]:
-                    ties_list.append((word, score))
                 ties_list.append((word, score))
             elif len(word) == 10:
-               ties_list.insert(0, (word, score))
-            #else:
-            #    ties_list.insert(0, (top_word, top_word_score))
-        
-    highest_score = ties_list[0]
-    return highest_score
+               ties_list.clear() 
+               ties_list.append((word, score))
+            
+    highest_word_score = ties_list[0]
+    return highest_word_score
 
-    # word_list: list of strings
     # tie-breaking rules:
         # prefer word with fewest letters
         # if top_score is btwn multiple words
