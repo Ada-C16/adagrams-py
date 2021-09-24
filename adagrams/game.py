@@ -1,33 +1,8 @@
 import random 
 
-LETTERS_DICT = {
-'A': 9, 
-'B': 2, 
-'C': 2, 
-'D': 4, 
-'E': 12, 
-'F': 2, 
-'G': 3, 
-'H': 2, 
-'I': 9, 
-'J': 1, 
-'K': 1, 
-'L': 4, 
-'M': 2, 
-'N': 6, 
-'O': 8, 
-'P': 2, 
-'Q': 1, 
-'R': 6, 
-'S': 4, 
-'T': 6, 
-'U': 4, 
-'V': 2, 
-'W': 2, 
-'X': 1, 
-'Y': 2, 
-'Z': 1
-}
+LETTERS_DICT = {'A': 9, 'B': 2, 'C': 2, 'D': 4, 'E': 12, 'F': 2, 'G': 3, 'H': 2,\
+'I': 9, 'J': 1, 'K': 1, 'L': 4, 'M': 2, 'N': 6, 'O': 8, 'P': 2, 'Q': 1, 'R': 6, \
+'S': 4, 'T': 6, 'U': 4, 'V': 2, 'W': 2, 'X': 1,'Y': 2, 'Z': 1}
 
 '''
 We generated LETTERS_POOL from LETTERS_DICT using the following code so that we
@@ -74,8 +49,6 @@ def uses_available_letters(word, letter_bank):
             return False
     return True
 
-
-
 def score_word(word):
     '''
     Returns score of word based on letter values in SCORES. If the length of the
@@ -87,31 +60,26 @@ def score_word(word):
     total += sum(SCORES[letter] for letter in word.upper())      
     return total      
 
-
 def get_highest_word_score(word_list):
     '''
     input: word_list 
-    output:  (winning_word, score)
-    Tie-breaker conditions will only work if there is a two-way tie and does not 
-    account for 3+-way ties
+    output: (winning_word, score)
+    Finds word in word_list with highest score. If there is a tie, will pick word 
+    with fewest letters unless one word has 10 letters, then will choose word 
+    with 10 letters. If multiple words have same score and length, picks the word 
+    supplied first.
     '''
-    score_list = []
-    index_highest_score = []
-    for word in word_list: 
-        score_list.append(score_word(word)) 
-    highest_score = max(score_list)
-    for i in range(len(score_list)):
-        if score_list[i] == highest_score:
-            index_highest_score.append(i)
-    if len(index_highest_score) == 1:
-        return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
-    else:
-        if len(word_list[index_highest_score[0]]) == len(word_list[index_highest_score[1]]):
-            return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
-        for index in index_highest_score:
-            if len(word_list[index]) == 10:
-                return word_list[index], score_list[index]
-        if len(word_list[index_highest_score[0]]) < len(word_list[index_highest_score[1]]):
-            return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
-        else:
-            return word_list[index_highest_score[1]], score_list[index_highest_score[1]]
+    winning_word = None
+    highest_score = 0
+    for word in word_list:
+        if score_word(word) > highest_score:
+            winning_word = word
+            highest_score = score_word(word)
+        elif score_word(word) == highest_score:
+            if len(word) == 10 and len(word) != len(winning_word):
+                winning_word = word
+                highest_score = score_word(word)
+            elif len(word) < len(winning_word) and len(winning_word) != 10:
+                winning_word = word
+                highest_score = score_word(word)
+    return winning_word, highest_score
