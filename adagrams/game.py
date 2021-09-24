@@ -41,16 +41,41 @@ def uses_available_letters(word, letter_bank):
         # else:
         #     return True
 
+letter_points = {
+    'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8, 
+    'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1, 
+    'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10
+}
 
 def score_word(word):
     """
     This function will calculate the user's score for their entered word.
     It needs to calculate a score that ignores the lettercase, takes into
     account an empty word, and gives extra points for longer words. 
+   -  assign each letter in the word we pass into the function a point value
+   for each_letter in word
+ - add the value of each letter together, returning a sum of the total point value of the word 
+- return sum
+- count length of word, If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
+- maybe add 8 points to sum?
     """
     # a dict may be better to easily access the score. 
     # could use ints as keys for the score and letters as the value
-    pass
+    # assign each letter in the word we pass in a point value
+    total = 0
+
+    for letter in word.upper():
+        total += letter_points[letter]
+    if len(word) in [7,8,9,10]:
+        total += 8
+
+    return total
+
+
+
+
+
+
 
 def get_highest_word_score(word_list):
     pass
