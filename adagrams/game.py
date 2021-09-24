@@ -90,6 +90,7 @@ def build_score_chart():
     }
     return score_chart
 
+
 def score_word(word):
     score_chart = build_score_chart()
     score = 0
@@ -104,7 +105,6 @@ def score_word(word):
     if LONG_WORD_MIN <= len(cap_word) <=LONG_WORD_MAX:
         return score + LONG_WORD_POINTS
     return score 
-
 
 
 def get_highest_word_score(word_list):
