@@ -30,31 +30,6 @@ LETTERS_DICT = {
 }
 
 def draw_letters():
-    ''' 
-    1. No parameters
-    2. returns an arrary of 10 strings 
-        2a. each should contain only one letter (so returns ten letters)
-    3. Ltrs should be randomly drawn from a pool of ltrs 
-        3a. see table in read me, pool should reflect same
-        3b. #random.sample(function)  - random.sample(list, # of elements to pick) (selects elements w/o replacement)
-    4. this function should NOT change the pool of ltrs (user returns hand before drawing) unlike scrabble where pool decreases until it runs out
-    '''
-<<<<<<< HEAD
-    pass
-=======
-
-    # refactor to make letters_pool outside of function?
-    # learn more abotu how random.sample is working
->>>>>>> b6407bff9049e9bb6b8ba26db6c65b0818102b6e
-    #pseudocode
-    # letters_pool = []iterate through dict to make list?
-        # for letter in letters_dict: 
-        # mulitply each key x value 
-        #thought 1. 
-            # [key * val for key, val in letters_dict.items()] 
-            # returns strings per character ex "AAAAAAAAAA"
-            # loop through to create list of strings? 
-
     letters_pool = []
     for letter in LETTERS_DICT:
         letters_string = letter * LETTERS_DICT[letter]
@@ -62,7 +37,6 @@ def draw_letters():
             letters_pool.append(letter)
     hand = random.sample(letters_pool, 10)
     return hand
-
 
 def uses_available_letters(word, letter_bank):
     '''
@@ -90,18 +64,8 @@ SCORES = {"A": 1, "C": 3, "B": 3, "E": 1, "D": 2, "G": 2,
     "X": 8, "Z": 10}
 
 def score_word(word):
-    '''
-    returns the score of a given word as defined by the adagrams game
-    1. input parameter: word (str of chars)
-    2. returns an int representing the no. of points
-
-    #Each letter within `word` has a point value. 
-    #The number of points of each letter is summed up to represent the total score of `word`
-    #If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
-    '''
     # return sum(SCORES[letter] for letter in word) 
     # would like to refactor to the above 
-
     total = 0 
     # for char in word: 
     if len(word) >= 7:
@@ -112,29 +76,27 @@ def score_word(word):
     return total      
 
 
-
 def get_highest_word_score(word_list):
     '''
-    this functions looks at the list of word_list and calculates 
-    which of these words has the highest score, applies *tie breaking logic* and, 
-    returns the winning word in a tuple
-    ###
-    INPUT: list of strings, word_list. 
-    OUTPUT: returns a tuple that represents the data 
-    of the winning word and it's score. 
-    ###
-    1. the tuple must contain the following:
-        - index 0 ([0]): a string of a word
-        - index 1 ([1]): the score of that word
-    2. TIE RULES:
-        - prefer the word with the fewest letters...
-        - ...unless one word has 10 letters. 
-         If the top score is tied between multiple words and one is 10 letters long, 
-        choose the one with 10 letters over the one with fewer tiles
-        - If the there are multiple words that are the same score and the same length, 
-        pick the first one in the supplied list
-
-
-
+    input: word_list 
+    output:  (winning_word, score)
+    this will only work if there is a two-way tie
     '''
-    pass
+    score_list = []
+    index_highest_score = []
+    for word in word_list: 
+        score_list.append(score_word(word)) 
+    highest_score = max(score_list)
+    for i in range(len(score_list)):
+        if score_list[i] == highest_score:
+            index_highest_score.append(i)
+    if len(index_highest_score) == 1:
+        return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
+    else:
+        for index in index_highest_score:
+            if len(word_list[index]) == 10:
+                return word_list[index], score_list[index]
+        if len(word_list[index_highest_score[0]]) < len(word_list[index_highest_score[1]]):
+            return word_list[index_highest_score[0]], score_list[index_highest_score[0]]
+        elif len(word_list[index_highest_score[0]]) > len(word_list[index_highest_score[1]]):
+            return word_list[index_highest_score[1]], score_list[index_highest_score[1]]
