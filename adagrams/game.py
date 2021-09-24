@@ -20,7 +20,7 @@ LETTER_POOL = (
     {"C" : {
         "frequency" : 2,
         "point_value" : 3
-           }
+            }
     },
     {"D" : {
         "frequency" : 4,
@@ -176,7 +176,28 @@ def draw_letters():
     return hand_of_letters
 
 def uses_available_letters(word, letter_bank):
-    pass
+    #make a copy of the list letter_bank for safe to operate on and change
+    letter_bank_copy = letter_bank[:]
+
+    # make a list of characters in the word variable (which is a string)
+    word_character_list = list(word)
+
+    # create a loop
+    count = 0
+    for letter in word_character_list:
+        if letter in letter_bank_copy:
+            print(letter)
+            letter_bank_copy.pop()
+            count += 1
+        else:
+            print(f"The letter {letter} is unavailale")
+        letter_bank_copy.pop()
+    # create an if statement that compares the letters in the letter bank with the letters
+    # in the word 
+
+    # use the pop function to remove a letter from the letter bank copy once it's been 
+    # compared with a letter in the word
+
 
     # returns a boolean value. 
     # True if the word can be spelled with the 10 letters 
@@ -185,20 +206,55 @@ def uses_available_letters(word, letter_bank):
 
 def score_word(word):
     pass
+    # create a variable for the total_score, set the score to 0
+    
+    # make the string variable we are passed ALL CAPS with the upper() function
+    # that way each character in our word will match the dictionary keys in LETTER_POOL
+    # example: word = word.upper()
+
+    # make a 3 nested for loops (indentation indicates scope)
+    # iterate through each character in the word variable
+    #   iterate through each element (we used "letter_dict" in the first function) in LETTER_POOL
+    #       iterate through each key in the "letter_dict" to access it's value, which is another dictionary with data about the letter frequency and point value.
+    #       i got this expression from the iterating over dictionaries lesson in Learn: "for letter, letter_data in letter_dict.items():"
+    #       i'm not sure how to word what it's doing.
+    #           compare the key of the dictionary (which will be a letter) to the character in the word from the first loop. if they match add the letter's point 
+    #           value to the variable total_score  
+    
+    # evaluate the length of the word variable
+    # make an if statement where if the word is longer than 7 characters add 8 points to total_score
+
+    # return total_score variable
 
 def get_highest_word_score(word_list):
+
     pass
+    # create an empty list variable (best_word) that will eventually hold the best word's data
+    # where the first value is the string of the word and the second value is the point value
+    # example: best_word = ["reallygoodword", 14]
+
+    #create an empty string variable that will eventually hold the word with the most points (top_word)
+
+    #create a variable for the top score and set it to zero (top_score)
+
+    # iterate through each word in word_list and calculate it's score with the score_word function
+    #   compare the score to the variable top_score with if statements.
+    #       if the score is bigger than top_score, make that word the top_word and that score top_score
+    #       if the score is a tie compare the length of each word with if statements
+    #           if one word has exactly 10 letters in it, thats the top_word
+    #           if both words have 10 letters the word with the lowest index in word_list is top_word
+    #           if neither of the words have 10 letters the shorter word it top_word
 
 
-# list = ["a","b","c"]
-# hand_draw_letters = []
+    #return the best_word list with top_word as the first value and top_score as the 2nd value
+    # best_word = [top_word, top_score]
 
-# picked_letter = list.pop(1)
+letter_bank_test = draw_letters()
+print(letter_bank_test)
+water_character_list = list("WATER")
 
-# #print(picked_letter)
-# hand_draw_letters.append(picked_letter)
+["W", "A", "T", "E", "R"]
 
-# print(list)
-# print(hand_draw_letters)
+uses_available_letters("WATER", letter_bank_test)
 
-print(draw_letters())
+print(letter_bank_test)
