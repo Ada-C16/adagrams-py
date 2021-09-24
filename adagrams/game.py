@@ -57,7 +57,6 @@ def uses_available_letters(word, letter_bank):
     return True
 
 
-#
 
 #Iterates through all letters in word to check values of dict
 #When found in a value, the key is added to score
@@ -87,8 +86,27 @@ def score_word(word):
     return score
 
 
-
-
-
 def get_highest_word_score(word_list):
-    pass
+    words_and_scores = {}
+    for word in word_list:
+        words_and_scores[word] = score_word(word)
+
+    max_score = max(words_and_scores.values())
+    # highest_word = words_and_scores.get(max_score)
+
+    max_score_dict = {}
+    for word in words_and_scores:
+        if words_and_scores[word] == max_score:
+            max_score_dict[word] = len(word)
+    
+    if len(max_score_dict) == 1:
+        for key, value in max_score_dict.items():
+            return key, value
+        # return max_score_dict.get(max_score), max_score
+    # else:
+    #     shortest_word = len(max_score_list[0])
+    #     for word in max_score_list:
+    #         if 
+
+
+# get_highest_word_score(["AAAAAA", "EEEEEE","IIIIII"])   
