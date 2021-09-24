@@ -95,7 +95,8 @@ def get_highest_word_score(word_list):
     top_word = max(score_dictionary, key=score_dictionary.get)
     all_scores = get_score_dict(word_list).values()
     top_word_score = max(all_scores)
-    
+
+
     for word, score in score_dictionary.items(): 
         if top_word_score == score and len(top_word) != 10:
             if len(word) < len(top_word):
