@@ -1,6 +1,15 @@
 #Wave 1
 def draw_letters():
+  '''
+  Creates a list of ten letters which will be a hand of letters for the user.
 
+    Parameters: 
+        None
+
+    Output:
+        letters_list, a list; example: letters_list = [A,B,C,D,E,F,G,H,I,J]
+  '''
+  
   letters_list=[]
   import random
   letters_dict = {'A' : 9, 'N' : 6, 'B' : 2, 	'O' : 8,
@@ -69,8 +78,15 @@ def uses_available_letters(word, letter_bank):
 
 #Wave 3
 def score_word(word):
-    #word=string
-    #Returns points(int)
+    '''
+    Creates the score of a given word as defined by the Adagrams game.
+
+    Parameters: 
+        word, a string
+
+    Output:
+        sum, an integer; example: sum = 29
+    '''
     letter_dict={1:['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'], 2:['D','G'],3:['B', 'C', 'M', 'P' ],4:['F', 'H','V', 'W', 'Y'],5:['K'],8:['J','X'],10:['Q','Z']}
     sum=0
     
