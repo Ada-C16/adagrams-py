@@ -7,21 +7,19 @@ def draw_letters():
     main_letters_list_copy = []
     user_hand = []
 
-
     for letter in main_letters_list:
         main_letters_list_copy.append(letter)
 
-    x = 0
-    while x < 10:
+    i = 0
+    while i < 10:
         letter = random.choice(main_letters_list_copy)
         user_hand.append(letter.capitalize())
         main_letters_list_copy.remove(letter)
-        x += 1
+        i += 1
 
     return user_hand
 
 def uses_available_letters(word, letter_bank):
-
 
     letter_bank_copy = []
     for letter in letter_bank:
@@ -46,6 +44,7 @@ def score_word(word):
         8 : ["J", "X"], 
         10: [ "Q", "Z"] 
         }
+        
     word = word.upper()
     score = 0
     for letter in word:
@@ -60,8 +59,7 @@ def score_word(word):
    
 
 def get_highest_word_score(word_list):
-    winning_word = [] # x (word), b (score)
-    x = []
+    highest_score_word_list = []
     comparing_word_scores = {}
     current_word_score = 0
     for word in word_list:
@@ -71,70 +69,29 @@ def get_highest_word_score(word_list):
         else:
             comparing_word_scores[current_word_score] = []
             comparing_word_scores[current_word_score].append(word)
-    b=0 #current highest score
 
+    current_highest_score=0 
     for score, words in comparing_word_scores.items():
-        if score > b:
-            x.clear()
+        if score > current_highest_score:
+            highest_score_word_list.clear()
             for word in words:
-                x.append(word)
-            b = score
+                highest_score_word_list.append(word)
+            current_highest_score = score
     
-    z = 1000
-    z_list = []
-    if len(x) == 1:
-        final_tuple = (x[0], b)
+    shortest_word_length = 10
+    shortest_word_list = []
+    if len(highest_score_word_list) == 1:
+        final_tuple = (highest_score_word_list[0], current_highest_score)
         return final_tuple
-    elif len(x) > 1:
-        for word in x:
+    elif len(highest_score_word_list) > 1:
+        for word in highest_score_word_list:
             if len(word) == 10:
-                return (word, b)
+                return (word, current_highest_score)
             else:
-                if len(word) <= z:
-                    z_list.append(word)
-                    z=len(word)
+                if len(word) < shortest_word_length:
+                    shortest_word_list.append(word)
+                    shortest_word_length=len(word)
         
-        return (z_list[0], b)
-        
-        # return (z_list[0], b)
-
-# else:
-#                 if len(word) <= z:
-#                     if not z_list:
-#                         if len(z_list[0]) == len(word):
-#                             pass
-#                         else:
-#                             z_list.clear()
-#                             z_list.append(word)
-#                             z = len(word)
-#                     else:
-#                         z_list.append(word)
-#                         z=len(word)
-#  else:
-#                 if len(word) <= z:
-#                     if len(z_list[0]) == len(word):
-#                         pass
-#                     else:
-#                         z_list.clear()
-#                         z_list.append(word)
-#                     z=len(word)
-        
-#         return (z_list[0], b)
-
-                # minimunWordLength = min([len(word) for word in x])
-
-                # (score), word, lengths of the word, order of tied words
-
-#working code 
-    # elif len(x) > 1:
-    #     for word in x:
-    #         if len(word) == 10:
-    #             return (word, b)
-    #         else:
-    #             if len(word) <= z:
-    #                 z_list.append(word)
-    #                 z=len(word)
-        
-    #     return (z_list[0], b)
-
-# comparing_word_score = { 2: ["hello", "bye"], 6: ["no"]}
+        return (shortest_word_list[-1], current_highest_score)
+         
+  
