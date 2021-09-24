@@ -59,8 +59,12 @@ def uses_available_letters(word, letter_bank):
 
 #
 
-
+#Iterates through all letters in word to check values of dict
+#When found in a value, the key is added to score
+#Adds 8 at the end if length of word greater than 6
 def score_word(word):
+    word = word.upper()
+    
     score_chart = {
         1 : ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
         2 : ["D", "G"],
@@ -70,6 +74,21 @@ def score_word(word):
         8 : ["J", "X"],
         10: ["Q", "Z"]
     }
+
+    score = 0
+    for letter in word:
+        for key in score_chart:
+            if letter in score_chart.get(key):
+                score += key
+
+    if len(word) > 6:
+        score += 8
+
+    return score
+
+
+
+
 
 def get_highest_word_score(word_list):
     pass
