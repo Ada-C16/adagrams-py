@@ -29,15 +29,15 @@ LETTER_POOL = {
     'Z': 1
 }
 
-SCORE_LIST = [
-    {1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ]},
-    {2: ["D", "G"]},
-    {3: ["B", "C", "M", "P"]},
-    {4: ["F", "H", "V", "W", "Y"]},
-    {5: ["K"]},
-    {8: ["J", "X"]},
-    {10: ["Q", "Z"]}
-]
+SCORE_LIST = {
+    1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T" ],
+    2: ["D", "G"],
+    3: ["B", "C", "M", "P"],
+    4: ["F", "H", "V", "W", "Y"],
+    5: ["K"],
+    8: ["J", "X"],
+    10: ["Q", "Z"]
+    }
 
 
 """
@@ -93,15 +93,12 @@ score_word function returns the total points for the word based on score chart.
 """
 def score_word(word): 
     total_score = 0
-    if len(word) == 0:
-        return total_score
-    for letter in word.upper():
-        for index in range(len(SCORE_LIST)):
-            for key, value in SCORE_LIST[index].items():
-                if letter in SCORE_LIST[index][key]:
-                    total_score += key
     if len(word) >= 7:
-        total_score += 8
+            total_score += 8
+    for score, letters in SCORE_LIST.items():
+        for letter in word.upper():
+            if letter in letters:
+                    total_score += score
     return total_score
 
 """
