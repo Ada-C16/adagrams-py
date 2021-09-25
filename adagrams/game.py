@@ -108,4 +108,61 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    points_list = []
+
+    for word in word_list:
+        points = score_word(word)
+        points_list.append(points)
+    
+    highest_points = max(points_list)
+    # Highest_points_index and highest_word are for no tie cases
+    highest_points_index = points_list.index(highest_points)
+    highest_word = word_list[highest_points_index]
+
+    # Tie case variable
+    index_list = []
+    high_word_list = []
+    winning_word = ""
+
+    if points_list.count(highest_points) == 1:
+        return highest_word,highest_points
+    else:
+        high_word_list = get_high_word_list(points_list, word_list)
+        print(f"{high_word_list=}")
+        
+        ten_letters = []
+        for word in high_word_list:
+            if len(word) == 10:
+                ten_letters.append(word)
+                winning_word = ten_letters[0]
+                if len(ten_letters) >= 1:
+                    break
+            else: 
+                short_word_list = find_shortest_length(high_word_list)
+                if len(short_word_list) == 1:
+                    winning_word = short_word_list[0]
+                else:
+                    # When we have more than one word
+                    winning_word = short_word_list[0]
+                    
+        return winning_word, highest_points
+
+def get_high_word_list(points_list, word_list):
+    index_list = []
+    high_word_list = []
+    for i in range(len(points_list)):
+        if points_list[i] == max(points_list):
+            index_list.append(i)
+        # Need to use index list to get word
+    for index_value in index_list:
+        high_word_list.append((word_list[index_value]))
+    return high_word_list
+
+def find_shortest_length(high_word_list):
+    shortest_word = min(high_word_list, key=len)
+    short_list = []
+
+    for word in high_word_list:
+        if len(word) == len(shortest_word):
+            short_list.append(word)
+    return short_list
