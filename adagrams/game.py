@@ -37,9 +37,16 @@ def draw_letters():
     drawn_letters = []
     # continue loop until the list has ten values
     while len(drawn_letters) < 10:
-        # use random module to choose a random key
-        letter = random.choice(list(all_letters))
-        # if the value associated with the key is greater than 1, append letter to list and decrease value by 1
+        # random choices takes a weights key that weights probability for each corresponding item
+        # in the list being chosen from. Used list of all_letters values to get correct weights
+        # especially cool is that as dict values are reduced as letters are drawn, the weights
+        # change accordingly, so the probability remains completely accurate
+        letter_list = random.choices(list(all_letters), weights=list(all_letters.values()))
+        # random choices has to return a list, in this case, list of only one item, but need 
+        # to access that one item with [0]
+        letter = letter_list[0]
+        # if the value associated with the key is greater than 1, append letter to list and 
+        # decrease value in dict by 1
         if all_letters[letter] >= 1:
                 drawn_letters.append(letter)
                 all_letters[letter] -= 1
@@ -47,7 +54,9 @@ def draw_letters():
     return drawn_letters
 
 def score_word(word):
+    # change all letters to uppercase to match dict
     word = word.upper()
+    # create lists representing points and which letters receive those points
     one_point = ['A','E','I','O', 'U', 'L', 'N','R','S','T']
     two_point = ['D','G']
     three_point = ['B','C','M','P']
@@ -55,10 +64,13 @@ def score_word(word):
     five_point = ['K']
     eight_point = ['J','X']
     ten_point = ['Q', 'Z']
+    # create variable word_score and start at 0
     word_score = 0
+    # if word fits these conditions, gets extra points
     if len(word)>=7 and len(word)<11:
         word_score += 8
-    
+    # check each letter in word and find which list it is in
+    # then assign appropriate amount of points
     for letter in word:
         if letter in one_point:
             word_score += 1
@@ -91,9 +103,11 @@ def uses_available_letters(word, letter_bank):
     
 
 def get_highest_word_score(word_list):
+    # create new dict that will store word as key and score as value
     words_and_scores = {}
+    # list will track just scores
     score_list = []
-    
+    # populate both list and dict with data from word_list
     for word in word_list:
         score = score_word(word)
         words_and_scores[word] = score
@@ -101,14 +115,17 @@ def get_highest_word_score(word_list):
         
     # find the max score
     max_score = max(score_list)
-
+    # this is list comprehension, loops through dict, if max_score is found as a value, it returns
+    # the key, which is a word string. Now have a list of any possible tying words
     words = [k for k, v in words_and_scores.items() if v == max_score]
-
+    # check each word in the tied words list (words) check conditionals and apply results
     for word in words:
         if len(words) == 1:
             return word, max_score
         elif len(word) == 10:
             return word, max_score
+    # each final returned pair will be a tuple.  Python automatically converts a comma separated
+    # pair of values into a tuple
     else: 
         return min(words, key=len), max_score
     
