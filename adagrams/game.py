@@ -34,15 +34,13 @@ def uses_available_letters(word, letter_bank):
     than they have, the function will return False. 
     Function will return False if the user doesn't empty a word. Else, it returns True.
     """
-    is_valid = True
-    if word == False:
-        is_valid = False
-    else:
-        for letter in word:
-            if letter not in letter_bank:
-                is_valid = False
-            if word.count(letter) > letter_bank.count(letter):
-                is_valid = False
+    for letter in word:
+        if letter not in letter_bank:
+            is_valid = False
+        if word.count(letter) > letter_bank.count(letter):
+            is_valid = False
+        else:
+            is_valid = True
 
     return is_valid
 
@@ -51,26 +49,18 @@ LETTER_POINTS = {
     'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1, 'J': 8,
     'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1,
     'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10
-} # changed to caps to signifiy sentinel variable; may want this at top of file.
+}  # changed to caps to signifiy sentinel variable; may want this at top of file.
 
 
 def score_word(word):
     """
     This function will calculate the user's score for their entered word.
     It needs to calculate a score that ignores the lettercase, takes into
-    account an empty word, and gives extra points for longer words. 
-    -  assign each letter in the word we pass into the function a point value
-    for each_letter in word
-    - add the value of each letter together, returning a sum of the total point value of the word 
-    - return sum
-    - count length of word, If the length of the word is 7, 8, 9, or 10, then the word gets an additional 8 points
-    - maybe add 8 points to sum?
+    account an empty word, and gives extra points for longer words.
     """
-    # a dict may be better to easily access the score.
-    # could use ints as keys for the score and letters as the value
-    # assign each letter in the word we pass in a point value
     total = 0
-    bonus_range = [7, 8, 9, 10] # created variable to demonstrate significance of these nums
+    # created variable to demonstrate significance of these nums
+    bonus_range = [7, 8, 9, 10]
     for letter in word.upper():
         total += LETTER_POINTS[letter]
     if len(word) in bonus_range:
@@ -80,4 +70,25 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    words_scored_dict = {}
+    for user_word in word_list:
+        words_scored_dict[user_word] = score_word(user_word)
+    winning_list = []
+    winning_combo = None
+    for user_word, score in words_scored_dict.items():
+        if len(user_word) == 10:
+            return user_word, score
+        else:
+            if score == max(words_scored_dict.values()):
+                if len(user_word) < 10:
+                    winning_list.append((user_word, score))
+    max_word_len = 0
+    for word_combo in winning_list:
+        if len(word_combo[0]) > max_word_len:
+            max_word_len = len(word_combo[0])
+        if len(word_combo[0]) < max_word_len:
+            winning_combo = word_combo
+            return winning_combo
+        else:
+            winning_combo = winning_list[0]
+    return winning_combo
