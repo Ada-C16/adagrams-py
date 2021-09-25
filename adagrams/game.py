@@ -102,67 +102,28 @@ def score_word(word):
     return total_score
 
 """
-get_word_score function retuns dictionary of scores, where letter is a key and the score is a value.
-
-"""
-def get_words_score(word_list):
-    dic_of_scores = {}
-    for index in range(len(word_list)):
-        word_score = score_word(word_list[index])
-        dic_of_scores[word_list[index]] = word_score
-    print(dic_of_scores)
-    return dic_of_scores
-    
-"""
-get_highest_score function retturns list of highest scores (integer)
-based on get_words_score function. 
-"""
-def get_highest_score(word_list):
-    list_of_highest_scores = []
-    dic_of_scores = get_words_score(word_list)
-    scores_list = list(dic_of_scores.values())
-    print(scores_list)
-    highest = scores_list[0]
-
-    for index in range(len(scores_list)):
-        if scores_list[index] > highest:
-            highest = scores_list[index]
-
-    for index in range(len(scores_list)):
-        if highest == scores_list[index]:
-            list_of_highest_scores.append(highest)
-    return list_of_highest_scores
-
-
-"""
 get_highest_word_score function retuns a tuple with a word as a first element, 
-and the highest score as a second element. 
+# and the highest score as a second element. 
+
 """
+
 def get_highest_word_score(word_list):
-    list_of_words = []
-    list_of_highest_scores = get_highest_score(word_list)
-    dic_of_scores = get_words_score(word_list)
+    highest_score = 0
+    highest_score_word = ""
 
-    if len(list_of_highest_scores) <= 1:
-        for word, score in dic_of_scores.items():
-            if score in list_of_highest_scores:
-                winner =(word, score)
-    else: 
-        for word, score in dic_of_scores.items():
-            if score in list_of_highest_scores:
-                list_of_words.append(word)
+    for word in word_list:
+        if score_word(word) > highest_score:
+            highest_score = score_word(word)
+            highest_score_word = word
 
-        winner = (list_of_words[0], score)
-        min_length = len(list_of_words[0])
+        elif score_word(word) == highest_score:
+            if len(highest_score_word) == len(word):
+                highest_score_word = highest_score_word
+            elif len(word) == 10:
+                return (word, highest_score)
+            elif len(highest_score_word) == 10:
+                return (highest_score_word, highest_score)
 
-        for index in range(len(list_of_words)):
-            if len(list_of_words[index]) == 10:
-                winner =(list_of_words[index], score)
-                return winner
-
-            elif len(list_of_words[index]) < min_length:
-                min_length = len(list_of_words[index])
-                winner =(list_of_words[index], score)
-                
-    return (winner)        
-
+            highest_score_word = min([highest_score_word, word], key=len )
+    return (highest_score_word, highest_score)
+    
