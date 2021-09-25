@@ -58,7 +58,6 @@ def uses_available_letters(word, letter_bank):
 
 
 
-
 #Iterates through all letters in word to check values of dict
 #When found in a value, the key is added to score
 #Adds 8 at the end if length of word greater than 6
@@ -88,7 +87,55 @@ def score_word(word):
 
 
 
+'''
+Create dict like so: 
+words_and_scores = {word : score}
+Get the max score with max()
+Now I have a dict of every word and it's max
+Now I have a variable with the max stored in it
 
+Now I want to find all of the words with that score
+I want to add them to a new list of max words
+
+SO now I have a list of words with max score
+If the length is 1, I want to return the word and the score
+
+
+'''
 
 def get_highest_word_score(word_list):
-    pass
+    words_and_scores = {}
+    for word in word_list:
+        words_and_scores[word] = score_word(word)
+
+    max_score = max(words_and_scores.values())
+    
+    max_score_list = []
+    for word in words_and_scores.keys():
+        if words_and_scores[word] == max_score:
+            max_score_list.append(word)
+    
+    if len(max_score_list) == 1:
+        return (max_score_list[0], words_and_scores[max_score_list[0]])
+    
+
+
+    """
+    # highest_word = words_and_scores.get(max_score)
+
+    max_score_dict = {}
+    for word in words_and_scores:
+        if words_and_scores[word] == max_score:
+            max_score_dict[word] = len(word)
+    
+    if len(max_score_dict) == 1:
+        for key, value in max_score_dict.items():
+            return key, value
+        # return max_score_dict.get(max_score), max_score
+    # else:
+    #     shortest_word = len(max_score_list[0])
+    #     for word in max_score_list:
+    #         if 
+    """
+
+# get_highest_word_score(["AAAAAA", "EEEEEE","IIIIII"])   
