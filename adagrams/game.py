@@ -171,7 +171,20 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-  
+    total_score = 0
+    word = word.upper()
+
+    for letter in word:
+        for letter_dict in LETTER_POOL:
+            for letter_key, letter_data in letter_dict.items():
+                if letter_key == letter:
+                    total_score += letter_data["point_value"] 
+                     
+    if len(word) >= 7:
+        total_score += 8
+
+    return total_score
 
 
 def get_highest_word_score(word_list):
+    pass 
