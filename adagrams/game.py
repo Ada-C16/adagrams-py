@@ -111,16 +111,38 @@ def score_word(word):
     'z': 10
 }
 
-
     word_score = 0
-
     for letter in word:
-        word_score += SCORE_CHART[letter]  
-        
+        word_score += SCORE_CHART[letter]      
     if 6 < len(word) < 11:
         word_score += 8
-    
     return word_score
 
+
+
 def get_highest_word_score(word_list):
-    pass
+
+    winning_word = word_list[0]   #this is the comparison, set to the value of the first in list
+
+    for word in word_list:
+        if score_word(word) > score_word(winning_word):
+            winning_word = word
+        elif score_word(word) == score_word(winning_word):   
+            if len(word) >= 10 and len(winning_word) < 10:  #if new word is 10 letters and old word isn't 10 letters, replace
+                winning_word = word
+            elif len(word) < len(winning_word) and len(winning_word) < 10: #if new word is shorter than the old word AND the old word isn't 10 letters, replace it
+                winning_word = word
+            
+    best_word = (winning_word, score_word(winning_word))  
+    
+    
+    return(best_word)
+    
+    
+    
+    
+    
+    
+    
+    
+        
