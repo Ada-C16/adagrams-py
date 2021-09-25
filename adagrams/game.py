@@ -75,46 +75,4 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-<<<<<<< HEAD
-    # returns tuple with winning 
-=======
-    #returns tuple with the highest scored word, and the score
-    #find the scores for each word in word list
-    #find the highest score
-
-    words_and_scores = []
-
-    for word in word_list:
-        score = score_word(word)
-        words_and_scores.append((word, score))
-
-    highest_score = 0
-    for pair in words_and_scores:
-        if pair[1] > highest_score:
-            highest_score = pair[1]
-    
-    high_score_words = []
-    for pair in words_and_scores:
-        if pair[1] == highest_score:
-            high_score_words.append(pair)
-
-    if len(high_score_words) > 1:
-        for pair in high_score_words:
-            if len(pair[0]) == 10:
-                return pair
-            else:
-                shortest_length = 10
-                for pair in high_score_words:
-                    if len(pair[0] < shortest_length):
-                        shortest_length = len(pair[0])
-                
-                for pair in high_score_words:
-                    if len(pair[0]) == shortest_length:
-                        return pair
-
-
-
-
-# get_highest_word_score(["X", "XXx", "XXX", "XXX"])  
-
->>>>>>> e69e3ef7ad8988330a06a04de7df45630b2441a6
+    pass
