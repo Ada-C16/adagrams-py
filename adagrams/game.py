@@ -70,7 +70,6 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-<<<<<<< HEAD
     words_scored_dict = {}
     for user_word in word_list:
         words_scored_dict[user_word] = score_word(user_word)
@@ -93,38 +92,5 @@ def get_highest_word_score(word_list):
         else:
             winning_combo = winning_list[0]
     return winning_combo
-=======
-    """
-    - create a function that gets the highest score in the game
-    - return a tuple that has the first item as the word with its score
-    - tuple first element string of word, second element = score of word
-    - if tie for highest score, winner is the word with the fewest number of letters
-    - UNLESS a word has exactly 10 letters
-    - if words same score same length or both 10 letters, just pick first word in list
-    """
-    words_scored_dict = {}
-    for user_word in word_list:
-        words_scored_dict[user_word] = score_word(user_word)
-    
-    # max_score_word = (user_word,max(words_scored_dict[user_word]))
-    # # print(max_score_word)
-    # ten_letter_words = []
-    # max_score = 0
-    # max_score_list = []
-    # for user_word,score in words_scored_dict.items():
-    #     if len(user_word) == 10:
-    #         ten_letter_words.append(user_word,score)
-    #         return ten_letter_words[0]
-    #     else:
-    #         if max_score < score:
-    #             max_score = score
-    #         elif max_score == score:
-    #             max_score_list.append(user_word, score)
-    #         winning_word = min(len(max_score_list[user_word][0]))
-    #         return winning_word
-   
-
-    
 
 
->>>>>>> 7f1428dc9e9bcb483570786e6a65f7349ca4894f
