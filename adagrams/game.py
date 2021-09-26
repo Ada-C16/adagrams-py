@@ -1,11 +1,5 @@
-
-# import random module
 import random
 
-# create a constant variable called LETTER_POOL which will be a tuple
-# filled with nested dictionaries that hold the letter info
-# 
-# example: 
 LETTER_POOL = (
     {"A" : {
         "frequency" : 9,
@@ -142,7 +136,7 @@ LETTER_POOL = (
 def draw_letters():
     hand_of_letters = []
     letter_pool_list = []
- 
+
     for letter_dict in LETTER_POOL:
         for key in letter_dict:
             freq = letter_dict[key]["frequency"]
@@ -163,28 +157,26 @@ def uses_available_letters(word, letter_bank):
 
     for letter in word_character_list:
         if letter in letter_bank_copy:
-            print(letter)
             letter_bank_copy.remove(letter)
-            print(letter_bank_copy)
         else:
             return False 
     return True
 
 def score_word(word):
     total_score = 0
+
     word = word.upper()
 
     for letter in word:
         for letter_dict in LETTER_POOL:
             for letter_key, letter_data in letter_dict.items():
                 if letter_key == letter:
-                    total_score += letter_data["point_value"] 
-                     
+                    total_score += letter_data["point_value"]
+            
     if len(word) >= 7:
         total_score += 8
 
     return total_score
-
 
 def get_highest_word_score(word_list):
     top_word = ""
@@ -199,11 +191,8 @@ def get_highest_word_score(word_list):
                 continue
             elif len(top_word) == 10:
                 continue 
-            elif len(word) == 10:
+            elif len(word) == 10 or len(word) < len(top_word):
                 top_word = word
-                top_score = score_word(word)
-            elif len(word) < len(top_word):
-                top_word = word 
                 top_score = score_word(word)
 
     best_word = [top_word, top_score]
