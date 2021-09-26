@@ -1,5 +1,5 @@
 import random
-
+# module will let us randomly choose characters in specified sample range
 
 def draw_letters():
     """
