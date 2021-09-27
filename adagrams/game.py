@@ -59,24 +59,23 @@ LETTER_VALUES = {
 }
 
 def draw_letters():
-    letters_left = LETTER_POOL.copy() #initializing local variable as copy of LETTER_POOL so it can be manipulated
-    choice_ten = [] #initializing empty list to hold randomly chosen letters
-    while len(choice_ten) < 10: #the final loop will result in 10 letters in the list
-        letter = random.choice(list(letters_left)) #randomly choosing letter from dictionary
-        if letters_left[letter] > 0: # making sure there are still letters in the bag
-            choice_ten.append(letter) #adding chosen letter to list
-            letters_left[letter] -= 1 #short hand to say variable is now equal to variable minus one 
-    # ex: letters_left[letter] = letters_left[letter] - 1
+    letters_left = LETTER_POOL.copy() 
+    choice_ten = [] 
+    while len(choice_ten) < 10: 
+        letter = random.choice(list(letters_left)) 
+        if letters_left[letter] > 0: 
+            choice_ten.append(letter) 
+            letters_left[letter] -= 1 
     return choice_ten
         
         
 
 def uses_available_letters(word, choice_ten):
-    letters_in_hand = choice_ten.copy() #copy so it won't affect letters
-    for letter in word:        #conditional 
+    letters_in_hand = choice_ten.copy() 
+    for letter in word:
         if letter in letters_in_hand:
-            letters_in_hand.remove(letter) #Will remove letter that creates word
-        else:               #ultimateum if letters cant create the word given for ex: yellow 
+            letters_in_hand.remove(letter)
+        else:    
             return False
     return True
 
@@ -100,14 +99,17 @@ def get_highest_word_score(word_list):
             top_word = word
             top_score = score
         elif score == top_score:
-            if len(word) == len(top_word): #outlier most unlikey situation
+            if len(word) == len(top_word):
                 pass
-            elif len(top_word) == 10: #changed from word to top_word and it worked was logical error prior
+            elif len(top_word) == 10: 
                 pass
-            elif len(word) < len(top_word): #checking if its less than top wordre
+            elif len(word) == 10:
                 top_word = word
                 top_score = score
-    return top_word, top_score   #returns in tuple        
+            elif len(word) < len(top_word): 
+                top_word = word
+                top_score = score
+    return top_word, top_score          
 
     
 
