@@ -83,12 +83,33 @@ def uses_available_letters(word, choice_ten):
 def score_word(word):
     total = 0
     for letter in word:
-        total += LETTER_VALUES[letter]
+        total += LETTER_VALUES[letter.upper()]
     if len(word) >= 7:
-        total + 8
+        total += 8
     
     return total
 
 def get_highest_word_score(word_list):
+    top_word = None
+    top_score = 0 
+    for word in word_list: 
+        score = score_word(word)
+        if score < top_score:
+            pass
+        elif score > top_score:
+            top_word = word
+            top_score = score
+        elif score == top_score:
+            if len(word) == len(top_word): #outlier most unlikey situation
+                pass
+            elif len(top_word) == 10: #changed from word to top_word and it worked was logical error prior
+                pass
+            elif len(word) < len(top_word): #checking if its less than top wordre
+                top_word = word
+                top_score = score
+    return top_word, top_score   #returns in tuple        
 
-    pass
+    
+
+    
+            
