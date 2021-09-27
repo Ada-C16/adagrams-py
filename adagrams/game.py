@@ -3,7 +3,11 @@ LONG_WORD_MIN = 7
 LONG_WORD_MAX = 10
 LONG_WORD_POINTS = 8
 
+# Wave 1
 def build_letter_pool():
+    """This function returns a dictionary of the letter pool
+    by assigning the letter as the key and the distribution of each
+    corresponding letter as the value."""
     letter_pool = {
     'A': 9, 
     'B': 2, 
@@ -35,6 +39,9 @@ def build_letter_pool():
     return letter_pool
 
 def build_letter_pool_list(letter_pool):
+    """This function takes the dictionary of the letter pool and returns
+    a list of strings that represents the distribution of letters in the 
+    letter pool."""
     list_letter_pool = []
     for letter, frequency in letter_pool.items():
         for i in range(frequency):
@@ -42,14 +49,21 @@ def build_letter_pool_list(letter_pool):
     return list_letter_pool
 
 def draw_letters():
+    """This function returns an array of ten strings, where each string
+    represents a letter and the array represents the hand of letters the
+    player has drawn."""
     letter_pool_dict = build_letter_pool()
     # Convert into a list to ensure weighted probability 
     letter_pool_list  = build_letter_pool_list(letter_pool_dict)
-    # random sample function returns list of K size
+    # Random sample function returns list of K size
     player_hand = random.sample(letter_pool_list, k=10) 
     return player_hand
 
+# Wave 2
 def uses_available_letters(word, letter_bank):
+    """This function returns True if every letter in the input word
+    is available in the right quantities from the letter bank. Otherwise,
+    it returns False."""
     letter_bank_copy = letter_bank.copy()
     for char in word:
         if char in letter_bank_copy:
@@ -60,6 +74,9 @@ def uses_available_letters(word, letter_bank):
     
 
 def build_score_chart():
+    """This function returns a dictionary of the score chart, by
+    assigning the letter as the key and the number of points for each
+    corresponding letter as the value."""
     score_chart = {
         "A": 1,
         "E": 1,
@@ -90,8 +107,9 @@ def build_score_chart():
     }
     return score_chart
 
-
 def score_word(word):
+    """This function returns an integer that represents the number of points 
+    awarded for a given word"""
     score_chart = build_score_chart()
     score = 0
     cap_word = word.upper()
@@ -106,63 +124,73 @@ def score_word(word):
         return score + LONG_WORD_POINTS
     return score 
 
-
 def get_highest_word_score(word_list):
-    points_list = []
-
-    for word in word_list:
-        points = score_word(word)
-        points_list.append(points)
+    """This function returns a tuple that represents the data of a
+    winning word and its respective score given a list of words. This function
+    also applies tie-breaking logic to determine the winning word and score"""
+    all_points = get_all_points(word_list)
+    max_score = max(all_points)
+    index_value = None 
     
-    highest_points = max(points_list)
-    # Highest_points_index and highest_word are for no tie cases
-    highest_points_index = points_list.index(highest_points)
-    highest_word = word_list[highest_points_index]
-
-    # Tie case variable
-    index_list = []
-    high_word_list = []
-    winning_word = ""
-
-    if points_list.count(highest_points) == 1:
-        return highest_word,highest_points
-    else:
-        high_word_list = get_high_word_list(points_list, word_list)
-        print(f"{high_word_list=}")
+    if not check_if_tie_case(all_points, word_list):
+        index_value = get_index_from_list(all_points, max_score)
+        return word_list[index_value], max_score
+    
+    # All code below refer to tie-breaking cases
+    # When all words have different lengths but none of the words has 10 letters
+    if not check_if_same_length(word_list) and not check_if_any_word_is_ten(word_list):
+        word_lengths = get_word_lengths(word_list)
+        shortest_word = min(word_lengths)
+        index_value = get_index_from_list(word_lengths, shortest_word)
+        return word_list[index_value], max_score
         
-        ten_letters = []
-        for word in high_word_list:
-            if len(word) == 10:
-                ten_letters.append(word)
-                winning_word = ten_letters[0]
-                if len(ten_letters) >= 1:
-                    break
-            else: 
-                short_word_list = find_shortest_length(high_word_list)
-                if len(short_word_list) == 1:
-                    winning_word = short_word_list[0]
-                else:
-                    # When we have more than one word
-                    winning_word = short_word_list[0]
-                    
-        return winning_word, highest_points
+    # When we have a 10-letter word, return the first 10-letter word in the list 
+    # Combines second and third conditions for tie-breaking rules
+    if check_if_any_word_is_ten(word_list):
+        word_lengths = get_word_lengths(word_list)
+        index_value = get_index_from_list(word_lengths, 10)
+        return word_list[index_value], max_score
 
-def get_high_word_list(points_list, word_list):
-    index_list = []
-    high_word_list = []
-    for i in range(len(points_list)):
-        if points_list[i] == max(points_list):
-            index_list.append(i)
-        # Need to use index list to get word
-    for index_value in index_list:
-        high_word_list.append((word_list[index_value]))
-    return high_word_list
+# Helper functions for wave 4
+def get_all_points(word_list): 
+    """This function returns a list of integers, with 
+    each integer representing the score for each word in the
+    list of words"""
+    all_points = [score_word(word) for word in word_list]
+    return all_points
 
-def find_shortest_length(high_word_list):
-    shortest_word = min(high_word_list, key=len)
-    short_list = []
+def check_if_tie_case(all_points, word_list):
+    """This function returns True when there is a tie.
+    Otherwise, the function returns False."""
+    if len(set(all_points)) != len(word_list):
+        return True
+    return False
 
-    for word in high_word_list:
-        if len(word) == len(shortest_word):
-            short_list.append(word)
-    return short_list
+def get_index_from_list(any_list, any_value):
+    """This function returns the index of any_value from 
+    any_list"""
+    for i in range(len(any_list)):
+        if any_list[i] == any_value:
+            return i
+
+def get_word_lengths(word_list):
+    """This function return a list of integers, with each 
+    integer as the length of each word"""
+    word_lengths = [len(word) for word in word_list]
+    return word_lengths
+
+def check_if_same_length(word_list):
+    """Returns true if all words from a list of words are
+    the same lengths. Otherwise, the function returns False."""
+    word_length = get_word_lengths(word_list)
+    if len(set(word_length)) != len(word_list):
+        return True
+    return False
+
+def check_if_any_word_is_ten(word_list):
+    """ This function returns true if any word from a list of 
+    words has 10 letters"""
+    word_length = get_word_lengths(word_list)
+    if 10 in word_length:
+        return True
+    return False
