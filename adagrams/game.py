@@ -112,22 +112,22 @@ def get_highest_word_score(word_list):
     list_word_with_max_score = [word for word in dict_word_score.keys()if 
                                 dict_word_score[word] == max_score]
         
-    max_length = max([len(each_word)for each_word in list_word_with_max_score])  
+    max_length = max((length_of_each_word_in_list_word_with_max_score(list_word_with_max_score)))  
 
     if max_length >= 10:
-        for each_word in dict_word_score.keys():
-            if len(each_word) == max_length:
-                return (each_word, max_score) 
+        return helper_func_return_tuple_with_word_max_score(dict_word_score, max_length, max_score)   
+
     else:
-        min_length = min([len(each_word)for each_word in list_word_with_max_score])
+        min_length = min((length_of_each_word_in_list_word_with_max_score(list_word_with_max_score)))
+        return helper_func_return_tuple_with_word_max_score(dict_word_score, min_length, max_score)
 
-        for each_word in dict_word_score.keys():
-            if len(each_word) == min_length:
-                return (each_word, max_score) 
+def helper_func_return_tuple_with_word_max_score(dict_word_score, length, max_score): # max or min length
+    for each_word in dict_word_score.keys():
+        if len(each_word) == length:
+            return (each_word, max_score) 
 
-
-
-
+def length_of_each_word_in_list_word_with_max_score(list_word_with_max_score):
+    return [len(each_word)for each_word in list_word_with_max_score]
 
 
 
