@@ -30,6 +30,11 @@ LETTER_POOL = {
 }
 
 def draw_letters():
+    '''
+    Draws 10 random letters from a dictionary of letters.
+    The letters are are weighted depending on the frequency as dictated in the values.
+    Returns a list of letters.
+    '''
     # use a dictionary with the letter as the key and the number of instances/tiles as the value
     # make a copy of LETTER_POOL (shallow/deep) 
     all_letters = LETTER_POOL.copy()
@@ -54,6 +59,9 @@ def draw_letters():
     return drawn_letters
 
 def score_word(word):
+    '''
+    Scores the word and returns the score.
+    '''
     # change all letters to uppercase to match dict
     word = word.upper()
     # create lists representing points and which letters receive those points
@@ -89,6 +97,9 @@ def score_word(word):
     return word_score
 
 def uses_available_letters(word, letter_bank):
+    '''
+    Checks to make sure the user only submits words using the letters they drew.
+    '''
     # make a copy of the letter bank
     available_letters = letter_bank.copy()
     # loop through the letters in word and if the letter is in the list, remove it
@@ -103,6 +114,11 @@ def uses_available_letters(word, letter_bank):
     
 
 def get_highest_word_score(word_list):
+    '''
+    Finds the words with the highest point value and returns the winning words and the score in a tuple.
+    For ties, words equal to ten win, else the shorter words wins. 
+    If both of the words are the same length, the first word submitted wins.
+    '''
     # create new dict that will store word as key and score as value
     words_and_scores = {}
     # list will track just scores
