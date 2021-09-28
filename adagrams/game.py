@@ -142,9 +142,10 @@ def get_highest_word_score(word_list):
             max_score = score
 
     if len(high_score_words) == 1:
+        display_highest_score(high_score_words[0])
         return high_score_words[0]
-    tied_words = []
 
+    tied_words = []
     for (word, score) in high_score_words:
         tied_words.append(word)
 
@@ -155,15 +156,15 @@ def get_highest_word_score(word_list):
     # Tiebreaker: shortest word wins
     for i, (word, score) in enumerate(high_score_words):
         if len(word) == 10:
+            display_highest_score(high_score_words[i])
             return high_score_words[i]
         elif len(word) == shortest_word_length:
             tiebreaker = high_score_words[i]
 
     display_highest_score(tiebreaker)
-
     return tiebreaker
 
-
+# Closing uihelper functions
 display_retry_instructions()
 
 
