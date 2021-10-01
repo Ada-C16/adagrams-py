@@ -7,13 +7,12 @@ def draw_letters():
     letter_pool = letter_dict()
     hand_list = []
     while len(hand_list) < 10:
-        key, value = random.choice(list(letter_pool.items()))
+        key = random.choice(list(letter_pool.keys()))
         random_letter = key 
         if letter_pool[random_letter] != 0:
             hand_list.append(random_letter)
-            letter_pool[random_letter] -= 1
-        else:
-            del letter_pool[random_letter]
+            letter_pool[random_letter] -= 1      
+        del letter_pool[random_letter]
     return hand_list
 
 
@@ -52,7 +51,6 @@ def score_word(word):
 def get_highest_word_score(word_list):
     word_highest_score =""
     highest_score =0
-    tie_list = []
     #for loop
     for word in word_list:
         score = score_word(word)
@@ -60,14 +58,9 @@ def get_highest_word_score(word_list):
             highest_score = score
             word_highest_score = word 
         elif score == highest_score:
-            #create a list of tie values
-            tie_list.append(word_highest_score)
-            tie_list.append(word)
-            if len(word) == len(word_highest_score):
-                word_highest_score = tie_list[0]
-            elif len(word) == 10:
+            if len(word) == 10 and len(word_highest_score) != 10:
                 highest_score = score 
-                word_highest_score = word 
+                word_highest_score = word
             elif len(word) < len(word_highest_score) and len(word_highest_score) < 10:
                 highest_score = score 
                 word_highest_score = word
