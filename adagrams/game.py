@@ -1,15 +1,6 @@
 import random
 
-def dictionary_to_list(dict):
-    letter_list = []
-    for key, value in dict.items():
-        for i in range(value): 
-            letter_list.append(key)
-    
-    return letter_list
-
-def draw_letters():
-    letter_pool = {
+LETTER_POOL = {
         "A": 9,
         "B": 2,
         "C": 2,
@@ -37,8 +28,37 @@ def draw_letters():
         "Y": 2,
         "Z": 1,
     }
+SCORE_CHART =  {
+        "A": 1,
+        "B": 3,
+        "C": 3,
+        "D": 2,
+        "E": 1,
+        "F": 4,
+        "G": 2,
+        "H": 4,
+        "I": 1,
+        "J": 8,
+        "K": 5,
+        "L": 1,
+        "M": 3,
+        "N": 1,
+        "O": 1,
+        "P": 3,
+        "Q": 10,
+        "R": 1,
+        "S": 1,
+        "T": 1,
+        "U": 1,
+        "V": 4,
+        "W": 4,
+        "X": 8,
+        "Y": 4,
+        "Z": 10, }
+def draw_letters():
+    
 
-    possible_letters = dictionary_to_list(letter_pool)
+    possible_letters = list(LETTER_POOL)
 
     player_hand = random.sample(possible_letters, 10)
     return player_hand
@@ -67,38 +87,12 @@ def score_word(word):
     
     player_score = 0
 
-    score_chart =  {
-        "A": 1,
-        "B": 3,
-        "C": 3,
-        "D": 2,
-        "E": 1,
-        "F": 4,
-        "G": 2,
-        "H": 4,
-        "I": 1,
-        "J": 8,
-        "K": 5,
-        "L": 1,
-        "M": 3,
-        "N": 1,
-        "O": 1,
-        "P": 3,
-        "Q": 10,
-        "R": 1,
-        "S": 1,
-        "T": 1,
-        "U": 1,
-        "V": 4,
-        "W": 4,
-        "X": 8,
-        "Y": 4,
-        "Z": 10,
-    }
+    
+    
     word = word.upper()
 
     for letter in word:
-        player_score += score_chart[letter]
+        player_score += SCORE_CHART[letter]
     if len(word) in range(7, 11):
         player_score += 8
     return player_score
@@ -118,15 +112,9 @@ def get_highest_word_score(word_list):
             winning_word = word
             high_score = word_score
         elif word_score == high_score:
-            if len(winning_word) == 10:
+            if len(winning_word) == 10 or len(word) == len(winning_word):
                 continue
-            elif len(word) == 10:
+            elif len(word) == 10 or len(word) < len(winning_word):
                 winning_word = word
                 high_score = word_score
-            elif len(word) < len(winning_word):
-                winning_word = word
-                high_score = word_score
-            elif len(word) == len(winning_word):
-                continue
-        
     return (winning_word, high_score)
