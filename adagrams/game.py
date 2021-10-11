@@ -1,7 +1,6 @@
 import random
 
-def draw_letters():
-    pool_of_letters = {
+POOL_OF_LETTERS = {
         'A': 9,
         'B': 2,
         'C': 2,
@@ -30,20 +29,26 @@ def draw_letters():
         'Z': 1
     }
 
+# Wave 01
+
+"""
+The draw_letters function builds a hand of 10 letters
+for the user. The letters are randomly drawn from the 
+pool of letters.
+"""
+
+def draw_letters():
+    pool_of_letters = POOL_OF_LETTERS.copy()
     list_of_letters = list(pool_of_letters.keys())
 
     draw_ten = []
 
-
-
-
-    for i in range(10):
-        random_letter = random.randint(0, 25)
+    while len(draw_ten) < 10:
+        random_letter = random.randint(0, len(list_of_letters) - 1)
         letter = list_of_letters[random_letter]
         
-        while pool_of_letters[letter] == 0:
-            random_letter = random.randint(0, 25)
-            letter = list_of_letters[random_letter]
+        if pool_of_letters[letter] == 0:
+            continue
         
         draw_ten.append(letter)
         pool_of_letters[letter] -= 1
@@ -51,96 +56,91 @@ def draw_letters():
         
     return draw_ten
 
+# Wave 02 
 
+"""
+The use_available_letters function checks to see
+whether or not the input word only uses characters 
+that are contained within a collection (or hand) 
+of drawn letters.
+"""
 
 def uses_available_letters(word, letter_bank):
     letter_list = letter_bank[:]
+    letter_map = {}
+
     if len(word) > len(letter_list):
         return False
     
-    elif len(word) == len(letter_list):
-        for letter in word:
-            if letter in letter_list:
-                letter_list.remove(letter)
-        if letter_list is False:
-            return True
+    whole_word = []
+    for letter in letter_list:
+        if letter in letter_map:
+            letter_map[letter] += 1
         else:
-            return False
-    
-    else:
-        whole_word = []
-        for letter in word:
-            if letter not in letter_list:
-                return False
-            else:
-                whole_word.append(letter)
-                letter_list.remove(letter)
-        if len(whole_word) == len(word):
-            return True
-        else:
-            return False
-    
+            letter_map[letter] = 1
 
+    for letter in word:
+        if letter not in letter_map.keys() or letter_map[letter] == 0:
+            return False
+        
+        whole_word.append(letter)
+        letter_map[letter] -= 1
+
+    return len(whole_word) == len(word)
+
+# Wave 03
+
+"""
+The score_word function returns the score of a given word as
+defined by the Adagrams game.
+"""
 
 def score_word(word):
-    value_1 = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
-    value_2 = ["D", "G"]
-    value_3 = ["B", "C", "M", "P"]
-    value_4 = ["F", "H", "V", "W", "Y"]
-    value_5 = ["K"]
-    value_8 = ["J", "X"]
-    value_10 = ["Q", "Z"]
+    score_map = {
+        "A": 1, "E": 1, "I": 1, "O": 1, "U": 1, 
+        "L": 1, "N": 1, "R": 1, "S": 1, "T": 1,
+        "D": 2, "G": 2, "B": 3, "C": 3, "M": 3, 
+        "P": 3, "F": 4, "H": 4, "V": 4, "W": 4, 
+        "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, 
+        "Z": 10
+    }
 
-    sum = 0
+    LONG_WORD_BONUS = 8
+    LONG_WORD_BONUS_LENGTH = 7
+    BASIC_SCORE = 0
 
-    if len(word) > 6:
-        sum += 8
+    score = LONG_WORD_BONUS if len(word) >= LONG_WORD_BONUS_LENGTH else BASIC_SCORE
 
     for letter in word.upper():
-        if letter in value_1:
-            sum += 1
-        elif letter in value_2:
-            sum += 2
-        elif letter in value_3:
-            sum += 3
-        elif letter in value_4:
-            sum += 4
-        elif letter in value_5:
-            sum += 5
-        elif letter in value_8:
-            sum += 8
-        elif letter in value_10:
-            sum += 10
+        if letter in score_map:
+            score += score_map[letter]
     
-    return sum
+    return score
 
+# Wave 04
 
+"""
+The get_highest_word_score function checks for the
+highest scored word that the user has submitted.
+"""
 
 def get_highest_word_score(word_list):
     score_dict = {}
     max_score = 0
-    high_score_words = {}
 
     for word in word_list:
         score_dict[word] = score_word(word)
     
-    for score in score_dict.values():
-        if score > max_score:
-            max_score = score
-    
+    max_score = max(score_dict.values())
+    shortest_word_length = 10
+    shortest_word = None
+
     for word, score in score_dict.items():
         if score == max_score:
-            high_score_words[word] = score
-        
-    shortest_word_length = 10
-
-    for word, score in high_score_words.items():
-        if len(word) == 10:
-            return word, score
+            if len(word) == 10:
+                return word, score
+            elif len(word) < shortest_word_length:
+                shortest_word_length = len(word)
+                shortest_word = word
     
-        elif len(word) < shortest_word_length:
-            shortest_word_length = len(word)
-    
-    for word, score in high_score_words.items():   
-        if len(word) == shortest_word_length:
-            return word, score
+    return shortest_word, max_score
