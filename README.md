@@ -1,6 +1,6 @@
 # AdaGrams
 
-## Goal
+## About 
 
 An [anagram](https://en.wikipedia.org/wiki/Anagram) is a word or phrase formed by rearranging the letters of a different word or phrase. Adagrams is a game in which a player is given a random set of letters and must make an anagram using those letters.  Each submitted word will score points.
 
